@@ -9,7 +9,7 @@ const server = express()
 const { getIPAddress } = require("./scripts/getIPAddress")
 
 // define
-const port = 3000
+const port = 80
 
 // listen
 server.listen(port, () => {
