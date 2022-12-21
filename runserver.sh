@@ -2,4 +2,4 @@
 
 cd /Users/ehrrsn7/Documents/Code/PERN/ejhfotos.com/ || echo "directory not found"
 
-pm2 server/server.js
+pm2 start server/server.js

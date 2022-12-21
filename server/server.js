@@ -14,3 +14,7 @@ server.listen(port, () => {
 
 // use middleware to serve all react apps
 server.use(express.static("./app/build"))
+// TODO: use http://api.ejhfotos.com/ as ./api on port 3000
+// TODO: use http://linktree.ejhfotos.com/ as ./linktree "
+// TODO: use http://portfolio.ejhfotos.com/ as ./portfolio "
+// TODO: use http://minecraft.ejhfotos.com/ as ./minecraft on port 25565?
