@@ -4,7 +4,9 @@ const express = require("express")
 // import my scripts
 const { getIPAddress } = require("./getIPAddress")
 
-function listen(server, port) {
+function listen(port) {
+   const server = express()
+   
    server.listen(port, () => {
       console.log(`App listening on port ${port}:\n`)
       console.log(`\thttp://localhost:${port}/`)
@@ -13,6 +15,8 @@ function listen(server, port) {
          console.log(`\thttp://ejhfotos.com/\n`)
       }
    })
+
+   return server
 }
 
 module.exports = { listen }
