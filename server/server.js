@@ -2,23 +2,17 @@
 const express = require("express")
 
 // import my scripts
-const { getIPAddress } = require("./scripts/getIPAddress")
+const { listen } = require("./scripts/listen")
 
-// express app
-const app = express()
-
-// listen
-app.listen(80, () => {
-   console.log(`App listening on port 80:\n`)
-   console.log(`\thttp://localhost/`)
-   if (getIPAddress()) {
-      console.log(`\thttp://${getIPAddress()}:80/`)
-      console.log(`\thttp://ejhfotos.com/\n`)
-   }
-})
+// create servers and listen on different ports
+const www      = listen(81)
+const about    = listen(82)
+const linktree = listen(83)
 
 // use middleware to serve all react apps
-app.use(express.static("./app/build"))
+www.use(express.static("./app/build"))
+about.use(express.static("./app/build"))
+linktree.use(express.static("./app/build"))
 
 // TODO: use http://api.ejhfotos.com/ as ./api on port 3000
 // TODO: use http://linktree.ejhfotos.com/ as ./linktree "
