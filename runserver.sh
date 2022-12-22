@@ -1,5 +1,5 @@
 #!/bin/bash
 
 cd /Users/ehrrsn7/Documents/Code/PERN/ejhfotos.com/ || echo "directory not found"
-
-pm2 start www/server/server.js
+cd server || (echo "server dir not found"; exit 1)
+pm2 start server.js
