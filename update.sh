@@ -11,6 +11,14 @@ function update_node_app {
    cd ..
 }
 
+function update_react_build {
+   app="$1"
+   cd "$1" || (echo "missing $app/ directory"; exit 1)
+   touch "logs/react-build.txt"
+   npm run build > "react-build.txt"
+   cd ..
+}
+
 function update_express_app {
    echo "updating express application: $1/"
    update_node_app "$1"
@@ -19,6 +27,7 @@ function update_express_app {
 function update_react_app {
    echo "updating react application: $1/"
    update_node_app "$1"
+   update_react_build "$1"
 }
 
 # pull changes from repository
