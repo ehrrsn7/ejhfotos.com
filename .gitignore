@@ -4,3 +4,4 @@ package-lock.json
 app/build/
 .DS_Store
 *.conf
+*/logs
