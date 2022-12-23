@@ -9,7 +9,7 @@ const www      = listen(81)
 const about    = listen(82)
 const linktree = listen(83)
 
-// use middleware to serve all react apps
+// use middleware to serve react apps
 www.use(express.static("./app/build"))
 about.use(express.static("./about/build"))
 linktree.use(express.static("./linktree/build"))

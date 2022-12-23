@@ -6,7 +6,7 @@ const { getIPAddress } = require("./getIPAddress")
 
 function listen(port) {
    const server = express()
-   
+
    server.listen(port, () => {
       console.log(`App listening on port ${port}:\n`)
       console.log(`\thttp://localhost:${port}/`)
