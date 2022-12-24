@@ -1,5 +1,5 @@
 
-up to date, audited 1399 packages in 7s
+up to date, audited 1399 packages in 8s
 
 226 packages are looking for funding
   run `npm fund` for details
