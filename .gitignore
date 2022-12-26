@@ -11,3 +11,4 @@ linktree/logs/react-build.txt
 server/logs/npm.txt
 linktree/logs/npm.txt
 app/logs/npm.txt
+*/logs/

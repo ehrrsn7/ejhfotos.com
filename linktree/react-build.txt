@@ -1,5 +1,5 @@
 
-> app@0.1.0 build
+> linktree@0.1.0 build
 > react-scripts build
 
 Creating an optimized production build...
@@ -7,8 +7,8 @@ Compiled successfully.
 
 File sizes after gzip:
 
-  46.55 kB  build/static/js/main.67c7366d.js
-  1.78 kB   build/static/js/787.c1112931.chunk.js
+  46.55 kB  build/static/js/main.3de5c94a.js
+  1.78 kB   build/static/js/787.55f350d7.chunk.js
   541 B     build/static/css/main.073c9b0a.css
 
 The project was built assuming it is hosted at /.

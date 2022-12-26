@@ -1,5 +1,5 @@
 
-up to date, audited 75 packages in 543ms
+up to date, audited 75 packages in 727ms
 
 10 packages are looking for funding
   run `npm fund` for details

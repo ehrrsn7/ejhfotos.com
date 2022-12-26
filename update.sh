@@ -13,4 +13,10 @@ git pull
 ./scripts/update_react_app.sh "about"
 ./scripts/update_react_app.sh "linktree"
 
+# refresh nginx reverse proxy host
+systemctl restart nginx || echo "Unable to restart nginx. (Ignore if not running on production server on linux)."
+
+# start server up again
+pm2 start server || echo "(Ignore if not on production server.)"
+
 echo "Updates finished successfully."
