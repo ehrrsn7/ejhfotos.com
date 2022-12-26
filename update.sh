@@ -2,6 +2,9 @@
 
 cd /Users/ehrrsn7/Documents/Code/PERN/ejhfotos.com/ || echo "directory not found"
 
+# start server up again
+pm2 stop server || echo "Either unable to stop server, or 'pm2' is not found (Ignore if not on production server.)"
+
 # pull changes from repository
 git pull
 
