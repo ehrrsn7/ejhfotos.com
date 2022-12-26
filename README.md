@@ -33,7 +33,7 @@ Instructions on how to install it are found at https://pm2.keymetrics.io/
 The update.sh file is used to restart the server, as well as run the updates. 
 
 ```console
-./updateserver.sh
+./update.sh
 ```
 
 # See the applications 
