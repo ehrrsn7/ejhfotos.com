@@ -6,6 +6,4 @@ app/build/
 *.conf
 
 # logs
-*/logs
-*/logs/*
-logs/
+logs
