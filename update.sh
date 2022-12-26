@@ -2,43 +2,15 @@
 
 cd /Users/ehrrsn7/Documents/Code/PERN/ejhfotos.com/ || echo "directory not found"
 
-# define
-function update_node_app {
-   app="$1"
-   cd "$app/" || (echo "missing $app/ directory"; exit 1)
-   mkdir -p logs/; touch "logs/npm.txt"
-   npm i -q > "logs/npm.txt" || (echo "npm error"; exit 1)
-   cd ..
-}
-
-function update_react_build {
-   app="$1"
-   cd "$1" || (echo "missing $app/ directory"; exit 1)
-   touch "logs/react-build.txt"
-   npm run build > "react-build.txt"
-   cd ..
-}
-
-function update_express_app {
-   echo "updating express application: $1/"
-   update_node_app "$1"
-}
-
-function update_react_app {
-   echo "updating react application: $1/"
-   update_node_app "$1"
-   update_react_build "$1"
-}
-
 # pull changes from repository
 git pull
 
 # update server
-update_express_app "server"
+./scripts/update_express_app.sh "server"
 
 # update react applications
-update_react_app "app"
-update_react_app "about"
-update_react_app "linktree"
+./scripts/update_react_app.sh "app"
+./scripts/update_react_app.sh "about"
+./scripts/update_react_app.sh "linktree"
 
 echo "Updates finished successfully."

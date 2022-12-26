@@ -4,3 +4,10 @@ package-lock.json
 app/build/
 .DS_Store
 *.conf
+*/logs
+about/logs/react-build.txt
+app/logs/react-build.txt
+linktree/logs/react-build.txt
+server/logs/npm.txt
+linktree/logs/npm.txt
+app/logs/npm.txt
