@@ -1,12 +1,13 @@
 #!/bin/bash
 
-cd /Users/ehrrsn7/Documents/Code/PERN/ejhfotos.com/ || echo "directory not found"
+# if we're in local development
+./scripts/mac-cd.sh
 
-# start server up again
-pm2 stop server || echo "Either unable to stop server, or 'pm2' is not found (Ignore if not on production server.)"
+# stop server temporarily
+./scripts/pm2-stop-server.sh
 
 # pull changes from repository
-git pull
+./scripts/pull-git-changes.sh
 
 # update server
 ./scripts/update_express_app.sh "server"
@@ -17,9 +18,9 @@ git pull
 ./scripts/update_react_app.sh "linktree"
 
 # refresh nginx reverse proxy host (to apply changes)
-systemctl restart nginx || echo "Unable to restart nginx. (Ignore if not running on production server on linux)."
+./scripts/restart-nginx.sh
 
 # start server up again
-pm2 start server || echo "(Ignore if not on production server.)"
+./scripts/pm2-start-server.sh
 
 echo "Updates finished successfully."

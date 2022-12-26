@@ -1,7 +1,19 @@
 #!/bin/bash
 
-app="$1"
-cd "$1" || (echo "missing $app/ directory"; exit 1)
-touch "logs/react-build.txt"
-npm run build > "logs/react-build.txt"
+# define
+APP="$1"
+LOGFILE="logs/react-build.txt"
+ERROR_LOGFILE="logs/react-build-error.txt"
+
+# set up
+mkdir -p logs
+touch $LOGFILE $ERROR_LOGFILE
+
+# change into `app`/ directory
+cd "$APP/" || (echo "Missing $APP/ directory."; exit 1)
+
+# execute
+npm run build > $LOGFILE 2> $ERROR_LOGFILE
+
+# change back into parent directory
 cd ..
