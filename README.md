@@ -18,10 +18,12 @@ There is a script provided to both initialize and update all the applications. R
 
 Note: this will also start the server in the background if you already have pm2 installed.
 
-## Run the Server
+## Run the server and see the applications 
+
+The urls for each of the applications in local development will be listed when you run:
 
 ```console
-node server/server.js
+./runserver.sh
 ```
 
 ## Use pm2 for production
@@ -34,12 +36,4 @@ The update.sh file is used to restart the server, as well as run the updates.
 
 ```console
 ./update.sh
-```
-
-# See the applications 
-
-The urls for each of the applications will be listed when you run:
-
-```console
-./runserver.sh
 ```
