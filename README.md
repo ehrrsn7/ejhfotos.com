@@ -4,35 +4,36 @@
 
 Install node.js/npm from this website: https://nodejs.org/en/download/
 
-## Clone this repository and cd into the `src/` directory
+Install Git from https://git-scm.com
+
+## Clone this repository and cd into it.
 
 ## Install dependencies
 
-Starting in your `src/` directory:
-
-Install express
+There is a script provided to both initialize and update all the applications. Run it with:
 
 ```console
-cd server/
-npm i
-cd ..
+./update.sh
 ```
 
-Install react boilerplate
+Note: this will also start the server in the background if you already have pm2 installed.
+
+## Run the server and see the applications 
+
+The urls for each of the applications in local development will be listed when you run:
 
 ```console
-cd app/
-npm i
-npm run build
-cd ..
+./runserver.sh
 ```
 
-## Run the Server
+## Use pm2 for production
+
+pm2 runs node applications in the background and are used in production.
+
+Instructions on how to install it are found at https://pm2.keymetrics.io/
+
+The update.sh file is used to restart the server, as well as run the updates. 
 
 ```console
-node server/server.js
+./update.sh
 ```
-
-### When you run the server and put the ip address into your browser address bar, it should look like this:
-
-http://ejhfotos.com:3000/
