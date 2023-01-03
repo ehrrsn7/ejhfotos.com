@@ -8,7 +8,6 @@ mkdir -p logs
 touch $ERROR_LOGFILE
 
 # execute
-mkdir -p logs
 echo "Temporarily stopping server."
 pm2 stop server \
 2> $ERROR_LOGFILE \
