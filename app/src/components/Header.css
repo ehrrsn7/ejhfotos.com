@@ -1,0 +1,20 @@
+#Header {
+   /* style */
+   background: white;
+   text-align: center;
+}
+
+#Header > div.page-width {
+   /* position */
+   display: flex;
+   align-items: center; /* vertical align */
+   justify-content: space-around;
+}
+
+#Header > div > nav {
+   padding: 1em;
+}
+
+#Header > div > nav > * {
+   margin: 1em;
+}

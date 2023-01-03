@@ -1,38 +1,106 @@
-.App {
-  text-align: center;
+/************************************************************
+ * IMPORT 
+ ************************************************************/
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+/************************************************************
+ * DEFINE
+ ************************************************************/
+:root {
+   --page-max-width: 700px;
+   --page-max-width-mobile: 400px;
+   --link-color: #5283A4;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/************************************************************
+ * BUILT-IN COMPONENTS 
+ ************************************************************/
+html {
+   font-family: sans-serif;
+   color: gray;
+   -webkit-font-smoothing: antialiased;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html, body {
+   height: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1 {
+   color: black;
+   font-family: "Ubuntu", sans-serif;
+   font-weight: 700;
+   letter-spacing: -.05em;
 }
 
-.App-link {
-  color: #61dafb;
+h3 {
+   color: black;
+   font-family: "Ubuntu", sans-serif;
+   font-weight: 400;
+   letter-spacing: -.05em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+a {
+   color: var(--link-color);
+   text-decoration: none;
+   font-weight: bold;
+   font-family: "Ubuntu", sans-serif;
+}
+
+/************************************************************
+ * CUSTOM COMPONENTS
+ ************************************************************/
+#root {
+   height: 100%;
+   width: 100%;
+   padding: 0;
+   margin: 0;
+}
+
+.content {
+   flex: 1 0 auto;
+   flex-shrink: 0;
+   width: 100%;
+   padding: 0;
+   margin: 0;
+}
+
+
+:has(.page-width) {
+   /* position */
+   display: flex;
+   flex-direction: column;
+   align-items: center; /* horizontally align */
+}
+
+.page-width {
+   width: 100%;
+   max-width: var(--page-max-width);
+   padding: 0;
+   /* margin: 0 auto; */
+   border: 1px solid salmon;
+}
+
+@media (max-width: 700px) {
+   .page-width {
+      
+   }
+}
+
+/************************************************************
+ * ANIMATIONS 
+ ************************************************************/
+@keyframes fade-in {
+   0% { opacity: 0; }
+   100% { opacity: 1; }
+}
+
+.fade-in {
+   animation: fade-in 1s;
+}
+
+.fade-in-slow {
+   animation: fade-in 1.5s;
+   animation-delay: 2.5;
 }
