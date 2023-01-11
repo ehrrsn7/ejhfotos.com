@@ -1,4 +1,4 @@
-# [ejhfotos.com](ejhfotos.com)
+# [ejhfotos.com](http://ejhfotos.com)
 
 Source code for my website.
 
