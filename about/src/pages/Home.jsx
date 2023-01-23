@@ -26,19 +26,19 @@ export default function Home() {
          <ul>
             <li>
                <p>
-                  <Link to="/">Home:</Link>{' '}
+                  <a href="http://www.ejhfotos.com/">Home:</a>{' '}
                   This will be the main page, the photography site. 
                </p>
             </li>
             <li>
                <p>
-                  <Link to="/">About:</Link>{' '}
+                  <a href="http://about.ejhfotos.com/">About:</a>{' '}
                   This will be a landing page for everybody, including not only those who click the "about" link, but also potential employers who would like to clearly see my software portfolio, links and resume. 
                </p>
             </li>
             <li>
                <p>
-                  <Link to="/">Linktree:</Link>{' '}
+                  <a href="http://linktree.ejhfotos.com/">Linktree:</a>{' '}
                   Lightweight linktree.
                </p>
             </li>
