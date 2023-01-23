@@ -1,3 +1,4 @@
-#Home {
-   background: #FCFCFA;
+div#Home > main {
+   margin: 0 auto;
+   max-width: var(--page-max-width);
 }

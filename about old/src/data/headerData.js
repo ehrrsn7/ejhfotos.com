@@ -1,9 +1,0 @@
-import resume from '../assets/pdf/resume.pdf'
-
-export const headerData = {
-    name: "Elijah Harrison",
-    title: "Software Engineer, Photographer",
-    desciption:"Hi! My name's Elijah, nice to meet you! I like photography and programming, feel free to stick around and explore.",
-    image: "https://lh3.googleusercontent.com/sdySqjUWu_h-CSEm036egF8L0o6AHjEHPAOtUzFBGvXfuvJ2_r6GrpfmJrGMm7JEjV0pMLbwRnFDPsWbgSVa5Iw7oqT1aPJYvop6CfAzyxvtGaaUrC2jQEDMeRyWQ5yLbUWB6mRFQhoPLhGapz4MAwcqRs1CueH8bfCa46NJmjy5EaRqmIhI_0NXtPfCLN0VThxybKheYxwQ_ZZE6V1k7KwHU3l9VxYNwcWo1yk8mjig4KO_5xekeAf9bGCSNn_B0812_Z2urkr5U5J_pyz0n-Ad0g9TZTlVFOnm-ZhS2RGK6ki0IFJQ2CuvUbizTISR9vmxLeHhqfq6-cHV9EaGF5e1kvwSkXhQcxQh-E3lAFyOfZZYJqMfqlGy_zn-2Vs0kbVLmSCirB7GSSUsoQRbnAJizMRJzPxhJIyFgPGpaZ4CvlyXFSTheHeo_L9I1wpNRMkm8z9GvHEyvd-v12PzNhZPMJON1n9mcgWkkKlw15TF9WeJdopzxszi_TRQXVWkVTCcIlDqsMqHuQ4M8jbROAxZnn6uu40eBPq4j-iMIMo7Vj7dAGYAKMXF7BqRnnT2mN5DSVK8eFiNyT2tCvR4T_hJlg2q2SHM2h21G0XBGzsTDFuYyBtVH8BZYI9yExh-WK7F0VLGvxMntAvnhDEU9-QyG7_GLe3wn7Ay8ZbPxg2O8M1S7TCl0z8o7Suxo1sfjTp9fGxINujFnB_dasJ5-9lEBRcYwpO15ReU6_IIhWb9Uqg6NhaROk2bQ7s72vs0h6keAs6cy2CJMSLoeuu7xbhGLm7rkm-bWR7IPsGLPMHNYKhXYASCj0ArnysEWsQAu21AHHMXNrEMeBvDRPjXTf_2mKKgZttLLjeAQedy5CoEk_77jMDUs2cWkJm7pxybypHVBtKnXkMczlxylVhp8Hm2vlkMWeugnAVw0WX1hQO9I4RxhQc377PspvltASIJBcibNkYQu7XvD9kWuJg=w1236-h1650-no?authuser=0",
-    resumePdf: resume
-}

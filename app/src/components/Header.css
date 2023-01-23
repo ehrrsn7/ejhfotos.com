@@ -1,25 +1,31 @@
-#Header {
-   /* style */
-   background: white;
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Damion&family=Lovers+Quarrel&family=Pacifico&family=Passions+Conflict&display=swap');
+
+/************************************************************
+ * BUILT-IN COMPONENTS 
+ ************************************************************/
+header {
+   width: 100%;
+   height: 80px;
+   background: var(--light-gray);
+   padding: 0;
+   margin: 0;
+}
+
+/************************************************************
+ * CUSTOM COMPONENTS 
+ ************************************************************/
+header > div {
+   height: 100%;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   align-content: center;
    text-align: center;
+   align-items: center;
 }
 
-#Header > div.page-width {
-   /* position */
-   display: flex;
-   align-items: center; /* vertical align */
-   justify-content: space-around;
-}
-
-#Header > .page-width > h1 {
-   display: flex;
-   flex-wrap: wrap;
-}
-
-#Header > .page-width > nav {
-   padding: 1em;
-}
-
-#Header > .page-width > nav > * {
-   margin: 1em;
+.CursiveLogo {
+   font-family: 'Damion', cursive;
+   padding: 0;
+   margin: 0;
+   font-size: 2em;
 }

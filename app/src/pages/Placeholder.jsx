@@ -1,4 +1,6 @@
 // import
+import logo from "../logo.svg"
+
 export default function Placeholder({subdomain, logo, path}) {
    return <div>
       <header className="App-header content">

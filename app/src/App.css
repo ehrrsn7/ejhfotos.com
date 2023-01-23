@@ -8,105 +8,69 @@
  * DEFINE
  ************************************************************/
 :root {
-   --page-max-width: 1500px;
-   --page-max-width-tablet: 700px;
+   --page-max-width: 700px;
    --page-max-width-mobile: 400px;
    --link-color: #5283A4;
+
+   --light-red: rgb(231, 185, 185);
+   --light-yellow: rgb(236, 236, 187);
+   --light-blue: rgb(201, 201, 241);
+   --light-green: rgb(208, 237, 208);
+   --light-gray: rgb(235, 235, 235);
 }
 
 /************************************************************
  * BUILT-IN COMPONENTS 
  ************************************************************/
-html {
-   font-family: sans-serif;
-   color: gray;
-   -webkit-font-smoothing: antialiased;
-   word-wrap: wrap;
-   overflow-wrap: normal;
-}
-
 html, body {
+   display: flex;
+   -webkit-font-smoothing: antialiased;
    height: 100%;
+   width: 100%;
+   margin: 0;
+   color: #000000AA;
+   font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-h1, h3 {
-   color: black;
-   font-family: "Ubuntu", sans-serif;
-   font-weight: 700;
-   letter-spacing: -.05em;
+main {
+   padding: 1em;
 }
 
-h3 {
-   font-weight: 400;
+h1, h2, h3, h4, h5, h6 {
+   font-family: Ubuntu, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   font-weight: 350;
+   padding: 0;
+   margin: 0;
 }
 
 a {
    color: var(--link-color);
    text-decoration: none;
-   font-weight: bold;
-   font-family: "Ubuntu", sans-serif;
+}
+
+a:hover {
+   text-decoration: underline;
+}
+
+ul {
+   padding-left: 0;
+}
+
+ul > li {
+   list-style: none;
 }
 
 /************************************************************
- * CUSTOM COMPONENTS
+ * CUSTOM COMPONENTS 
  ************************************************************/
 #root {
-   height: 100%;
    width: 100%;
-   padding: 0;
-   margin: 0;
 }
 
-.content {
-   flex: 1 0 auto;
-   flex-shrink: 0;
-   width: 100%;
-   padding: 0;
-   margin: 0;
-}
-
-
-:has(.page-width) {
-   /* position */
-   display: flex;
-   flex-direction: column;
-   align-items: center; /* horizontally align */
-}
-
-.page-width {
-   width: 100%;
-   max-width: var(--page-max-width);
-   padding: 1em;
-   border: 1px solid salmon;
-}
-
-
-@media (max-width: 1000px) {
-   .page-width {
-      max-width: var(--page-max-width-tablet);
-      justify-content: space-around;
-   }
-
-   .page-width > div {
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-   }
-}
-
-@media (max-width: 700px) {
-   .page-width {
-      flex-direction: column;
-      max-width: var(--page-max-width-mobile);
-      flex-wrap: wrap;
-      justify-content: space-around;
-   }
-
-   .page-width > div {
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-   }
+ul.inline-ul li {
+   display: inline;
+   padding-right: 10px;
+   padding-left: 10px;
 }
 
 /************************************************************
@@ -125,3 +89,42 @@ a {
    animation: fade-in 1.5s;
    animation-delay: 2.5;
 }
+
+/************************************************************
+ * MEDIA QUERY REFERENCE
+ ************************************************************
+ * Media Query for Mobile Devices
+ * @media (max-width: 480px) {
+ *    
+ * }
+ * 
+ * Media Query for low resolution  Tablets, Ipads
+ * @media (min-width: 481px) and (max-width: 767px) {
+ *    
+ * }
+ * 
+ * Media Query for Tablets Ipads portrait mode
+ * @media (min-width: 768px) and (max-width: 1024px) {
+ *    
+ * }
+ * 
+ * Media Query for Laptops and Desktops
+ * @media (min-width: 1025px) and (max-width: 1280px) {
+ *    
+ * }
+ * 
+ * Media Query for Large screens
+ * @media (min-width: 1281px) {
+ * 
+ * }
+ * 
+ * Media Query for Dark Mode Enabled on System OS
+ * @media (prefers-color-scheme: dark) {
+ * 
+ * }
+ * 
+ * Media Query for Light Mode Enabled on System OS
+ * @media (prefers-color-scheme: light) {
+ * 
+ * }
+ ************************************************************/
