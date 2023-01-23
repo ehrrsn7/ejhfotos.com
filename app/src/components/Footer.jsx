@@ -32,15 +32,15 @@ export default function Footer() {
          <div className="MenuList">
             <h3>follow me</h3>
             <ul>
-               <li><Link to="https://instagram.com/ejhfotos">IG @ejhfotos</Link></li>
-               <li><Link to="https://github.com/ehrrsn7">GH /ehrrsn7</Link></li>
-               <li><Link to="https://linkedin.com/in/ejhfotos">in /ejhfotos</Link></li>
-               <li><Link to="https://instagram.com/_swagmaster_james_">IG @_swagmaster_james_</Link></li>
-               <li><Link to="https://twitter.com/harriz_one">Tw @harriz_one</Link></li>
-               <li><Link to="https://snapchat.com/harriz_one">SC @harriz_one</Link></li>
-               <li><Link to="https://www.youtube.com/channel/UCnnnavIO_oJmW_LbXEEkmuQ">YT @swagmasterjames9695</Link></li>
-               <li><Link to="http://linktree.ejhfotos.com/">linktree</Link></li>
-               <li><Link to="http://about.ejhfotos.com/">about</Link></li>
+               <li><a target="_blank" href="https://instagram.com/ejhfotos">IG @ejhfotos</a></li>
+               <li><a target="_blank" href="https://github.com/ehrrsn7">GH /ehrrsn7</a></li>
+               <li><a target="_blank" href="https://linkedin.com/in/ejhfotos">in /ejhfotos</a></li>
+               <li><a target="_blank" href="https://instagram.com/_swagmaster_james_">IG @_swagmaster_james_</a></li>
+               <li><a target="_blank" href="https://twitter.com/harriz_one">Tw @harriz_one</a></li>
+               <li><a target="_blank" href="https://snapchat.com/harriz_one">SC @harriz_one</a></li>
+               <li><a target="_blank" href="https://www.youtube.com/channel/UCnnnavIO_oJmW_LbXEEkmuQ">YT @swagmasterjames9695</a></li>
+               <li><a target="_blank" href="http://linktree.ejhfotos.com/">linktree</a></li>
+               <li><a target="_blank" href="http://about.ejhfotos.com/">about</a></li>
             </ul>
          </div>
       </div>
