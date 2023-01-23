@@ -47,7 +47,6 @@ export default function Footer() {
             </ul>
          </div>
       </div>
-      <span><p>Icon Row</p></span>
       <span className="IconRow">
          <p>Site Icon</p>
          <p>Copyrights</p>

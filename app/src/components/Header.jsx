@@ -12,9 +12,11 @@ export default function Header() {
             {isMobile || <p>Home</p>}
             {isMobile || <p>Video</p>}
             {isMobile || <p>Photos</p>}
+            {isMobile || <p></p>}
          </span>
          <p className="CursiveLogo">ejhfotos</p>
          <span>
+            {isMobile || <p></p>}
             {isMobile || <p>Pricing</p>}
             {isMobile || <p>Contact</p>}
             {isMobile || <p>More</p>}

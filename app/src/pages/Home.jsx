@@ -46,14 +46,14 @@ export default function Home() {
 
          {/* Template Items */}
          <h1>Template Items</h1>
-         <subtitle>(Placeholders for the various components to be integrated in this site. Basically, "TODO" components.)</subtitle>
+         <p className="Subtitle">(Placeholders for the various components to be integrated in this site. Basically, "TODO" components.)</p>
          <br></br>
 
          <h2>[Welcome section]</h2>
          <br></br>
 
          <h2>[Hover Carrousel]</h2>
-         <subtitle>(For preview of "weddings/engagements/other" images)</subtitle>
+         <p className="Subtitle">(For preview of "weddings/engagements/other" images)</p>
          <br></br>
 
          <h2>[Check out our latest <em>"[]"</em>]</h2>
