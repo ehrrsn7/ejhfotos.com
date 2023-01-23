@@ -1,25 +1,28 @@
-#Header {
-   /* style */
-   background: white;
-   text-align: center;
+/************************************************************
+ * BUILT-IN COMPONENTS 
+ ************************************************************/
+header {
+   width: 100%;
+   background: var(--light-gray);
 }
 
-#Header > div.page-width {
-   /* position */
-   display: flex;
-   align-items: center; /* vertical align */
-   justify-content: space-around;
-}
-
-#Header > .page-width > h1 {
+/************************************************************
+ * CUSTOM COMPONENTS 
+ ************************************************************/
+header > div {  
    display: flex;
    flex-wrap: wrap;
-}
-
-#Header > .page-width > nav {
+   justify-content: space-between;
+   align-items: center;
    padding: 1em;
 }
 
-#Header > .page-width > nav > * {
-   margin: 1em;
+header > div > .HeaderLogo {
+   padding-right: 1em;
+}
+
+header > div > .NavBar > ul > li {
+   list-style: none;
+   display: inline;
+   padding-right: 1em;
 }

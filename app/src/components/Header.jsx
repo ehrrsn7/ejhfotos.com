@@ -3,18 +3,32 @@ import { Link } from "react-router-dom"
 import "./Header.css"
 
 export default function Header() {
-   return <div id="Header">
-      <div className="page-width">
-         <h1 className="fade-in">
-            Elijah Harrison Photography
-         </h1>
-
-         <nav>
-            <Link className="fade-in" to="/">Home</Link>
-            <Link className="fade-in" to="/Albums">Albums</Link>
-            <Link className="fade-in" to="/About">About</Link>
-            <Link className="fade-in" to="/Portfolio">Portfolio</Link>
-         </nav>
+   return <header>
+      <div>
+         <div class="HeaderLogo">
+            <h1>
+               Elijah Harrison Photography
+            </h1>
+         </div>
+         <div class="NavBar">
+            <ul>
+               <li>
+                  <Link to="/">
+                     Home
+                  </Link>
+               </li>
+               <li>
+                  <a href="http://about.ejhfotos.com/" target="_blank">
+                     About
+                  </a>
+               </li>
+               <li>
+                  <a href="http://linktree.ejhfotos.com/" target="_blank">
+                     Linktree
+                  </a>
+               </li>
+            </ul>
+         </div>
       </div>
-   </div>
+   </header>
 }

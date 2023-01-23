@@ -1,8 +1,9 @@
 // import
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
 
 // pages
 import Home from "./pages/Home"
+import Placeholder from "./pages/Placeholder"
 
 // components
 import Header from "./components/Header"
@@ -10,6 +11,7 @@ import Footer from "./components/Footer"
 
 // assets
 import "./App.css"
+import logo from "./logo.svg"
 
 // define
 const PageNotFound = () => (
@@ -39,14 +41,10 @@ const Portfolio = () => (
 
 export default function App() {
    return <BrowserRouter className="App">
-      <Header />
-      <Switch>
-         <Route path="/" exact component={Home} />
-         <Route path="/Albums" exact component={Albums} />
-         <Route path="/About" exact component={About} />
-         <Route path="/Portfolio" exact component={Portfolio} />
-         <Route path="*" component={PageNotFound} />
-      </Switch>
-      <Footer />
+      <Routes>
+         <Route path="/" element={<Home />} />
+         <Route path="/Placeholder" element={<Placeholder subdomain="www" logo={logo} path="/" />} />
+         <Route path="*" element={<PageNotFound />} />
+      </Routes>
    </BrowserRouter>
 }
