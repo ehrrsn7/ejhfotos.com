@@ -1,0 +1,28 @@
+/************************************************************
+ * BUILT-IN COMPONENTS 
+ ************************************************************/
+header {
+   width: 100%;
+   background: var(--light-gray);
+}
+
+/************************************************************
+ * CUSTOM COMPONENTS 
+ ************************************************************/
+header > div {  
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   align-items: center;
+   padding: 1em;
+}
+
+header > div > .HeaderLogo {
+   padding-right: 1em;
+}
+
+header .NavBar li, header .NavBar li h3 {
+   list-style: none;
+   display: inline;
+   padding-right: 1em;
+}

@@ -1,28 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Damion&family=Lovers+Quarrel&family=Pacifico&family=Passions+Conflict&display=swap');
+
 /************************************************************
  * BUILT-IN COMPONENTS 
  ************************************************************/
 header {
    width: 100%;
+   height: 80px;
    background: var(--light-gray);
+   padding: 0;
+   margin: 0;
 }
 
 /************************************************************
  * CUSTOM COMPONENTS 
  ************************************************************/
-header > div {  
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: space-between;
+header > div {
+   height: 100%;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   align-content: center;
+   text-align: center;
    align-items: center;
-   padding: 1em;
 }
 
-header > div > .HeaderLogo {
-   padding-right: 1em;
-}
-
-header > div > .NavBar > ul > li {
-   list-style: none;
-   display: inline;
-   padding-right: 1em;
+.CursiveLogo {
+   font-family: 'Damion', cursive;
+   padding: 0;
+   margin: 0;
+   font-size: 2em;
 }

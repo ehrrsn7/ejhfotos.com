@@ -1,34 +1,22 @@
 import { Link } from "react-router-dom"
 
+import logo from "../logo.svg"
 import "./Header.css"
 
 export default function Header() {
    return <header>
       <div>
-         <div class="HeaderLogo">
-            <h1>
-               Elijah Harrison Photography
-            </h1>
-         </div>
-         <div class="NavBar">
-            <ul>
-               <li>
-                  <Link to="/">
-                     Home
-                  </Link>
-               </li>
-               <li>
-                  <a href="http://about.ejhfotos.com/" target="_blank">
-                     About
-                  </a>
-               </li>
-               <li>
-                  <a href="http://linktree.ejhfotos.com/" target="_blank">
-                     Linktree
-                  </a>
-               </li>
-            </ul>
-         </div>
+         <ul className="inline-ul">
+            <li>Home</li>
+            <li>Video</li>
+            <li>Photos</li>
+         </ul>
+         <p className="CursiveLogo">ejhfotos</p>
+         <ul className="inline-ul">
+            <li>Pricing</li>
+            <li>Contact</li>
+            <li>More</li>
+         </ul>
       </div>
    </header>
 }

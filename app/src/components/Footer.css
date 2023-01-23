@@ -1,13 +1,15 @@
 /************************************************************
  * BUILT-IN COMPONENTS 
  ************************************************************/
-footer {
+ footer {
    margin: 0 auto;
    width: 100%;
    background: black;
    color: white;
    font-family: GeoEditRegular,Franklin Gothic Medium,Franklin Gothic,ITC Franklin Gothic,Helvetica,Arial,sans-serif;
    font-size: 11px;
+   line-height: 1.5em;
+   letter-spacing: .03em;
 }
 
 /************************************************************
@@ -18,7 +20,7 @@ footer > div.MenuLists {
    grid-template-columns: repeat(4, 1fr);
    justify-content: space-around;
    grid-gap: .5em;
-   max-width: 600px;
+   max-width: var(--page-max-width);
    margin: 0 auto;
    padding: 1em;
 }

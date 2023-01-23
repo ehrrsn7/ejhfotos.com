@@ -27,7 +27,7 @@ export default function Home() {
             <li>
                <p>
                   <Link to="/">Home:</Link>{' '}
-                  This will be the main page. This will be the photography site. 
+                  This will be the main page, the photography site. 
                </p>
             </li>
             <li>
