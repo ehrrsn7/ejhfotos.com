@@ -42,9 +42,26 @@ footer > div.MenuLists > div.MenuList > div {
    margin-right: 1em;
 }
 
-footer > div.IconRow {
+.IconRow {
    display: flex;
    flex-wrap: wrap;
    justify-content: space-around;
 }
  
+.BackToTopButton {
+   padding: .5em;
+   margin: .5em;
+   width: 2.3em;
+   text-decoration: none;
+   cursor: pointer;
+   background: none;
+   color: white;
+   border: 1px solid gray;
+   border-radius: 5em;
+   transform: rotate(90deg);
+   transition: .5s;
+}
+
+.BackToTopButton:hover {
+   background: gray;
+}

@@ -60,6 +60,20 @@ ul > li {
    list-style: none;
 }
 
+span {
+   display: inline-flex;
+   flex-direction: row;
+   justify-content: space-around;
+   align-items: center;
+}
+
+subtitle {
+   color: lightgray;
+   font-style: italic;
+   font-size: small;
+   width: 100%;
+}
+
 /************************************************************
  * CUSTOM COMPONENTS 
  ************************************************************/
@@ -67,7 +81,7 @@ ul > li {
    width: 100%;
 }
 
-ul.inline-ul li {
+ul.inline-ul li, ul.inline-ul li > * {
    display: inline;
    padding-right: 10px;
    padding-left: 10px;

@@ -43,6 +43,33 @@ export default function Home() {
                </p>
             </li>
          </ul>
+
+         {/* Template Items */}
+         <h1>Template Items</h1>
+         <subtitle>(Placeholders for the various components to be integrated in this site. Basically, "TODO" components.)</subtitle>
+         <br></br>
+
+         <h2>[Welcome section]</h2>
+         <br></br>
+
+         <h2>[Hover Carrousel]</h2>
+         <subtitle>(For preview of "weddings/engagements/other" images)</subtitle>
+         <br></br>
+
+         <h2>[Check out our latest <em>"[]"</em>]</h2>
+         <br></br>
+
+         <h2>[Normal Album Carrousel]</h2>
+         <br></br>
+
+         <h2>[Normal Text with Button Sections]</h2>
+         <br></br>
+
+         <h2>[Text and Button with Background Image Sections]</h2>
+         <br></br>
+
+         <h2>[Testimonials Section with Text, Image and Arrow Buttons]</h2>
+         <br></br>
       </main>
       <Footer />
    </div>

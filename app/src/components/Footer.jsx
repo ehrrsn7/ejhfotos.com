@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom"
-
 import "./Footer.css"
+
+export function BackToTopButton() {
+   const onClick = () => { window[`scrollTo`]({ top: 0, behavior: `smooth` }) }
+   return <button className="BackToTopButton" onClick={onClick}>{"<"}</button>
+}
 
 export default function Footer() {
    return <footer>
@@ -44,6 +47,11 @@ export default function Footer() {
             </ul>
          </div>
       </div>
-      <div className="IconRow">icon row</div>
+      <span><p>Icon Row</p></span>
+      <span className="IconRow">
+         <p>Site Icon</p>
+         <p>Copyrights</p>
+         <BackToTopButton />
+      </span>
    </footer >
 }
