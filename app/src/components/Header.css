@@ -11,10 +11,15 @@
    justify-content: space-around;
 }
 
-#Header > div > nav {
+#Header > .page-width > h1 {
+   display: flex;
+   flex-wrap: wrap;
+}
+
+#Header > .page-width > nav {
    padding: 1em;
 }
 
-#Header > div > nav > * {
+#Header > .page-width > nav > * {
    margin: 1em;
 }

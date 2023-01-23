@@ -2,14 +2,14 @@
  * IMPORT 
  ************************************************************/
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 /************************************************************
  * DEFINE
  ************************************************************/
 :root {
-   --page-max-width: 700px;
+   --page-max-width: 1500px;
+   --page-max-width-tablet: 700px;
    --page-max-width-mobile: 400px;
    --link-color: #5283A4;
 }
@@ -21,13 +21,15 @@ html {
    font-family: sans-serif;
    color: gray;
    -webkit-font-smoothing: antialiased;
+   word-wrap: wrap;
+   overflow-wrap: normal;
 }
 
 html, body {
    height: 100%;
 }
 
-h1 {
+h1, h3 {
    color: black;
    font-family: "Ubuntu", sans-serif;
    font-weight: 700;
@@ -35,10 +37,7 @@ h1 {
 }
 
 h3 {
-   color: black;
-   font-family: "Ubuntu", sans-serif;
    font-weight: 400;
-   letter-spacing: -.05em;
 }
 
 a {
@@ -77,14 +76,36 @@ a {
 .page-width {
    width: 100%;
    max-width: var(--page-max-width);
-   padding: 0;
-   /* margin: 0 auto; */
+   padding: 1em;
    border: 1px solid salmon;
+}
+
+
+@media (max-width: 1000px) {
+   .page-width {
+      max-width: var(--page-max-width-tablet);
+      justify-content: space-around;
+   }
+
+   .page-width > div {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+   }
 }
 
 @media (max-width: 700px) {
    .page-width {
-      
+      flex-direction: column;
+      max-width: var(--page-max-width-mobile);
+      flex-wrap: wrap;
+      justify-content: space-around;
+   }
+
+   .page-width > div {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
    }
 }
 
