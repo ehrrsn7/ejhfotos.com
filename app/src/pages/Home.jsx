@@ -43,18 +43,26 @@ const images = [
 
 export default function Home() {
    const [image, setImage] = React.useState(images[0].url)
-
-   let i = 0
-
-   const changeImage = () => {
-      i = (i + 1 < images.length) ? i + 1 : 0
-      setImage(images[i].url)
-   }
+   const [count, setCount] = React.useState(0)
 
    React.useEffect(() => {
       changeDOMTitle(document, "Home")
-      setInterval(() => { changeImage() }, 5000)
-   }, [])
+
+      const interval = setInterval(() => {
+         console.log({count, length: images.length, wrap: !(count + 1 < images.length), image: images[count].subject})
+
+         if (count + 1 < images.length) {
+            setCount(count => count + 1)
+         }
+         else {
+            setCount(() => 0)
+         }
+
+         setImage(() => images[count].url)
+      }, 5000)
+
+      return () => clearInterval(interval)
+   })
 
    return <div id="Home" className="content">
       <Header image={image}>
