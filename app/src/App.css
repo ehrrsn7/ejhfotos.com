@@ -12,6 +12,19 @@
    --page-max-width-mobile: 400px;
    --link-color: #5283A4;
 
+   --primary-background: #FFFFFF;
+   --primary-headings: #2D2D2D;
+   --primary-paragraphs: #2D2D2D;
+   --primary-details: #D1CFC5;
+   --accent-background: #EDECE9;
+   --accent-headings: #2D2D2D;
+   --accent-paragraphs: #2D2D2D;
+   --accent-details: #D1CFC5;
+   --button-background: #97938E;
+   --button-text: #FFFFFF;
+   --button-background-hover: #2D2D2D;
+   --button-text-hover: #FFFFFF;
+
    --light-red: rgb(231, 185, 185);
    --light-yellow: rgb(236, 236, 187);
    --light-blue: rgb(201, 201, 241);
@@ -85,6 +98,61 @@ ul.inline-ul li, ul.inline-ul li > * {
    font-style: italic;
    font-size: small;
    width: 100%;
+}
+
+.HoverDropdownContainer {
+   position: relative;
+   display: inline-block;
+}
+
+.HoverDropdownContainer:hover .HoverDropdownContents {
+   display: block;
+}
+
+.HoverDropdownContents {
+   display: none;
+   position: absolute;
+   right: 0;
+   background-color: #f1f1f1;
+   min-width: 160px;
+   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+   z-index: 1;
+}
+
+/* 
+button styles from that site
+*/
+.SpecialButton:hover {
+   background-color: white;
+   color: black;
+}
+
+.SpecialButton {
+   -webkit-text-size-adjust: 100%;
+   -webkit-tap-highlight-color: transparent;
+   box-sizing: border-box;
+   display: inline-block;
+   padding: 14px 30px;
+   border: 0;
+   text-align: center;
+   text-decoration: none;
+   transition: all .2s ease-out;
+   cursor: pointer;
+   --local-button: var(--button-background);
+   border-width: 1px;
+   border-style: solid;
+   background-color: transparent;
+   border-color: #fff;
+   color: #fff;
+   margin-top: 30px;
+   -webkit-font-smoothing: antialiased;
+   font-family: Spectral,serif;
+   font-style: normal;
+   font-weight: 400;
+   text-transform: uppercase;
+   font-size: .6875rem;
+   letter-spacing: .156rem;
+   line-height: 1.8;
 }
 
 /************************************************************

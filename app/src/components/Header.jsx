@@ -1,36 +1,78 @@
-import "./Header.css"
-import useMediaQuery from "../hooks/useMediaQuery"
-import { Pivot as Hamburger } from "hamburger-react"
+// import
 import React from "react"
+import { Link } from "react-router-dom"
 
-const images = {
-   ingrid: "https://lh3.googleusercontent.com/Efv8uOBD6-fVNC5YfYh9ldSUvfgwk34-35ylg4A7wyZOJ6_rdPgAVBSk5WnE-hhbuN1axUvlH1hhzicab5fimnNLusqqwvOTSIcahQnKBwDyWqCYFlwfYRSBx8x6JgjbQ6e9zvILHknlzGmZIlrEVc-rzzekdq2xpgZdg8egpXJNV0SC1LgquEeXBYfvjeNpHYhbQCn6woDon0W_MU6483lDvjTK022vugbiTJBKQF8wUzfaOXEWHoX7jTnvCn1mF4laSDYS_C-i5XaIDfpWWtD_VTRiUa93plXmj3sej2j7AI40m3GuF9sgsla_LsVIA4mGsTUQmQTmiCNYr4P2JuSW2BtMWEHJTsHigLaWn0_DfgZoynVl5Lb8lB6oOEjmY71YDvfDq247JubyI5IymDKH7UeIfWNbH2MEqpoIqmjiq7ktWSx_SHamc53l8Bwm6nee_vsVTOvjhDYTSwHD66TLHs-vaRNzS0V6dmTR3As1RjITlFtPf04Fi8G6hdFY6sJCVyZJoA-W57z_kYfIFt7XOc-rNhabBg-G_liKh8BVGqrXfV8R0i54TxTXJGO059xAqF-kXzdcEgEdpDaGqDN7a_c-e9kieJsQ621FI06VgMqDSFYCUlwNCsDUZme6jWaOS2Gc0hGzyR5TqQWf-7eVKBQO7Pen2Z5psIuNIePrIte6k8LqXGJXPo4LG8MnYooW_TWCGm0vTskFHYt3yVHOSVaaRi4p2xeamkJwpudMmkQDjZyMayxeG-1h5tNuyaDBeu8OVH1NcwXPNrbd2z3NFmdAkqg71sT4ZhvA4QBYqmaD8TF9NEneH-an7Q44aY9VhNa3iyOEabtMzZAziCg5ifi5qZhcj3Cu6VMrxD6Io5HJ6htwcWbuUBlWMW1u4cn_skG-yy0oE5Wx0gPamWDYbxT9zrs-dWV9TJNNV8cb1JfaO4i4WkR0WBapwNUgJmbMYAweuNDaeOdSASc=w2472-h1648-no?authuser=0"
-}
+// dependencies
+import { Pivot as Hamburger } from "hamburger-react"
 
-export default function Header() {
+// components
+import Sidebar from "./Sidebar"
+
+// hooks
+import useMediaQuery from "../hooks/useMediaQuery"
+
+// assets
+import "./Header.css"
+
+export default function Header({image, children}) {
    const isMobile = useMediaQuery("(max-width: 767px)")
 
+   const [ activeSidebar, setActiveSidebar ] = React.useState(false)
+
    React.useEffect(() => {
-      document.querySelector("header").style.backgroundImage = `url(${images["ingrid"]})`
-   }, [])
+      document.querySelector("header").style.backgroundImage = `url("${image}")`
+   }, [image])
 
    return <header>
+      <Sidebar activeSidebar={activeSidebar} setActiveSidebar={setActiveSidebar} />
       <span>
          <span>
             {isMobile && <p></p>}
-            {isMobile || <p>Home</p>}
-            {isMobile || <p>Video</p>}
-            {isMobile || <p>Photos</p>}
-            {isMobile || <p></p>}
+            {isMobile || <p><Link to="/">Home</Link></p>}
+            {isMobile || <p><Link to="/Portfolio">Portfolio</Link></p>}
+            {isMobile || <p><Link to="/About">About</Link></p>}
+            {isMobile || <p><Link></Link></p>}
          </span>
-         <p className="CursiveLogo">ejhfotos</p>
+         <Link to="/">
+            <div className="Logo">
+               <h1 className="CursiveLogo">
+                  ejhfotos
+               </h1>
+               <h1 className="translate-up">
+                  E
+               </h1>
+            </div>
+         </Link>
          <span>
-            {isMobile || <p></p>}
-            {isMobile || <p>Pricing</p>}
-            {isMobile || <p>Contact</p>}
-            {isMobile || <p>More</p>}
-            {isMobile && <Hamburger />}
+            {isMobile || <p><Link></Link></p>}
+            {isMobile || <p><Link to="/Engagements">Engagements</Link></p>}
+            {isMobile || <p><Link to="/Weddings">Weddings</Link></p>}
+            {isMobile || 
+               <div className="HoverDropdownContainer">
+                  <p className="HoverDropdownTrigger">
+                     More
+                  </p>
+                  <div className="HoverDropdownContents">
+                     <p><Link to="/Maternal">Maternal</Link></p>
+                     <p><Link to="/Intimates">Intimates</Link></p>
+                     <p><Link to="/Contact">Contact</Link></p>
+                     <p><Link to="/Blog">Blog</Link></p>
+                     <p><a href="http://linktree.ejhfotos.com/">Linktree</a></p>
+                  </div>
+               </div>
+            }
+            {isMobile && 
+               <div className={`hamburger-react-wrapper${activeSidebar ? " activeSidebar" : ""}`}>
+                  <Hamburger 
+                     toggle={setActiveSidebar} 
+                     toggled={activeSidebar} 
+                  />
+               </div>
+            }
          </span>
       </span>
+      <div>
+         {children}
+      </div>
    </header>
 }

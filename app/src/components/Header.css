@@ -4,6 +4,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Damion&family=Lovers+Quarrel&family=Pacifico&family=Passions+Conflict&display=swap');
 
 /************************************************************
+ * DEFINE
+ ************************************************************/
+:root {
+   --logo-background-color: #FFFFFF25;
+}
+
+/************************************************************
  * BUILT-IN COMPONENTS
  ************************************************************/
 header {
@@ -15,6 +22,8 @@ header {
    background-repeat: no-repeat, repeat;
    background-size: cover;
    background-position: center;
+   background-attachment: fixed;
+   transition: background-image 3s;
    transition: opacity 0 1 1s;
 }
 
@@ -36,11 +45,25 @@ header span span p {
    padding: 0 .5em 0 .5em;
    margin: .25em;
    font-size: 2em;
-   /* separation from background by slightly lightening and blurring background */
-   box-shadow: 0 0 1em 1em #FFFFFF33;
-   background: #FFFFFF33;
+}
+
+.Logo {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
    border-radius: 1em;
+   /* separation from background by slightly lightening and blurring background */
+   background: var(--logo-background-color);
+   box-shadow: 0 0 1em 1em var(--logo-background-color);
    backdrop-filter: blur(10px);
+}
+
+.Logo .translate-up {
+   position: absolute;
+   margin-bottom: -50px;
+   font-family: 'Times New Roman', Times, serif;
+   font-size: 60px;
+   opacity: .1;
 }
 
 /* align hamburger menu icon to right */
@@ -59,4 +82,8 @@ header span span p {
       backdrop-filter: blur(10px);
       /* use margin not padding, or funky translation happens */
    }
+}
+
+header .menu-item {
+   padding-left: .7em;
 }
