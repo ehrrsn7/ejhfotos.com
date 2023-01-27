@@ -15,8 +15,7 @@ touch $ERROR_LOGFILE
 # execute
 ( if [[ "$OSTYPE" =~ ^darwin ]]; then
    if [[ $(id -u) -eq "501" ]]; then
-      cd /Users/ehrrsn7/Documents/Code/Node/ejhfotos.com/ || echo "directory not found"
+      cd /Users/ehrrsn7/Documents/Code/Node/ejhfotos.com/ || echo "Directory not found."
    fi
 fi ) \
-2> $ERROR_LOGFILE \
-|| echo "Directory not found (ignore if in production)."
+2> $ERROR_LOGFILE
