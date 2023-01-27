@@ -1,0 +1,102 @@
+/************************************************************
+ * IMPORT
+ ************************************************************/
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Damion&family=Lovers+Quarrel&family=Pacifico&family=Passions+Conflict&display=swap');
+
+/************************************************************
+ * DEFINE
+ ************************************************************/
+:root {
+   --logo-background-color: #FFFFFF50;
+   --header-height: 30em;
+   --gold-texture-image: url("https://cdn2.vectorstock.com/i/1000x1000/49/76/seamless-gold-glitter-pattern-vector-21374976.jpg");
+}
+
+/************************************************************
+ * BUILT-IN COMPONENTS
+ ************************************************************/
+header {
+   width: 100%;
+   padding: 0;
+   margin: 0;
+   background-color: #fcf5e1;
+   background-attachment: fixed;
+   background-position: top;
+   background-size: contain;
+   background-repeat: no-repeat;
+   overflow-y: hidden;
+   transition: background-image 3s;
+}
+
+header span {
+   width: 100%;
+}
+
+header span span p {
+   font-size: 11px;
+   text-align: center;
+   align-items: center;
+}
+
+/************************************************************
+ * CUSTOM COMPONENTS
+ ************************************************************/
+.CursiveLogo {
+   font-family: 'Damion', cursive;
+   padding: 0 .5em 0 .5em;
+   margin: .25em;
+   font-size: 2em;
+   background-clip: text;
+   -webkit-background-clip: text;
+   color: transparent;
+   text-shadow: #00000050 1px 0 10px;
+   background-size: 250%;
+   filter: contrast(.5);
+   filter: brightness(1.1);
+   background-image: var(--gold-texture-image);
+}
+
+.Logo {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   border-radius: 1em;
+   color: var(--primary-headings);
+   /* separation from background by slightly lightening and blurring background */
+   background: var(--logo-background-color);
+   backdrop-filter: blur(5px);
+}
+
+header .ActionBar a:hover {
+   text-decoration: none;
+}
+
+.Logo .translate-up {
+   position: absolute;
+   margin-bottom: -50px;
+   font-family: 'Times New Roman', Times, serif;
+   font-size: 60px;
+   opacity: .1;
+}
+
+/* align hamburger menu icon to right */
+@media (max-width: 776px) {
+   header > span {
+      justify-content: space-between;
+   }
+
+   header > span > * {
+      justify-content: right;
+      align-items: center;
+   }
+
+   .hamburger-react {
+      margin: 1em;
+      backdrop-filter: blur(10px);
+      /* use margin not padding, or funky translation happens */
+   }
+}
+
+header .menu-item {
+   padding-left: .7em;
+}

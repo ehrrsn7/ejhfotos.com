@@ -1,0 +1,62 @@
+/************************************************************
+ * IMPORT
+ ************************************************************/
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Damion&family=Lovers+Quarrel&family=Pacifico&family=Passions+Conflict&display=swap');
+
+/************************************************************
+ * BUILT-IN COMPONENTS
+ ************************************************************/
+header {
+   width: 100%;
+   height: 30em;
+   padding: 0;
+   margin: 0;
+   background-color: #fcf5e1;
+   background-repeat: no-repeat, repeat;
+   background-size: cover;
+   background-position: center;
+   transition: opacity 0 1 1s;
+}
+
+header span {
+   width: 100%;
+}
+
+header span span p {
+   font-size: 11px;
+   text-align: center;
+   align-items: center;
+}
+
+/************************************************************
+ * CUSTOM COMPONENTS
+ ************************************************************/
+.CursiveLogo {
+   font-family: 'Damion', cursive;
+   padding: 0 .5em 0 .5em;
+   margin: .25em;
+   font-size: 2em;
+   /* separation from background by slightly lightening and blurring background */
+   box-shadow: 0 0 1em 1em #FFFFFF33;
+   background: #FFFFFF33;
+   border-radius: 1em;
+   backdrop-filter: blur(10px);
+}
+
+/* align hamburger menu icon to right */
+@media (max-width: 776px) {
+   header > span {
+      justify-content: space-between;
+   }
+
+   header > span > * {
+      justify-content: right;
+      align-items: center;
+   }
+
+   .hamburger-react {
+      margin: 1em;
+      backdrop-filter: blur(10px);
+      /* use margin not padding, or funky translation happens */
+   }
+}

@@ -1,0 +1,12 @@
+# npm dependencies (local install requires npm i command)
+*/node_modules/
+package-lock.json
+app/build/
+.DS_Store
+*.conf
+
+# logs
+logs
+private
+app/src/contexts/private
+app/src/contexts/private/firebaseConfig.json

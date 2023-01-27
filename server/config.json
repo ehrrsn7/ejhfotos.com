@@ -1,0 +1,12 @@
+{
+   "routes": [
+      {
+         "route": "/app",
+         "address": "http://localhost:80"
+      },
+      {
+         "route": "/linktree",
+         "address": "http://localhost:81"
+      }
+   ]
+}
