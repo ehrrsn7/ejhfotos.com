@@ -4,3 +4,11 @@ export function changeDOMTitle(document, text) {
    document.title = newtitle
    document.querySelector("title").textContent = newtitle
 }
+
+// on document key press
+export function keydownEvent(key, callback) {
+   document.addEventListener("keydown", event => {
+      if (event.key === key)
+         callback()
+   })
+}

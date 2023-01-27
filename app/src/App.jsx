@@ -1,5 +1,8 @@
 // import
+import React from "react"
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 // pages
 import Home from "./pages/Home"
@@ -21,8 +24,23 @@ const PageNotFound = () => <div className="content">
    <Footer />
 </div>
 
+function Toast() {
+   return <ToastContainer
+   position="top-right"
+   autoClose={3000}
+   hideProgressBar={false}
+   newestOnTop={false}
+   rtl={false}
+   pauseOnFocusLoss
+   draggable
+   pauseOnHover
+   theme="colored"
+   />
+}
+
 export default function App() {
    return <BrowserRouter className="App">
+      <Toast />
       <Routes>
          <Route path="/" element={<Home />} />
          <Route path="*" element={<PageNotFound />} />

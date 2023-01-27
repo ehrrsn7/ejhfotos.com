@@ -7,3 +7,6 @@ app/build/
 
 # logs
 logs
+private
+app/src/contexts/private
+app/src/contexts/private/firebaseConfig.json

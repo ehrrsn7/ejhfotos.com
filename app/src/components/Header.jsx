@@ -14,6 +14,14 @@ import useMediaQuery from "../hooks/useMediaQuery"
 // assets
 import "./Header.css"
 
+// define
+function ActionBar({className, children}) {
+   let cname = "ActionBar" + ((className) && (' ' + className))
+   return <span className={cname}>
+      {children}
+   </span>
+}
+
 export default function Header({image, children}) {
    const isMobile = useMediaQuery("(max-width: 767px)")
 
@@ -25,7 +33,7 @@ export default function Header({image, children}) {
 
    return <header>
       <Sidebar activeSidebar={activeSidebar} setActiveSidebar={setActiveSidebar} />
-      <span>
+      <ActionBar className="no-wrap">
          <span>
             {isMobile && <p></p>}
             {isMobile || <p><Link to="/">Home</Link></p>}
@@ -70,7 +78,7 @@ export default function Header({image, children}) {
                </div>
             }
          </span>
-      </span>
+      </ActionBar>
       <div>
          {children}
       </div>

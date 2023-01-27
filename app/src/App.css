@@ -12,18 +12,18 @@
    --page-max-width-mobile: 400px;
    --link-color: #5283A4;
 
-   --primary-background: #FFFFFF;
-   --primary-headings: #2D2D2D;
-   --primary-paragraphs: #2D2D2D;
-   --primary-details: #D1CFC5;
-   --accent-background: #EDECE9;
-   --accent-headings: #2D2D2D;
-   --accent-paragraphs: #2D2D2D;
-   --accent-details: #D1CFC5;
-   --button-background: #97938E;
-   --button-text: #FFFFFF;
-   --button-background-hover: #2D2D2D;
-   --button-text-hover: #FFFFFF;
+   --primary-background: #FFFFFFDD;
+   --primary-headings: #2D2D2DDD;
+   --primary-paragraphs: #2D2D2DDD;
+   --primary-details: #D1CFC5DD;
+   --accent-background: #EDECE9DD;
+   --accent-headings: #2D2D2DDD;
+   --accent-paragraphs: #2D2D2DDD;
+   --accent-details: #D1CFC5DD;
+   --button-background: #97938EDD;
+   --button-text: #FFFFFFDD;
+   --button-background-hover: #2D2D2DDD;
+   --button-text-hover: #FFFFFFDD;
 
    --light-red: rgb(231, 185, 185);
    --light-yellow: rgb(236, 236, 187);
@@ -43,6 +43,7 @@ html, body {
    margin: 0;
    color: #000000AA;
    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+   z-index: -1;
 }
 
 main {
@@ -76,6 +77,7 @@ ul > li {
 span {
    display: inline-flex;
    flex-direction: row;
+   flex-wrap: wrap;
    justify-content: space-around;
    align-items: center;
 }
@@ -83,6 +85,10 @@ span {
 /************************************************************
  * CUSTOM COMPONENTS 
  ************************************************************/
+.no-wrap {
+   flex-wrap: nowrap;
+}
+
 #root {
    width: 100%;
 }
