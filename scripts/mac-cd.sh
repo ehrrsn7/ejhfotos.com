@@ -13,6 +13,10 @@ mkdir -p logs
 touch $ERROR_LOGFILE
 
 # execute
-cd ~/Documents/Code/PERN/ejhfotos.com/ \
+( if [[ "$OSTYPE" =~ ^darwin ]]; then
+   if [[ $(id -u) -eq "501" ]]; then
+      cd /Users/ehrrsn7/Documents/Code/Node/ejhfotos.com/ || echo "directory not found"
+   fi
+fi ) \
 2> $ERROR_LOGFILE \
 || echo "Directory not found (ignore if in production)."

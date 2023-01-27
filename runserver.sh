@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # for development, ignore in production
-cd /Users/ehrrsn7/Documents/Code/PERN/ejhfotos.com/ || echo "directory not found"
+./scripts/mac-cd.sh
 
 # run express server (listens on 3 ports, nginx handles subdomains in production)
-node server/server.js
+node .
