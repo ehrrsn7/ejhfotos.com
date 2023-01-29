@@ -6,6 +6,14 @@
 # stop server temporarily
 ./scripts/pm2-stop-server.sh
 
+# make sure dependencies are installed
+node -v || echo "node not installed, installing..."
+npm -v || echo "npm not installed, installing..."
+nginx -v || echo "nginx not installed, installing..."
+pm2 -v || echo "pm2 not installed, installing..."
+
+# shout if installers failed to install the correct dependencies * todo *
+
 # pull changes from repository
 ./scripts/pull-git-changes.sh
 
