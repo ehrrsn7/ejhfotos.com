@@ -92,75 +92,83 @@ export default function Home() {
       console.log({tasks})
    }, [setTasks])
 
-   return <div id="Home" className="content">
-      <Header image={image}>
-         <span style={{paddingTop: "60vh", paddingBottom: "3em"}}>
-            <Link to="/"><button className="SpecialButton" onClick={() => {
-               toast.error(<a href="https://console.firebase.google.com/u/0/project/ejhfotos-1671844834579/firestore" target="_blank">firebase</a>)
-            }}>Show Firestore Link</button></Link>
-            <Link to="/"><button className="SpecialButton" onClick={() => {postToFirestore(firestore, "tasks", {
-               title: "hi! new new tasks here",
-               description: "new new tasks",
-               completed: true,
-               created: Timestamp.now()
-            })}}>Post To Firestore</button></Link>
-         </span>
-      </Header>
-      <main>
-         <h1>Welcome!</h1>
-         <p>This site is under construction. I hope to put a wonderful photography website here!</p>
-         <p>Plan:</p> 
-         <ul>
-            <li>
-               <p>
-                  <a href="http://www.ejhfotos.com/">Home:</a>{' '}
-                  This will be the main page, the photography site. 
-               </p>
-            </li>
-            <li>
-               <p>
-                  <a href="http://about.ejhfotos.com/">About:</a>{' '}
-                  This will be a landing page for everybody, including not only those who click the "about" link, but also potential employers who would like to clearly see my software portfolio, links and resume. 
-               </p>
-            </li>
-            <li>
-               <p>
-                  <a href="http://linktree.ejhfotos.com/">Linktree:</a>{' '}
-                  Lightweight linktree.
-               </p>
-            </li>
-         </ul>
+   try {
+      return <div id="Home" className="content">
+         <Header image={image}>
+            <span style={{paddingTop: "60vh", paddingBottom: "3em"}}>
+               <Link to="/"><button className="SpecialButton" onClick={() => {
+                  toast.error(<a href="https://console.firebase.google.com/u/0/project/ejhfotos-1671844834579/firestore" target="_blank">firebase</a>)
+               }}>Show Firestore Link</button></Link>
+               <Link to="/"><button className="SpecialButton" onClick={() => {postToFirestore(firestore, "tasks", {
+                  title: "hi! new new tasks here",
+                  description: "new new tasks",
+                  completed: true,
+                  created: Timestamp.now()
+               })}}>Post To Firestore</button></Link>
+            </span>
+         </Header>
+         <main>
+            <h1>Welcome!</h1>
+            <p>This site is under construction. I hope to put a wonderful photography website here!</p>
+            <p>Plan:</p> 
+            <ul>
+               <li>
+                  <p>
+                     <a href="http://www.ejhfotos.com/">Home:</a>{' '}
+                     This will be the main page, the photography site. 
+                  </p>
+               </li>
+               <li>
+                  <p>
+                     <a href="http://about.ejhfotos.com/">About:</a>{' '}
+                     This will be a landing page for everybody, including not only those who click the "about" link, but also potential employers who would like to clearly see my software portfolio, links and resume. 
+                  </p>
+               </li>
+               <li>
+                  <p>
+                     <a href="http://linktree.ejhfotos.com/">Linktree:</a>{' '}
+                     Lightweight linktree.
+                  </p>
+               </li>
+            </ul>
 
-         {/* Template Items */}
-         <h1>Template Items</h1>
-         <p className="Subtitle">(Placeholders for the various components to be integrated in this site. Basically, "TODO" components.)</p>
-         <br></br>
+            {/* Template Items */}
+            <h1>Template Items</h1>
+            <p className="Subtitle">(Placeholders for the various components to be integrated in this site. Basically, "TODO" components.)</p>
+            <br></br>
 
-         <h2>[Welcome section]</h2>
-         <br></br>
+            <h2>[Welcome section]</h2>
+            <br></br>
 
-         <h2>[Hover Carrousel]</h2>
-         <p className="Subtitle">(For preview of "weddings/engagements/other" images)</p>
-         <br></br>
-8   
-         <h2>[Check out our latest <em>"[]"</em>]</h2>
-         <br></br>
+            <h2>[Hover Carrousel]</h2>
+            <p className="Subtitle">(For preview of "weddings/engagements/other" images)</p>
+            <br></br>
 
-         <h2>[Normal Album Carrousel]</h2>
-         <br></br>
+            <h2>[Check out our latest <em>"[]"</em>]</h2>
+            <br></br>
 
-         <h2>[Normal Text with Button Sections]</h2>
-         <br></br>
+            <h2>[Normal Album Carrousel]</h2>
+            <br></br>
 
-         <h2>[Text and Button with Background Image Sections]</h2>
-         <br></br>
+            <h2>[Normal Text with Button Sections]</h2>
+            <br></br>
 
-         <h2>[Testimonials Section with Text, Image and Arrow Buttons]</h2>
-         <br></br>
+            <h2>[Text and Button with Background Image Sections]</h2>
+            <br></br>
 
-         <h2>[Fixed image backgrounds to scroll over]</h2>
-         <br></br>
-      </main>
-      <Footer />
-   </div>
+            <h2>[Testimonials Section with Text, Image and Arrow Buttons]</h2>
+            <br></br>
+
+            <h2>[Fixed image backgrounds to scroll over]</h2>
+            <br></br>
+         </main>
+         <Footer />
+      </div>
+   }
+   catch {
+      return <div>
+         <p>Error 500</p>
+         <p>Something went wrong! This is a front-end error caught in 'Home.jsx'</p>
+      </div>
+   }
 }
