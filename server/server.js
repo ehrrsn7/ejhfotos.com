@@ -5,9 +5,9 @@ const express = require("express")
 const { listen } = require("./scripts/listen")
 
 // create servers and listen on different ports
-const www      = listen(81, "www")
-const about    = listen(82, "about")
-const linktree = listen(83, "linktree")
+const www         = listen(81, "www")
+const about       = listen(82, "about")
+const linktree    = listen(83, "linktree")
 
 // use middleware to serve react apps
 www.use(express.static("./app/build"))

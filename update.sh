@@ -6,7 +6,7 @@
 # stop server temporarily
 ./scripts/pm2-stop-server.sh
 
-# make sure dependencies are installed
+# make sure dependencies are installed (TODO)
 node -v || echo "node not installed, installing..."
 npm -v || echo "npm not installed, installing..."
 nginx -v || echo "nginx not installed, installing..."
