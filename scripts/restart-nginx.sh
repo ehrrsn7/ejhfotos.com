@@ -10,7 +10,7 @@ touch $LOGFILE $ERROR_LOGFILE
 
 # execute
 echo "Refreshing nginx reverse proxy host (in effect, applying changes to 'subdomain manager')."
-systemctl restart nginx \
+sudo systemctl restart nginx \
 > $LOGFILE \
 2> $ERROR_LOGFILE \
 || echo "Unable to restart nginx (Ignore if not running on production server on linux)."
