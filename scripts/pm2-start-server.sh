@@ -9,6 +9,6 @@ touch $ERROR_LOGFILE
 
 # execute
 echo "Starting server up again."
-pm2 start server \
+sudo pm2 start server \
 2> $ERROR_LOGFILE \
 || echo "Unable to start server (Ignore if not running on production server on linux)."
