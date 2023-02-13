@@ -12,4 +12,4 @@ const linktree    = listen(83, "linktree")
 // use middleware to serve react apps
 www.use(express.static("./app/build"))
 about.use(express.static("./about/build"))
-linktree.use(express.static("./linktree/build"))
+linktree.use(express.static("./linktree/dist"))
