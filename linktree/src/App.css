@@ -1,7 +1,70 @@
+:root {
+  --width: 400px;
+  --mobile-width: 300px;
+}
+
 #App {
   display: flex;
   flex-direction: column;
   /* place-items: center; */
   justify-content: space-between;
   align-items: center;
+}
+
+#Header {
+	display: flex;
+	flex-direction: column;
+	place-items: center;
+	margin: 0;
+	padding: 0;
+	width: var(--width);
+	text-align: center;
+}
+
+#Body {
+	display: flex;
+	flex-direction: column;
+	place-items: center;
+	margin: 0;
+	padding: 0;
+	width: var(--width);
+}
+
+#Footer {
+	display: flex;
+	flex-direction: column;
+	place-items: center;
+	margin: 0;
+	padding: 0;
+	width: var(--width);
+
+}
+
+img#ProfilePicture {
+	clip-path: circle(35%) !important;
+	width: calc(var(--width) + 100px);
+}
+
+@media (max-width: 400px) {
+	#Header {
+		width: var(--mobile-width);
+	}
+	
+	#Body {
+		width: var(--mobile-width);
+	}
+	
+	#Footer {
+		width: var(--mobile-width);
+	}
+
+	img#ProfilePicture {
+		width: calc(var(--mobile-width) + 100px);
+	}
+}
+
+span img {
+	padding-right: 1em;
+	padding-top: -1em;
+	width: 20px;
 }
