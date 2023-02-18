@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+:root {
+   --secondary: #5183a4;
+   --secondary-light: #6193b4;
+}
+
+* {
+   font-family: 'Open Sans', sans-serif;
+   font-size: 9px;
+}
+
+table, tr {
+   width: 100%;
+   vertical-align: top;
+   margin: 0;
+   padding: 0;
+}
+
+h1 {
+   color: var(--secondary);
+   font-size: 11px;
+   font-weight: 800;
+   font-family: 'Ubuntu', sans-serif;
+   margin: 0;
+   padding: 0;
+   padding-bottom: .5em;
+}
+
+a {
+   color: var(--secondary);
+   text-decoration: none;
+}
+
+a:hover {
+   color: var(--secondary-light);
+}
+
+@media (max-width: 500px) {
+   tr, td {
+      display: inline;
+   }
+}
+
+#Resume > table,
+#Resume > table table {
+   border-spacing: 0px;
+}
+
+#ResumeBody h1 {
+   padding-bottom: .5em;
+   padding-top: .5em;
+}
+
+#Summary, #Experience, #Projects {
+   display: block;
+   border-bottom: 1px solid var(--secondary);
+}
+
+#Summary, #Experience, #Education {
+   display: block;
+   margin-bottom: 1em;
+   padding-bottom: 1em;
+}
+
+#Projects, #Languages {
+   display: block;
+   padding-left: 1em;
+}
+
+#ResumeHeader {
+   display: flex;
+   place-items: top;
+   border-bottom: 1px solid var(--secondary);
+   padding-bottom: 1em;
+   margin-bottom: 1em;
+}
+
+#name * {
+   font-size: 34px;
+   font-weight: 800;
+   color: black;
+   padding-bottom: .25em;
+}
+
+#title * {
+   font-size: 18px;
+   font-weight: 800;
+   color: gray;
+   padding-bottom: 1em;
+}
+
+@media (prefers-color-scheme: dark) {
+   #name * {
+      color: white;
+   }
+}
+
+.job-title * {
+   font-size: 14px;
+   font-weight: 800;
+   color: black;
+}
+
+.subtitle * {
+   font-size: 8px;
+   color: gray;
+}
+
+.all-caps * {
+   text-transform: uppercase;
+}
+
+.right-align * {
+   text-align: right;
+}
+
+.bold * {
+   font-weight: bold;
+}
+
+.gray * {
+   color: gray;
+}
+
+.secondary * {
+   color: var(--secondary) !important;
+}
+
+@media (max-width: 500px) {
+   .right-align *, #name, #title {
+      text-align: center;
+   }
+
+}
+
+@media (prefers-color-scheme: dark) {
+   .job-title * {
+      color: white;
+   }
+}
