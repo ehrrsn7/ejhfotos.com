@@ -24,6 +24,7 @@ pm2 -v || echo "pm2 not installed, installing..."
 ./scripts/update_react_app.sh "app"
 ./scripts/update_react_app.sh "about"
 ./scripts/update_react_app.sh "linktree"
+./scripts/update_react_app.sh "No-Toil-Task-Tracker"
 
 # refresh nginx reverse proxy host (to apply changes)
 ./scripts/restart-nginx.sh
