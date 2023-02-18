@@ -1,6 +1,7 @@
 {
   "name": "linktree",
   "private": true,
+  "main": "src/index.jsx",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

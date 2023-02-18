@@ -18,6 +18,10 @@
   width: device-width;
 }
 
+html, body, #root, #App {
+  overflow-x: hidden;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -31,7 +35,6 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
 h1 {
