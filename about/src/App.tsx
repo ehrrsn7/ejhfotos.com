@@ -1,6 +1,7 @@
 import React from "react"
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
 import ResumeMD from "./mdx/resume.mdx"
+import MinecraftMD from "./mdx/minecraft.mdx"
 import "./App.css"
 
 export function ProfilePicture() {
@@ -26,6 +27,16 @@ export function Resume() {
 		<button onClick={onClick}>Print PDF</button>
 		<div id="Resume">
 			<ResumeMD />
+		</div>
+		<Footer />
+	</>
+}
+
+export function Minecraft() {
+	return <>
+		<Header />
+		<div id="Minecraft">
+			<MinecraftMD />
 		</div>
 		<Footer />
 	</>
@@ -58,6 +69,7 @@ export default function App() {
 		<Routes>
 			<Route path="/" element={<Home />} />
 			<Route path="/resume" element={<Resume />} />
+			<Route path="/minecraft" element={<Minecraft />} />
 			<Route path="*" element={<NotFound />} />
 		</Routes>
 		</BrowserRouter>
