@@ -51,7 +51,7 @@ export default function Header() {
                : // else
                
                /* Disconnected (with reload action) */
-               <Tooltip title="Please reload the page." placement="top">
+               <Tooltip title="Please check your connection, then reload the page." placement="top">
                   <p className="hideOnPrint" 
                   onClick={() => {
                      if (activeSidebar) return

@@ -18,7 +18,7 @@ import { invalidRow } from "./components/tables/InvalidRow"
 import "./App.css"
 import { performSort } from "./data/sort"
 import { useContext } from "./contexts/contextProvider"
-import { initializeFirebaseDb, fetchFromFirestore } from "./contexts/firebaseProvider"
+import { onFirestoreSnapshot } from "./contexts/firebaseProvider"
 import { toast } from "react-toastify"
 
 /**********
@@ -50,6 +50,7 @@ export default function App() {
    const context = useContext()
    const { activeSidebar, setActiveSidebar } = context
    const { todoModel, setTodoModel } = context
+   const { setWsConnected } = context
 
    /**********************************************************************
     * Initializer
@@ -59,22 +60,22 @@ export default function App() {
       if (!initialized.current) {
          initialized.current = true
 
-         // // get data from tasklist api endpoint
-         // fetch(todo_api_url)
-         // .then(response => response.json())
-         // .then(response => { 
-         //    setTodoModel(response.filter(r => !r.discarded))
-         //    setTodoDiscarded(response.filter(r => r.discarded))
-         // })
-         // .then(() => { console.log(
-         //    "Successfully fetched data from", 
-         //    todo_api_url
-         // )}).catch(error => {
-         //    console.log(error)
-         //    setTodoModel([ invalidRow ])
-         //    setTodoDiscarded([ invalidRow ])
-         // })
-           
+         onFirestoreSnapshot("tasks", 
+            querySnapshot => {
+               console.log({querySnapshot})
+               const newTasks = []
+               querySnapshot.forEach((doc) => {
+                  console.log(doc.id)
+                  newTasks.push({
+                     id: doc.id,
+                     ...doc.data()
+                  })
+               })
+               setTodoModel(newTasks)
+               setWsConnected(true)
+            }
+         )
+
          // key down events
          const onEscape = (event) => {
             if (event.code === "Escape" || event.isComposing) {
@@ -96,24 +97,6 @@ export default function App() {
       // put general context update info here
    }, [ context ])
    
-   /**********************************************************************
-    * Firebase Tasks Constructor
-    **********************************************************************/
-   const firebaseInitialized = React.useRef(false)
-   React.useEffect(() => {
-      // firebase constructor
-      if (!firebaseInitialized.current) {
-         firebaseInitialized.current = true
-
-         const firestoreDb = initializeFirebaseDb()
-
-         // fetch tasks from firestore
-         fetchFromFirestore(firestoreDb).then(tasks => {
-            setTodoModel(tasks)
-         })
-      }
-   })
-
    // /************************************************************
    //  * WEBSOCKETS
    //  ************************************************************/

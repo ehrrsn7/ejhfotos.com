@@ -2,6 +2,7 @@ import React from "react"
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
 import ResumeMD from "./mdx/resume.mdx"
 import MinecraftMD from "./mdx/minecraft.mdx"
+import ContactMD from "./mdx/contact.mdx"
 import "./App.css"
 
 export function ProfilePicture() {
@@ -42,6 +43,16 @@ export function Minecraft() {
 	</>
 }
 
+export function Contact() {
+	return <>
+		<Header />
+		<div id="Contact">
+			<ContactMD />
+		</div>
+		<Footer />
+	</>
+}
+
 export function Header() {
 	return <header>
 		<Link to="/"><h1>about.ejhfotos.com</h1></Link>
@@ -70,6 +81,7 @@ export default function App() {
 			<Route path="/" element={<Home />} />
 			<Route path="/resume" element={<Resume />} />
 			<Route path="/minecraft" element={<Minecraft />} />
+			<Route path="/contact" element={<Contact />} />
 			<Route path="*" element={<NotFound />} />
 		</Routes>
 		</BrowserRouter>

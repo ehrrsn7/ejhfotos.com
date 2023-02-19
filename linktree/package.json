@@ -1,9 +1,15 @@
 {
   "name": "linktree",
-  "private": true,
   "main": "src/index.jsx",
+  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "author": "Elijah Harrison <ehrrsn7@gmail.com>",
+  "license": "MIT",
+  "repository": {
+     "type": "git",
+     "url": "https://github.com/ehrrsn7/ejhfotos.com.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",

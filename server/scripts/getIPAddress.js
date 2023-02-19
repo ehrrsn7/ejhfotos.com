@@ -1,10 +1,10 @@
-const { networkInterfaces } = require('os');
-const { exit } = require('process');
+import { networkInterfaces } from "os"
+import { exit } from "process"
 
 const isIPv4 = net => net.family === "IPv4"
 const not255_0_0_0 = net => net.netmask !== "255.0.0.0"
 
-function getIPAddress() {
+export function getIPAddress() {
    // found at https://stackoverflow.com/questions/3653065/get-local-ip-address-in-node-js
    try {
       // get all network interface objects and put them in nets[]
@@ -34,5 +34,3 @@ if (typeof require !== 'undefined' && require.main === module) {
    if (!ipAddress)
       exit(1)
 }
-
-module.exports = { getIPAddress }

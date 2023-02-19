@@ -125,6 +125,16 @@ export default function DashboardTodoTable({selectedTask, setSelectedTask}) {
             />
          )}
 
+         {/* Error Message to Remind the need for an id */}
+         {!isInvalid(todoModel) && 
+         todoModel.filter(r => !r.id).map(rowData => 
+            <DashboardTableRow 
+            key={rowData.id} rowData={{title: "no id"}} 
+            selectedTask={selectedTask} 
+            setSelectedTask={setSelectedTask}
+            />
+         )}
+
       </tbody>
    </table>
 }

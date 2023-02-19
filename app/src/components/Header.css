@@ -9,7 +9,6 @@
 :root {
    --logo-background-color: #FFFFFF50;
    --header-height: 30em;
-   --gold-texture-image: url("https://cdn2.vectorstock.com/i/1000x1000/49/76/seamless-gold-glitter-pattern-vector-21374976.jpg");
 }
 
 /************************************************************
@@ -19,7 +18,7 @@ header {
    width: 100%;
    padding: 0;
    margin: 0;
-   background-color: #fcf5e1;
+   background-color: transparent;
    background-attachment: fixed;
    background-position: top;
    background-size: contain;
@@ -38,6 +37,13 @@ header span span p {
    align-items: center;
 }
 
+@media (prefers-color-scheme: dark) {
+   header {
+      background: black;
+      color: white;
+   }
+}
+
 /************************************************************
  * CUSTOM COMPONENTS
  ************************************************************/
@@ -48,12 +54,10 @@ header span span p {
    font-size: 2em;
    background-clip: text;
    -webkit-background-clip: text;
-   color: transparent;
-   text-shadow: #00000050 1px 0 10px;
+   color: var(--logo-header-color);
    background-size: 250%;
    filter: contrast(.5);
    filter: brightness(1.1);
-   background-image: var(--gold-texture-image);
 }
 
 .Logo {
@@ -62,13 +66,6 @@ header span span p {
    align-items: center;
    border-radius: 1em;
    color: var(--primary-headings);
-   /* separation from background by slightly lightening and blurring background */
-   background: var(--logo-background-color);
-   backdrop-filter: blur(5px);
-}
-
-header .ActionBar a:hover {
-   text-decoration: none;
 }
 
 .Logo .translate-up {
@@ -77,6 +74,17 @@ header .ActionBar a:hover {
    font-family: 'Times New Roman', Times, serif;
    font-size: 60px;
    opacity: .1;
+}
+
+@media (prefers-color-scheme: dark) {
+   .CursiveLogo, .Logo, .Logo .translate-up {
+      background: black;
+      color: white;
+   }
+}
+
+header .ActionBar a:hover {
+   text-decoration: none;
 }
 
 /* align hamburger menu icon to right */

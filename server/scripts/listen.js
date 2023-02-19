@@ -1,8 +1,8 @@
 // libraries
-const express = require("express")
+import express from "express"
 
 // import my scripts
-const { getIPAddress } = require("./getIPAddress")
+import { getIPAddress } from "./getIPAddress.js"
 
 function announce(port, subdomain) {
    console.log(`'${subdomain}' App listening on port ${port}:\n`)
@@ -13,10 +13,8 @@ function announce(port, subdomain) {
    }
 }
 
-function listen(port, subdomain="") {
+export function listen(port, subdomain="") {
    const server = express()
    server.listen(port, announce(port, subdomain))
    return server
 }
-
-module.exports = { listen }

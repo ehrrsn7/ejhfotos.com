@@ -71,8 +71,8 @@ export default function Sidebar({activeSidebar, setActiveSidebar}) {
          <MenuItem to="/">
             Home
          </MenuItem>
-         <MenuItem to="/Portfolio">
-            Portfolio
+         <MenuItem to="/Portraits">
+            Portraits
          </MenuItem>
          <MenuItem to="/Engagements">
             Engagements
@@ -83,14 +83,17 @@ export default function Sidebar({activeSidebar, setActiveSidebar}) {
          <MenuItem to="/Maternal">
             Maternal
          </MenuItem>
+         <MenuItem to="/Graduation">
+            Graduation
+         </MenuItem>
          <MenuItem to="/Intimates">
             Intimates
          </MenuItem>
-         <MenuItem to="/Contact">
-            Contact
-         </MenuItem>
          <MenuItem to="/Blog">
             Blog
+         </MenuItem>
+         <MenuItem to="http://about.ejhfotos.com/contact">
+            Contact
          </MenuItem>
          <MenuItem to="http://about.ejhfotos.com/">
             About

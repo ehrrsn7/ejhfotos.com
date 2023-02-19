@@ -1,8 +1,6 @@
-// libraries
-const express = require("express")
-
 // import my scripts
-const { listen } = require("./scripts/listen")
+import { listen } from "./scripts/listen.js"
+import { use } from "./scripts/use.js"
 
 // create servers and listen on different ports
 const www      = listen(81, "www")
@@ -11,7 +9,7 @@ const linktree = listen(83, "linktree")
 const notoil   = listen(84, "No-Toil-Task-Tracker")
 
 // use middleware to serve react apps
-www.use(express.static("./app/build"))
-about.use(express.static("./about/dist"))
-linktree.use(express.static("./linktree/dist"))
-notoil.use(express.static("./No-Toil-Task-Tracker/dist"))
+use(www,       "./app/dist")
+use(about,     "./about/dist")
+use(linktree,  "./linktree/dist")
+use(notoil,    "./No-Toil-Task-Tracker/dist")
