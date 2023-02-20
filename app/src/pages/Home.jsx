@@ -16,7 +16,7 @@ import Footer from "../components/Footer"
 // assets
 import "./Home.css"
 
-export default function Home() {
+export function HomeImages() {
    const [ images, setImages ] = React.useState(0)
 
    const initialized = React.useRef(false)
@@ -24,9 +24,6 @@ export default function Home() {
       // initializer
       if (!initialized.current) {
          initialized.current = true
-
-      // set page title to "Home"
-      changeDOMTitle(document, "Home")
 
          // callback for firestore snapshot (webhook for db)
          onFirestoreSnapshot("home-images", 
@@ -53,91 +50,95 @@ export default function Home() {
       })
    }, [images])
 
-   try {
-      return <div id="Home" className="content">
-         <Header />
-
-         <div id="row-images">
-            {images.map(image => <div key={image.subject}>
-               <img src={image.url} alt={image.subject} />
-               <div>
-                  <Link to={'/' + image.type} style={{
-                     color: "white",
-                     textDecoration: "none",
-                     textTransform: "capitalize",
-                  }}>
-                     <p>
-                        {image.type}
-                     </p>
-                  </Link>
-               </div>
-            </div>)}
+   return <div id="row-images">
+      {(images.map) && images?.map(image => <div key={image.subject}>
+         <img src={image.url} alt={image.subject} />
+         <div>
+            <Link to={'/' + image.type} style={{
+               color: "white",
+               textDecoration: "none",
+               textTransform: "capitalize",
+            }}>
+               <p>
+                  {image.type}
+               </p>
+            </Link>
          </div>
+      </div>)}
+   </div>
+}
 
-         <main>
+export default function Home() {
+   const initialized = React.useRef(false)
+   React.useEffect(() => {
+      // initializer
+      if (!initialized.current) {
+         initialized.current = true
 
-            <h1>Welcome!</h1>
-            <p>This site is under construction. I hope to put a wonderful photography website here!</p>
-            <p>Plan:</p> 
-            <ul>
-               <li>
-                  <p>
-                     <a href="http://www.ejhfotos.com/">Home:</a>{' '}
-                     This will be the main page, the photography site. 
-                  </p>
-               </li>
-               <li>
-                  <p>
-                     <a href="http://about.ejhfotos.com/">About:</a>{' '}
-                     This will be a landing page for everybody, including not only those who click the "about" link, but also potential employers who would like to clearly see my software portfolio, links and resume. 
-                  </p>
-               </li>
-               <li>
-                  <p>
-                     <a href="http://linktree.ejhfotos.com/">Linktree:</a>{' '}
-                     Lightweight linktree.
-                  </p>
-               </li>
-            </ul>
+         changeDOMTitle("Home | ejhfotos")
+      }
+   })
 
-            {/* Template Items */}
-            <h1>Template Items</h1>
-            <p className="Subtitle">(Placeholders for the various components to be integrated in this site. Basically, "TODO" components.)</p>
-            <br></br>
+   return <div id="Home" className="content">
+      <Header />
 
-            <h2>[Welcome section]</h2>
-            <br></br>
+      <HomeImages />
 
-            <h2>[Hover Carrousel]</h2>
-            <p className="Subtitle">(For preview of "weddings/engagements/other" images)</p>
-            <br></br>
+      <main>
+         <h1>Welcome!</h1>
+         <p>This site is under construction. I hope to put a wonderful photography website here!</p>
+         <p>Plan:</p> 
+         <ul>
+            <li>
+               <p>
+                  <a href="http://www.ejhfotos.com/">Home:</a>{' '}
+                  This will be the main page, the photography site. 
+               </p>
+            </li>
+            <li>
+               <p>
+                  <a href="http://about.ejhfotos.com/">About:</a>{' '}
+                  This will be a landing page for everybody, including not only those who click the "about" link, but also potential employers who would like to clearly see my software portfolio, links and resume. 
+               </p>
+            </li>
+            <li>
+               <p>
+                  <a href="http://linktree.ejhfotos.com/">Linktree:</a>{' '}
+                  Lightweight linktree.
+               </p>
+            </li>
+         </ul>
 
-            <h2>[Check out our latest <em>"[]"</em>]</h2>
-            <br></br>
+         {/* Template Items */}
+         <h1>Template Items</h1>
+         <p className="Subtitle">(Placeholders for the various components to be integrated in this site. Basically, "TODO" components.)</p>
+         <br></br>
 
-            <h2>[Normal Album Carrousel]</h2>
-            <br></br>
+         <h2>[Welcome section]</h2>
+         <br></br>
 
-            <h2>[Normal Text with Button Sections]</h2>
-            <br></br>
+         <h2>[Hover Carrousel]</h2>
+         <p className="Subtitle">(For preview of "weddings/engagements/other" images)</p>
+         <br></br>
 
-            <h2>[Text and Button with Background Image Sections]</h2>
-            <br></br>
+         <h2>[Check out our latest <em>"[]"</em>]</h2>
+         <br></br>
 
-            <h2>[Testimonials Section with Text, Image and Arrow Buttons]</h2>
-            <br></br>
+         <h2>[Normal Album Carrousel]</h2>
+         <br></br>
 
-            <h2>[Fixed image backgrounds to scroll over]</h2>
-            <br></br>
-         </main>
-         <Footer />
-      </div>
-   }
-   catch (err) {
-      console.error(err)
-      return <div>
-         <p>Error 500</p>
-         <p>Something went wrong! This is a front-end error caught in 'Home.jsx'</p>
-      </div>
-   }
+         <h2>[Normal Text with Button Sections]</h2>
+         <br></br>
+
+         <h2>[Text and Button with Background Image Sections]</h2>
+         <br></br>
+
+         <h2>[Testimonials Section with Text, Image and Arrow Buttons]</h2>
+         <br></br>
+
+         <h2>[Fixed image backgrounds to scroll over]</h2>
+         <br></br>
+      </main>
+      <Footer />
+   </div>
 }
