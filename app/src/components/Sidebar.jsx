@@ -32,6 +32,7 @@ const MenuItem = ({to, children}) => {
 }
 
 export default function Sidebar({activeSidebar, setActiveSidebar}) {
+   
    React.useEffect(() => {
       // on click outside of sidebar: close sidebar
       // document.addEventListener('click', (event) => {
