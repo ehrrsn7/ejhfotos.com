@@ -1,7 +1,29 @@
-# Minecraft.ejhfotos.com
+# minecraft.ejhfotos.com
 
 This web server doesn't exist (i.e. there is no port that minecraft.ejhfotos.com:80 will reroute to).
 
-However, this minecraft server does exist (ejhfotos.com:25565 running any subdomain).
+However, this minecraft server does exist on port 25565 (ejhfotos.com:25565 running any subdomain). This is the default port for minecraft: java edition, so if the input is just the domain, the port '25565' will be implied.
 
-Copy and paste this <code>**minecraft.ejhfotos.com**</code> into the Minecraft Client (open the minecraft java edition and navigate to the 'multiplayer' menu).
+Copy and paste this <code style={{hover: "cursor"}} onClick={event => {
+   try {
+      const textToCopy = event.target.innerHTML
+      if (!navigator.clipboard)
+         throw new Error(`Cannot copy '${textToCopy}': navigator.clipboard does not exist. This is probably due to insufficient permissions, such as using the http protocol instead of https.`)
+      navigator.permissions?.query({ name: "write-on-clipboard" }).then((result) => {
+         if (result.state == "granted" || result.state == "prompt")
+            alert("Write access granted!")
+      })
+      navigator.clipboard?.writeText(textToCopy).then(() => {
+         console.log('Content copied to clipboard')
+         /* Resolved - text copied to clipboard successfully */
+      }, () => {
+         throw new Error('Failed to copy')
+         /* Rejected - text failed to copy to the clipboard */
+      })
+   }
+   catch (err) {
+      console.warn(err)
+   }
+}}>**minecraft.ejhfotos.com**</code> into the Minecraft Client (open the minecraft java edition and navigate to the 'multiplayer' menu).
+
+Last thing: players are not allowed in by default. [Contact me]() to get whitelisted.

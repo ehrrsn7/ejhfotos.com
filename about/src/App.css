@@ -1,18 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+:root {
+	--secondary: #5183a4;
+	--secondary-light: #6193b4;
+}
+
 html, body, #root, #App {
-  all: unset;
-  background: white;
-  width: 100%;
-  overflow-x: hidden;
+	all: unset;
+	background: white;
+	width: 100%;
+	overflow-x: hidden;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	/* word-break: break-all; */
+	hyphens: auto;
+	font-size: 14px;
+	font-family: 'Open Sans', sans-serif;
 }
 
 body, #App, #Header, #Footer {
-  display: flex;
-  flex-direction: column;
-  place-items: center;
+	display: flex;
+	flex-direction: column;
+	place-items: center;
 }
 
-#App {
-  text-size-adjust: 1.5em;
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Ubuntu', sans-serif;
+}
+
+h1 {
+	font-size: 32px;
+}
+
+/* mobile overflow-x fix */
+@media (max-width: 400px) {
+	h1 {
+		font-size: 24px;
+	}
+}
+
+/* mobile overflow-x fix */
+@media (max-width: 250px) {
+	h1 {
+		font-size: 14px;
+		overflow-x: hidden;
+		overflow-wrap: break-word;
+		word-wrap: break-word;
+		word-break: break-all;
+	}
+	p {
+		font-size: 9px !important;
+		overflow-x: hidden;
+		overflow-wrap: break-word;
+		word-wrap: break-word;
+		word-break: break-all;
+	}
+}
+
+a {
+   color: var(--secondary);
+   text-decoration: none;
+	word-wrap: break-word;
+	hyphens: manual;
+	transition: all .3s;
+}
+a:hover {
+	text-decoration: underline;
+	transition: all .3s;
+}
+
+p {
+	all: unset;
+	display: block;
+	margin-bottom: .5em;
+	font-size: 1.2em;
+}
+
+ul ul {
+	padding: 0;
+	padding-left: 5;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+ul ul li {
+	display: inline;
+	padding-right: 2em;
 }
 
 img#ProfilePicture {
@@ -21,57 +95,98 @@ img#ProfilePicture {
 }
 
 button {
-  all: unset;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 12px;
-  padding: .5em;
-  margin: .5em;
-  border: 1px solid var(--secondary);
-  color: var(--secondary);
-  border-radius: .5em;
-  transition: .3s;
+	all: unset;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	padding: .5em;
+	margin: .5em;
+	border: 1px solid var(--secondary);
+	color: var(--secondary);
+	border-radius: .5em;
+	transition: .3s;
 }
 button:hover {
-  background: var(--secondary);
-  color: white;
-  transition: .3s;
+	background: var(--secondary);
+	color: white;
+	transition: .3s;
+}
+a:has(button):hover {
+	text-decoration: none;
 }
 
 span {
-  display: inline-flex;
-  place-content: center;
+	display: inline-flex;
+	flex-wrap: wrap;
+	place-content: center;
+	place-items: center;
+	gap: .1em;
 }
 
 header {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-height: 120px;
-  place-content: center;
-  background: var(--secondary);
-  margin-bottom: 2em;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	min-height: 120px;
+	place-items: center;
+	background: var(--secondary);
+	margin-bottom: 2em;
 }
 
-header h1 {
-  text-align: center;
-  color: white;
-  font-weight: bold;
-  font-size: 2em;
-  text-transform: uppercase;
+header > a > h1 {
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	font-size: 2em;
+	text-transform: uppercase;
 }
 
-#Resume {
-  max-width: 650px;
-  padding: 1em;
+header > a > h2 {
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	font-size: 1.5em;
+	text-transform: uppercase;
 }
 
-#Minecraft {
-  max-width: 650px;
-  padding: 1em;
+header span > a > h1 {
+	color: white;
+	font-size: 1.5em;
+}
+
+header span > * {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+figure {
+	border: 1px solid var(--secondary);
+}
+ 
+figcaption {
+	background-color: var(--secondary);
+	color: white;
+	font-style: italic;
+	padding: .2em 1em .2em 1em;
+	text-align: center;
+}
+
+#Home, #Home > *, #Resume, #Minecraft {
+	margin-left: 1em;
+	margin-right: 1em;
+	width: calc(100% - 2em);
+	max-width: 650px;
 }
 
 @media print {
-  header, button {
-    display: none;
-  }
+	header, button, footer, #Footer {
+		display: none;
+	}
+
+	#Home, #Resume, #Minecraft {
+		padding: 0;
+	}
+}
+
+#Home > div > ul p > a > button {
+	margin: 0 !important;
 }
