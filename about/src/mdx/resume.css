@@ -6,21 +6,24 @@
    --secondary-light: #6193b4;
 }
 
-* {
+#Resume p {
+   all: unset;
+   display: block;
    font-family: 'Open Sans', sans-serif;
-   font-size: 9px;
+   font-size: 11px;
+   margin-bottom: 1em;
 }
 
-table, tr {
+#Resume table, #Resume tr {
    width: 100%;
    vertical-align: top;
    margin: 0;
    padding: 0;
 }
 
-h1 {
+#Resume h1 {
    color: var(--secondary);
-   font-size: 11px;
+   font-size: 14px;
    font-weight: 800;
    font-family: 'Ubuntu', sans-serif;
    margin: 0;
@@ -28,19 +31,13 @@ h1 {
    padding-bottom: .5em;
 }
 
-a {
+#Resume a {
    color: var(--secondary);
    text-decoration: none;
 }
 
-a:hover {
+#Resume a:hover {
    color: var(--secondary-light);
-}
-
-@media (max-width: 500px) {
-   tr, td {
-      display: inline;
-   }
 }
 
 #Resume > table,
@@ -48,95 +45,126 @@ a:hover {
    border-spacing: 0px;
 }
 
-#ResumeBody h1 {
+#Resume #ResumeBody h1 {
    padding-bottom: .5em;
    padding-top: .5em;
 }
 
-#Summary, #Experience, #Projects {
+#Resume #Summary, #Resume #Experience, #Resume #Projects {
    display: block;
    border-bottom: 1px solid var(--secondary);
 }
 
-#Summary, #Experience, #Education {
+#Resume #Summary, #Resume #Experience, #Resume #Education {
    display: block;
    margin-bottom: 1em;
    padding-bottom: 1em;
 }
 
-#Projects, #Languages {
+#Resume #Projects, #Resume #Languages {
    display: block;
-   padding-left: 1em;
+   padding: 1em;
 }
 
-#ResumeHeader {
+#Resume #Projects {
+   padding-bottom: 1em;
+   margin-bottom: 1em;
+}
+
+#Resume #ResumeHeader {
    display: flex;
    place-items: top;
+   margin-top: 1em;
+   padding-top: 3em;
    border-bottom: 1px solid var(--secondary);
    padding-bottom: 1em;
    margin-bottom: 1em;
 }
 
-#name * {
-   font-size: 34px;
+#Resume #name * {
+   font-size: 42px;
    font-weight: 800;
    color: black;
    padding-bottom: .25em;
 }
 
-#title * {
-   font-size: 18px;
+#Resume #title * {
+   font-size: 24px;
    font-weight: 800;
    color: gray;
    padding-bottom: 1em;
 }
 
 @media (prefers-color-scheme: dark) {
-   #name * {
+   #Resume #name * {
       color: white;
    }
 }
 
-.job-title * {
+#Resume .job-title * {
    font-size: 14px;
    font-weight: 800;
    color: black;
 }
 
-.subtitle * {
+#Resume .subtitle * {
    font-size: 8px;
    color: gray;
 }
 
-.all-caps * {
+#Resume .all-caps * {
    text-transform: uppercase;
 }
 
-.right-align * {
+#Resume .right-align * {
    text-align: right;
 }
 
-.bold * {
+#Resume .bold * {
    font-weight: bold;
 }
 
-.gray * {
+#Resume .gray * {
    color: gray;
 }
 
-.secondary * {
+#Resume .secondary * {
    color: var(--secondary) !important;
 }
 
 @media (max-width: 500px) {
-   .right-align *, #name, #title {
-      text-align: center;
+
+   #Resume tr, #Resume td {
+      display: inline;
+   }
+   
+   #Resume #Education {
+      border-bottom: 1px solid var(--secondary);
+      margin-bottom: 0;
+   }
+   
+   #Resume #Projects {
+      padding-top: 0;
+   }
+   
+   #Resume #Projects, #Resume #Languages {
+      padding: 0;
    }
 
+   #Resume .right-align *, #Resume #name, #Resume #title {
+      text-align: center;
+   }
 }
 
 @media (prefers-color-scheme: dark) {
-   .job-title * {
+   #Resume .job-title * {
       color: white;
+   }
+}
+
+@media print {
+   #Resume #ResumeHeader {
+      margin-top: 1em;
+      padding-top: 1em;
    }
 }

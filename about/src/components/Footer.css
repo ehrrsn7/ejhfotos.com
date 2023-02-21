@@ -2,14 +2,28 @@
  * BUILT-IN COMPONENTS 
  ************************************************************/
 footer {
-   margin: 0 auto;
+	all: unset;
+	display: flex;
+	place-items: center;
+	place-content: center;
    width: 100%;
-   background: black;
+	min-height: 50px;
+	margin-top: 150px;
    color: white;
-   font-family: GeoEditRegular,Franklin Gothic Medium,Franklin Gothic,ITC Franklin Gothic,Helvetica,Arial,sans-serif;
+	background-color: var(--secondary);
    font-size: 11px;
    line-height: 1.5em;
    letter-spacing: .03em;
+}
+
+footer ul {
+   all: unset;
+   background: blue;
+   list-style-type: none;
+}
+
+footer a {
+   color: white;
 }
 
 /************************************************************
@@ -17,7 +31,7 @@ footer {
  ************************************************************/
 footer > div.MenuLists {
    display: grid;
-   grid-template-columns: repeat(4, 1fr);
+   grid-template-columns: repeat(2, 1fr);
    justify-content: space-around;
    grid-gap: .5em;
    max-width: var(--page-max-width);
@@ -42,26 +56,34 @@ footer > div.MenuLists > div.MenuList > div {
    margin-right: 1em;
 }
 
-.IconRow {
+footer .IconRow {
    display: flex;
    flex-wrap: wrap;
+   max-width: 400px;
+   width: 100%;
+   margin: 1em;
    justify-content: space-around;
 }
  
-.BackToTopButton {
-   padding: .5em;
-   margin: .5em;
-   width: 2.3em;
+footer .BackToTopButton {
    text-decoration: none;
+   width: 1.5em;
+   height: 1em;
+   padding-bottom: 1em;
+   padding-top: -1em;
+   text-align: center;
    cursor: pointer;
    background: none;
    color: white;
-   border: 1px solid gray;
+   font-weight: bold;
+   font-size: 1em;
    border-radius: 5em;
-   transform: rotate(90deg);
    transition: .5s;
+   border: 1px solid white;
 }
 
-.BackToTopButton:hover {
-   background: gray;
+footer .BackToTopButton:hover {
+   background: white;
+   color: var(--secondary);
+   transition: .5s;
 }
