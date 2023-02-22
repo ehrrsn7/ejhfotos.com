@@ -1,11 +1,20 @@
+/************************************************************
+ * IMPORT
+ ************************************************************/
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
+/************************************************************
+ * DEFINE
+ ************************************************************/
 :root {
 	--secondary: #5183a4;
 	--secondary-light: #6193b4;
 }
 
+/************************************************************
+ * BUILT-IN COMPONENTS
+ ************************************************************/
 html, body, #root, #App {
 	all: unset;
 	background: white;
@@ -89,11 +98,6 @@ ul ul li {
 	padding-right: 2em;
 }
 
-img#ProfilePicture {
-	clip-path: circle(35%) !important;
-	width: 200px;
-}
-
 button {
 	all: unset;
 	font-family: 'Open Sans', sans-serif;
@@ -121,6 +125,14 @@ span {
 	place-items: center;
 }
 
+/************************************************************
+ * CUSTOM COMPONENTS
+ ************************************************************/
+img#ProfilePicture {
+	clip-path: circle(35%) !important;
+	width: 200px;
+}
+
 #Home > span {
 	display: flex;
 	flex-direction: row-reverse;
@@ -139,17 +151,22 @@ span {
 
 #Asteroids > span {
 	gap: 1em;
-	place-content: center;
-	place-items: center;
 	justify-content: space-around;
 }
 
 /* github repos */
+
+/* space after each repo description */
+#GitHub > ul > li {
+	margin-bottom: 1em;
+}
+
+/* "polaroid cards" */
 #GitHub figure {
 	all: unset;
 	border: 1px solid var(--secondary);
 }
- 
+
 #GitHub figcaption {
 	display: flex;
 	place-items: center;
@@ -161,29 +178,33 @@ span {
 	text-align: center;
 }
 
-#GitHub figure img {
-	height: 200px;
+/* default card image dimensions */
+#GitHub > ul > li > span > figure > img {
 	width: auto;
+	max-width: 100%;
+	max-height: 200px;
 }
 
-/* space after each repo description */
-#GitHub > ul > li {
-	margin-bottom: 1em;
+/* alternate card image dimensions: full-width */
+#GitHub > ul > li > span.full-width,
+#GitHub > ul > li > span.full-width > figure,
+#GitHub > ul > li > span.full-width > figure > img {
+	max-width: 100%;
+	max-height: fit-content;
 }
 
-#No-Toil-Task-Tracker > figure {
-	all: unset;
-	word-wrap: break-word;
-	hyphens: auto;
-	font-size: 14px;
-	list-style-type: none;
+/* inline-style encapsulations */
+
+/* "center" */
+:has(.center) {
+	display: flex;
+	flex-direction: column;
+	place-content: center;
+	place-items: center;
+}
+
+:has(.center) > * {
 	width: 100%;
-}
-
-#No-Toil-Task-Tracker > figure > img {
-	width: calc(100% - 2px);
-	height: auto;
-	border: 1px solid var(--secondary);
 }
 
 @media print {

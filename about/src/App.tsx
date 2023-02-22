@@ -19,8 +19,8 @@ export function Home() {
 			<span>
 				<ProfilePicture style={{flex: 0}} />
 
-				<div style={{textAlign: "left", width: 300, flex: 1}}>
-					<h1 style={{textAlign: "center"}}>Welcome to <code>about.ejhfotos.com</code></h1>
+				<div style={{textAlign: "left", flex: 1}}>
+					<h1 style={{textAlign: "center", wordBreak: "break-word"}}>Welcome to <code>about.ejhfotos.com</code></h1>
 
 					<p>My name is Elijah Harrison, and this is my website, <code>ejhfotos.com</code></p>
 
@@ -28,7 +28,7 @@ export function Home() {
 
 				</div>
 			</span>
-			<div>
+			<span>
 				<p>I do photography on the side, primarily weddings, portraits, and other things like that. My photography portfolio can be found on the main site, <Link to="http://ejhfotos.com" target="_blank" rel="noopener noreferrer"><code>www.ejhfotos.com</code></Link></p>
 
 				<div id="GitHub">
@@ -98,10 +98,14 @@ export function Home() {
 							</Link>
 							<p>This is an inventory tracking system I built for <Link to="https://notoil.com" target="_blank" rel="noopener noreferrer">No Toil industries</Link>.</p>
 							<p>It was built using Django + React.</p>
-							<figure>
-								<img src="https://lh3.googleusercontent.com/vvIi6W9_nFg-UgDTneqYXY3JvjwXICqHYqkDXdXLoK_M76Su6N7ttVSGJlDMxSSLm9bbOdwDzdeopEsRruqriLwuzzLl4sHldQuiEooZlyW0wswE3xuhMBbg3LCVWRNNMDKI-m1JGEZJYcHxdqGR-slAD3MuwdYmUVka-zLCpDNRfohTKF5py-7VBEOJh9nmyVD-2lqQWZ7XxkoRI56SSpCYdv6HR4D12MKwwLTQ_iCwop1a2PkBMbZiCX-hew8VoshZVfqAAt20W4mVGxvZ3xvRnBurtLcEGQ5ioYmoYP62Xe3f1FAC7SyuNZVVsnyV5ASKQmk5uOAvatOYPWJdhQ2j6TVrzfmDZkMdkIFiPNxP_bONgy6HvbuKJX9mC5BeaTx42Dzz50GoD9Z3Ziza-WJoXGdF0Hq3yc4c3HvSQuYlGvmeZ8FRe1VN_juPwAiVkHOoShPaa20gld7C3AxYpsBYfmcNZymMVtZvxNFxrKE9yYb59HOBuVOsZdN823br9pDWLSnaAMMfvlKZTGC1dCFDjJLmeakQj0faHO_Qw6ZiZuO6BstRQoxKVNU6CiPaVBmCrI5QZ33k7akjYj9WIXBd2PjVW86pmzeqIlYO9KQpBRUjsWOcBVy702Snd2qWYzXbvCTIK3YcWcVET2Xr1aPp26jH1rO2DnPrrHWLP8mjI6etMKBl6o4aA9Gi_fxWDnQVCzuHE7kfnV_2zw3CvqdnTnsivO4Xb9RMVRwI444i1EFzRh-_p4IUB4HO2urqpGb2Ky4FEVQHi3OihF_26PLfj4jhv7vnev9YavTPIuO5RqUHNAq9Sj6PQYkFfYTfW8XlCCWkhjY2JzpDeYFQpZmnmGLKQWKlHSRUc1xY33-TQYA24HysRXEuGDWSrFdDPtmH5hVcSjTD38KIyBNujfpjEn353cPy9wqQ9bR-TIseyeF0k22gJduM6vXEn1K--UR71AIhTPqNQt98BBk=w600-h375-s-no?authuser=0" alt="screenshot of No-Toil-Task-Tracker application" />
-								<figcaption>screenshot of No-Toil-Task-Tracker application</figcaption>
-							</figure>
+							<span className="full-width">
+								<figure>
+									<img 
+									src="https://lh3.googleusercontent.com/vvIi6W9_nFg-UgDTneqYXY3JvjwXICqHYqkDXdXLoK_M76Su6N7ttVSGJlDMxSSLm9bbOdwDzdeopEsRruqriLwuzzLl4sHldQuiEooZlyW0wswE3xuhMBbg3LCVWRNNMDKI-m1JGEZJYcHxdqGR-slAD3MuwdYmUVka-zLCpDNRfohTKF5py-7VBEOJh9nmyVD-2lqQWZ7XxkoRI56SSpCYdv6HR4D12MKwwLTQ_iCwop1a2PkBMbZiCX-hew8VoshZVfqAAt20W4mVGxvZ3xvRnBurtLcEGQ5ioYmoYP62Xe3f1FAC7SyuNZVVsnyV5ASKQmk5uOAvatOYPWJdhQ2j6TVrzfmDZkMdkIFiPNxP_bONgy6HvbuKJX9mC5BeaTx42Dzz50GoD9Z3Ziza-WJoXGdF0Hq3yc4c3HvSQuYlGvmeZ8FRe1VN_juPwAiVkHOoShPaa20gld7C3AxYpsBYfmcNZymMVtZvxNFxrKE9yYb59HOBuVOsZdN823br9pDWLSnaAMMfvlKZTGC1dCFDjJLmeakQj0faHO_Qw6ZiZuO6BstRQoxKVNU6CiPaVBmCrI5QZ33k7akjYj9WIXBd2PjVW86pmzeqIlYO9KQpBRUjsWOcBVy702Snd2qWYzXbvCTIK3YcWcVET2Xr1aPp26jH1rO2DnPrrHWLP8mjI6etMKBl6o4aA9Gi_fxWDnQVCzuHE7kfnV_2zw3CvqdnTnsivO4Xb9RMVRwI444i1EFzRh-_p4IUB4HO2urqpGb2Ky4FEVQHi3OihF_26PLfj4jhv7vnev9YavTPIuO5RqUHNAq9Sj6PQYkFfYTfW8XlCCWkhjY2JzpDeYFQpZmnmGLKQWKlHSRUc1xY33-TQYA24HysRXEuGDWSrFdDPtmH5hVcSjTD38KIyBNujfpjEn353cPy9wqQ9bR-TIseyeF0k22gJduM6vXEn1K--UR71AIhTPqNQt98BBk=w600-h375-s-no?authuser=0" 
+									alt="screenshot of No-Toil-Task-Tracker application" />
+									<figcaption>screenshot of No-Toil-Task-Tracker application</figcaption>
+								</figure>
+							</span>
 						</li>
 						<li id="CSE-232-Labs">
 							<Link to="https://github.com/ehrrsn7/cse-232-labs" target="_blank" rel="noopener noreferrer">
@@ -225,11 +229,19 @@ export function Home() {
 							rel="noopener noreferrer">
 								<h2>Orbit Simulator (CSE 231)</h2>
 							</Link>
-							<img src="https://lh3.googleusercontent.com/EzPgEgimesQwcC6BScivD0guAsEl7ThmusnkTQULgkWmuA0NOIqtU3HWwn_Ym9AACx9FETg8T9xQaIuyk1Uh2Mrb47jSRmTn5K8Mpce1oqGRjX9MEk64oUxjoji2pLg3bsa-IxcOxOwm_C_ckEb7OhBr0r2NQixeLmLme-fz9Zwb8TnfV5amk9Z9cb8oHtPQTNue9B8qg1K3_o2af5tgt6bnG0tMi0yEKZBcQS-1NxhvhImUe0Tmtr1jaUZwI_ZAm0BRglCsaDsa8w9K0l9rasbMu1-c14huuCIDpQARIIxhYnxLL2kBdvBGo9bF8lE2ElRdIRh3jfBjYJRGBYW3y0LbTIEaPh9dTNepKJv8BQvwoG3ZmdhGbz_aJZQAMtEPD_njacAkh_Q5kVA8gLVJZ0kLPlD5vteZESTGbK53pigSPk1rPXcJGoNwgJecXX1ZmSYljE7a3OgpXauK4HeWScunr9gRg7QdQ9Q-eBCipC3TZWZFTjox0TcX98khp-B4WYLIkNhFnqSZVlxfWdPJh0xL_lfiv6i2wWKKMjcGoDTDqjy7H06V3PYMrCeBhRg8mWX_XQC7VcPg8V7zDz8YgeKQ3C5oDIT6_D8YffNlrHlAxpatpWX-zAbOlZFWOVZUIOvLd32U_AqrWjMdb5QmGaKu81Tv6pW4sfdVY09-DpjYIPfnWOvPp4jwd9zhABFGVkXQvBUt2eNWH8WLD4K9n9lwjDMVoUHcWuJlsxsdxDCSSmOTOAEDgNghMQwjoNFp5awfFaXF1NNhepc6ng0tGyxDhoPXQe_BQO-xzsROFL9j59qkAfIQ9YSHwjAtrSvIpNBfgil6TSik9ZOOjl00qPrTuy5xFWBjD74aZnVOlosV5bxDRm5secJvNfG9Vj5QvGmA7fNodopuQ6xTjfHB4DjbaCHfvXTyXTTDDarGBVBDj1oS3P6f4J_gHOOz08zO1W9uZbu1_Swag3TQOoI=w746-h702-s-no?authuser=0" alt="" width="100%" />
+							<p>This was a partner project between my friend Eli Jukes and I.</p>
+							<p>We set it up so that the simulator uses real physics formulas with dilation/adjustments to run properly.</p>
+
+							<span className="full-width">
+								<figure>
+									<img src="https://lh3.googleusercontent.com/EzPgEgimesQwcC6BScivD0guAsEl7ThmusnkTQULgkWmuA0NOIqtU3HWwn_Ym9AACx9FETg8T9xQaIuyk1Uh2Mrb47jSRmTn5K8Mpce1oqGRjX9MEk64oUxjoji2pLg3bsa-IxcOxOwm_C_ckEb7OhBr0r2NQixeLmLme-fz9Zwb8TnfV5amk9Z9cb8oHtPQTNue9B8qg1K3_o2af5tgt6bnG0tMi0yEKZBcQS-1NxhvhImUe0Tmtr1jaUZwI_ZAm0BRglCsaDsa8w9K0l9rasbMu1-c14huuCIDpQARIIxhYnxLL2kBdvBGo9bF8lE2ElRdIRh3jfBjYJRGBYW3y0LbTIEaPh9dTNepKJv8BQvwoG3ZmdhGbz_aJZQAMtEPD_njacAkh_Q5kVA8gLVJZ0kLPlD5vteZESTGbK53pigSPk1rPXcJGoNwgJecXX1ZmSYljE7a3OgpXauK4HeWScunr9gRg7QdQ9Q-eBCipC3TZWZFTjox0TcX98khp-B4WYLIkNhFnqSZVlxfWdPJh0xL_lfiv6i2wWKKMjcGoDTDqjy7H06V3PYMrCeBhRg8mWX_XQC7VcPg8V7zDz8YgeKQ3C5oDIT6_D8YffNlrHlAxpatpWX-zAbOlZFWOVZUIOvLd32U_AqrWjMdb5QmGaKu81Tv6pW4sfdVY09-DpjYIPfnWOvPp4jwd9zhABFGVkXQvBUt2eNWH8WLD4K9n9lwjDMVoUHcWuJlsxsdxDCSSmOTOAEDgNghMQwjoNFp5awfFaXF1NNhepc6ng0tGyxDhoPXQe_BQO-xzsROFL9j59qkAfIQ9YSHwjAtrSvIpNBfgil6TSik9ZOOjl00qPrTuy5xFWBjD74aZnVOlosV5bxDRm5secJvNfG9Vj5QvGmA7fNodopuQ6xTjfHB4DjbaCHfvXTyXTTDDarGBVBDj1oS3P6f4J_gHOOz08zO1W9uZbu1_Swag3TQOoI=w746-h702-s-no?authuser=0" alt="" width="100%" />
+									<figcaption>screenshot of orbit sumulator application</figcaption>
+								</figure>
+							</span>
 						</li>
 					</ul>
 				</div>
-			</div>
+			</span>
 		</div>
 		<Footer />
 	</>
@@ -286,8 +298,13 @@ export function Contact() {
 
 export function NotFound() {
 	return <>
-		Page not found.
-		<Link to="/">Go Home</Link>
+		<Header />
+		<h1>Error 404</h1>
+		<p>Page not found.</p>
+		<Link to="/">
+			<p>Go Home</p>
+		</Link>
+		<Footer />
 	</>
 }
 
