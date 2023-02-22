@@ -247,7 +247,7 @@ export function Resume() {
 		<Header />
 		<span>
 			<button onClick={() => {
-				const element = document.querySelector("#Resume")
+				const element = document.querySelector<HTMLElement>("#Resume")
 				const doc = new jsPDF({
 					orientation: "portrait",
 				})
