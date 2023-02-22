@@ -95,12 +95,6 @@
    padding-bottom: 1em;
 }
 
-@media (prefers-color-scheme: dark) {
-   #Resume #name * {
-      color: white;
-   }
-}
-
 #Resume .job-title * {
    font-size: 14px;
    font-weight: 800;
@@ -158,7 +152,11 @@
 
 @media (prefers-color-scheme: dark) {
    #Resume .job-title * {
-      color: white;
+      /* color: white; */
+   }
+
+   #Resume #name * {
+      /* color: white; */
    }
 }
 
