@@ -30,10 +30,12 @@ footer a {
  * CUSTOM COMPONENTS 
  ************************************************************/
 footer > div.MenuLists {
-   display: grid;
-   grid-template-columns: repeat(2, 1fr);
-   justify-content: space-around;
-   grid-gap: .5em;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   align-items: start;
+   gap: 2em;
    max-width: var(--page-max-width);
    margin: 0 auto;
    padding: 1em;
@@ -51,9 +53,8 @@ footer > div.MenuLists {
    }
 }
 
-footer > div.MenuLists > div.MenuList > div {
+footer > div.MenuLists > div.MenuList {
    min-width: 100px;
-   margin-right: 1em;
 }
 
 footer .IconRow {

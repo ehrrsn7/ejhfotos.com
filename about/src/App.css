@@ -119,7 +119,6 @@ span {
 	flex-wrap: wrap;
 	place-content: center;
 	place-items: center;
-	gap: .1em;
 }
 
 header {
@@ -158,16 +157,9 @@ header span > * {
 	padding-right: 1em;
 }
 
-figure {
-	border: 1px solid var(--secondary);
-}
- 
-figcaption {
-	background-color: var(--secondary);
-	color: white;
-	font-style: italic;
-	padding: .2em 1em .2em 1em;
-	text-align: center;
+#Home > span {
+	display: flex;
+	flex-direction: row-reverse;
 }
 
 #Home, #Home > *, #Resume, #Minecraft {
@@ -177,16 +169,65 @@ figcaption {
 	max-width: 650px;
 }
 
+#Home > div > ul p > a > button {
+	margin: unset !important;
+}
+
+#Asteroids > span {
+	gap: 1em;
+	place-content: center;
+	place-items: center;
+	justify-content: space-around;
+}
+
+/* github repos */
+#GitHub figure {
+	all: unset;
+	border: 1px solid var(--secondary);
+}
+ 
+#GitHub figcaption {
+	display: flex;
+	place-items: center;
+	place-content: center;
+	padding: .5em;
+	background-color: var(--secondary);
+	color: white;
+	font-style: italic;
+	text-align: center;
+}
+
+#GitHub figure img {
+	height: 200px;
+	width: auto;
+}
+
+/* space after each repo description */
+#GitHub > ul > li {
+	margin-bottom: 1em;
+}
+
+#No-Toil-Task-Tracker > figure {
+	all: unset;
+	word-wrap: break-word;
+	hyphens: auto;
+	font-size: 14px;
+	list-style-type: none;
+	width: 100%;
+}
+
+#No-Toil-Task-Tracker > figure > img {
+	width: calc(100% - 2px);
+	height: auto;
+	border: 1px solid var(--secondary);
+}
+
 @media print {
 	header, button, footer, #Footer {
 		display: none;
 	}
 
 	#Home, #Resume, #Minecraft {
-		padding: 0;
+		padding: unset;
 	}
-}
-
-#Home > div > ul p > a > button {
-	margin: 0 !important;
 }
