@@ -1,3 +1,8 @@
+// idea: animate show/hide header on scroll! :)
+// see https://codesandbox.io/s/yfhtk?file=/src/nav.js
+
+
+
 // import
 import React from "react"
 import { Link } from "react-router-dom"

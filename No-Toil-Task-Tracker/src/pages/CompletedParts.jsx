@@ -1,38 +1,28 @@
-import React                     from "react"
-import { Tooltip }               from "@mui/material"
-import { documentTitleSuffix }   from "../App"
-import { CompletedPartsTable }   from "../components/tables"
-import * as buttons              from "../components/buttons"
-import { useContext }            from "../contexts/contextProvider"
+import React from "react"
+import { Context } from "../contexts/context"
+import { Header, TaskTable } from "../components"
+import { Sidebar } from "../components/Sidebar"
+import { filterFunctions } from "../components/TaskTable/TaskTable"
+import "./CompletedParts.css"
 
-export default function CompletedParts() {
-   const context = useContext()
+export function CompletedParts() {
+   const { setFilterFunction } = React.useContext(Context)
 
    React.useEffect(() => {
-      document.title = "Completed Parts"
-      document.querySelector("#headerTitle").innerText = document.title
-      document.querySelector("title").textContent = document.title + 
-         documentTitleSuffix + ' ' + new Date().toLocaleString()
+      setFilterFunction(() => filterFunctions.completedPartsStatus)
    }, [])
 
-   return <div id={ document.title.replace(' ', '') } className="full-width-fix-1em">
-      <span id="topButtons" style={{flexWrap: "wrap"}}>
-         <buttons.PreviousPageButton to="Bag" />
-         <buttons.PrintAndDeleteAllCompleteButton />
-      </span> 
-      
-      <CompletedPartsTable context={ context } />
-
-      <br></br>
-
-      <Tooltip style={{width: "fit-content"}} title="">
-         <p>Notes:</p>
-      </Tooltip>
-
-      <div contentEditable={true} /> 
-
-      <span style={{marginTop: "3em"}}>
-         <buttons.BackToDashboardButton />
-      </span>
+   return <div id="CompletedParts" className="Page">
+      <Sidebar />
+      <div style={{ width: "100%" }}>
+         <Header>
+            <h2>
+               Completed Parts
+            </h2>
+         </Header>
+         <div className="Content">
+            <TaskTable />
+         </div>
+      </div>
    </div>
 }

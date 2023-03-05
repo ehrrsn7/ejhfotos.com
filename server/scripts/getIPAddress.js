@@ -26,11 +26,3 @@ export function getIPAddress() {
       return undefined
    }
 }
-
-if (typeof require !== 'undefined' && require.main === module) {
-   // this is the main module
-   let ipAddress = getIPAddress()
-   console.log("Your LAN IPv4 Address:", ipAddress)
-   if (!ipAddress)
-      exit(1)
-}

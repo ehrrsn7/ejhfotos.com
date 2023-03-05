@@ -1,6 +1,5 @@
 // import my scripts
-import { listen } from "./scripts/listen.js"
-import { use } from "./scripts/use.js"
+import { use, listen } from "./scripts/index.js"
 
 // create servers and listen on different ports
 const www      = listen(81, "www")

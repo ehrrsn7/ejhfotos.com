@@ -1,34 +1,28 @@
-import React                     from "react"
-import { Tooltip }               from "@mui/material"
-import { documentTitleSuffix }   from "../App"
-import { DiscardedPartsTable }   from "../components/tables"
-import * as Buttons              from "../components/buttons"
-import { useContext }            from "../contexts/contextProvider"
+import React from "react"
+import { Context } from "../contexts/context"
+import { Header, TaskTable } from "../components"
+import { Sidebar } from "../components/Sidebar"
+import { filterFunctions } from "../components/TaskTable/TaskTable"
+import "./DiscardedParts.css"
 
-export default function DiscardedParts() {
-   const context = useContext()
+export function DiscardedParts() {
+   const { setFilterFunction } = React.useContext(Context)
 
    React.useEffect(() => {
-      document.title = "Discarded Parts"
-      document.querySelector("#headerTitle").innerText = document.title
-      document.querySelector("title").textContent = document.title + 
-         documentTitleSuffix + ' ' + new Date().toLocaleString()
+      setFilterFunction(() => filterFunctions.discardedPartsStatus)
    }, [])
 
-   return <div id="DiscardedParts" className="full-width-fix-1em" style={{padding: 0}}>
-      <span id="topButtons" style={{flexWrap: "wrap"}}>
-         <Buttons.BackToDashboardButton />
-         <Buttons.PrintAndDeleteAllDiscardedButton />
-      </span> 
-      
-      <DiscardedPartsTable context={context} /> 
-
-      <br></br>
-
-      <Tooltip style={{width: "fit-content"}} title="">
-         <p>Notes:</p>
-      </Tooltip>
-
-      <div contentEditable={true} />
+   return <div id="DiscardedParts" className="Page">
+      <Sidebar />
+      <div style={{ width: "100%" }}>
+         <Header>
+            <h2>
+               Discarded Parts
+            </h2>
+         </Header>
+         <div className="Content">
+            <TaskTable />
+         </div>
+      </div>
    </div>
 }

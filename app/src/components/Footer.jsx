@@ -2,7 +2,7 @@ import "./Footer.css"
 
 export function BackToTopButton() {
    const onClick = () => { window[`scrollTo`]({ top: 0, behavior: `smooth` }) }
-   return <button className="BackToTopButton" onClick={onClick}>{"<"}</button>
+   return <button className="BackToTopButton" onClick={onClick}>{"∨"}</button>
 }
 
 export default function Footer() {

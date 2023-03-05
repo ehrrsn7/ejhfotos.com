@@ -1,65 +1,135 @@
-import React                     from "react"
-import { NavLink }               from "react-router-dom"
-import { Tooltip }               from "@mui/material"
-import { documentTitleSuffix }   from "../App"
-import { useContext }            from "../contexts/contextProvider"
-import * as buttons              from "../components/buttons"
-import { SortByDropdown }        from "../components/dropdowns"
-import { CreateTodoForm }        from "../components/forms"
-import { DashboardTodoTable }    from "../components/tables"
+import React from "react"
+import { Link } from "react-router-dom"
+import { Context } from "../contexts/context"
+import { Header, TaskTable } from "../components"
+import { Sidebar } from "../components/Sidebar"
+import "./Dashboard.css"
 
-export default function Dashboard() {
-   const { activeSidebar } = useContext()
-   const [ selectedTask, setSelectedTask ] = React.useState(-1)
-   const [ addMore, setAddMore ] = React.useState(false)
+export function Dashboard() {
+   const { setFilterFunction } = React.useContext(Context)
+   const { setSortedBy } = React.useContext(Context)
+
+   const [ showAddMore, setShowAddMore ] = React.useState(false)
 
    React.useEffect(() => {
-      document.title = "Dashboard"
-      document.querySelector("#headerTitle").innerText = document.title
-      document.querySelector("title").textContent = 
-         document.title + documentTitleSuffix
+      setFilterFunction(() => row => row)
+      setSortedBy("Status")
    }, [])
-   
-   return <div id={document.title} className="full-width-fix-1em">
-      <span id="topButtons">
-         <span style={{gap: "0", flexWrap: "wrap"}}>
-            <SortByDropdown />
-            <buttons.NextPageButton to="Stamp" />
-         </span>
-      </span>
 
-      <DashboardTodoTable 
-      selectedTask={selectedTask} 
-      setSelectedTask={setSelectedTask} 
-      />
+   return <span id="Dashboard" className="Page">
+      <Sidebar />
+      <div style={{ width: "100%" }}>
+         <Header>
+            <h2>
+               Dashboard
+            </h2>
+         </Header>
+         <div className="Content">
+            <TaskTable
+            showHighPriority
+            showStatus
+            showLastModified
+            showUpdate 
+            />
 
-      <span id="bottomButtons" style={{flexWrap: "wrap", padding: 0}}>
-         <Tooltip title="Toggle the Create Tasks Form." placement="right">
-            <button className="add" onClick={() => {
-               if (activeSidebar) return // disable
-               setAddMore(!addMore)
+            <span style={{
+               placeContent: "space-between",
+               marginTop: "1em"
             }}>
-               {addMore ? "Cancel" : "Add more" }
-            </button>
-         </Tooltip>
-
-         <Tooltip title="Go to the Discarded Parts page." placement="left">
-            <NavLink to="/DiscardedParts"
-            onClick={event => {
-               if (activeSidebar) event.preventDefault()
-            }}>
-               <button>
-                  Go to Discarded Parts →
+               <button onClick={() => setShowAddMore(!showAddMore) }>
+                  <h5>
+                     { showAddMore ? "Hide Add More" : "Add More" }
+                  </h5>
                </button>
-            </NavLink>
-         </Tooltip>
-      </span>
 
-      <span id="addMoreDropdown" style={{
-         display: addMore ? "block" : "none",
-      }}>
-         <CreateTodoForm />
-      </span>
+               <Link to="/CompletedParts">
+                  <button>
+                     <h5>
+                        Completed Parts
+                     </h5>
+                  </button>
+               </Link>
 
-   </div>
+               <Link to="/DiscardedParts">
+                  <button>
+                     <h5>
+                        Discarded Parts
+                     </h5>
+                  </button>
+               </Link>
+
+               <Link to="/Stamp">
+                  <button>
+                     <h5>
+                        Stamp →
+                     </h5>
+                  </button>
+               </Link>
+            </span>
+
+
+            { showAddMore && <>
+               <div id="AddMore" style={{
+                  display: "flex",
+                  flexFlow: "column",
+                  padding: "1em",
+                  width: "calc(100% - 2em)",
+                  marginTop: "1em",
+                  borderRadius: "1em",
+                  boxShadow: "0 0 5px lightgray"
+               }}>
+                  <table style={{
+                     borderSpacing: "none"
+                  }}>
+                     <thead>
+                        <tr>
+                           <td>
+                              <h3>
+                                 Add More
+                              </h3>
+                           </td>
+                           <td>
+                              <h3>
+                                 Add More
+                              </h3>
+                           </td>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <input style={{
+                                    all: "unset",
+                                    border: "1px solid lightgray",
+                                    borderRadius: "7px",
+                                 }} />
+                              </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <input style={{
+                                    all: "unset",
+                                    border: "1px solid lightgray",
+                                    borderRadius: "7px",
+                                 }} />
+                              </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <input style={{
+                                    all: "unset",
+                                    border: "1px solid lightgray",
+                                    borderRadius: "7px",
+                                 }} />
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </> }
+         </div>
+      </div>
+   </span>
 }
