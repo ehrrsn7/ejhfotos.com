@@ -1,0 +1,54 @@
+header {
+   display: flex;
+   place-content: space-between;
+   padding: 1em;
+   margin-bottom: 30px;
+   height: 60px;
+   place-items: center;
+   text-align: center;
+   vertical-align: center;
+   border-bottom: 1px solid whitesmoke;
+   box-shadow: 0 4px 12px -2px whitesmoke;
+}
+
+header > h1,
+header > h2,
+header > h3,
+header > h4,
+header > h5,
+header > h6 {
+   transition: .3s;
+   margin: .5em;
+   text-align: center;
+   vertical-align: center;
+   transform: scaleX(115%);
+   letter-spacing: -1px;
+}
+
+header button {
+   height: 40px;
+   width: 40px;
+   padding: 0px;
+   margin-left: 1em;
+   border-radius: 20px;
+   background: whitesmoke;
+   transition: all .3s;
+}
+header button:hover {
+   background: var(--no-toil-orange-dark);
+   border-color: var(--no-toil-orange-dark);
+}
+header button > a {
+   color: black;
+   transition: color .05s;
+}
+header > button:hover > a {
+   color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+   header > img {
+      filter: brightness(0);
+      filter: invert(1);
+   }
+}

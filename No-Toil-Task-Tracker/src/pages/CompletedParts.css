@@ -1,0 +1,12 @@
+#CompletedParts {
+   display: flex;
+   place-items: top;
+}
+
+#Sidebar > span > button,
+header > button {
+   height: 40px;
+   width: 40px;
+   padding: 5px;
+   border-radius: 20px;
+}
