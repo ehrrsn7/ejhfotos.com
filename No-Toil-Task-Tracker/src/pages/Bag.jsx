@@ -17,12 +17,14 @@ export function Bag() {
       <Sidebar />
       <div style={{ width: "100%" }}>
          <Header>
-            <h2>
-               Bag
-            </h2>
+            Bag
          </Header>
          <div className="Content">
-            <TaskTable />
+            <TaskTable
+            showHighPriority
+            showLastModified
+            showUpdate 
+            />
 
             <span style={{
                placeContent: "space-between",

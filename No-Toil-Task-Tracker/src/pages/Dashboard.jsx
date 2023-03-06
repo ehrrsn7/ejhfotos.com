@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { Context } from "../contexts/context"
+import { post } from "../firebase"
 import { Header, TaskTable } from "../components"
 import { Sidebar } from "../components/Sidebar"
 import "./Dashboard.css"
@@ -20,9 +21,7 @@ export function Dashboard() {
       <Sidebar />
       <div style={{ width: "100%" }}>
          <Header>
-            <h2>
-               Dashboard
-            </h2>
+            Dashboard
          </Header>
          <div className="Content">
             <TaskTable
@@ -34,8 +33,23 @@ export function Dashboard() {
 
             <span style={{
                placeContent: "space-between",
-               marginTop: "1em"
+               marginTop: "1em",
+               gap: "1em"
             }}>
+               <button onClick={() => post("tasks", {
+                  id: "a120",
+                  Title: "3117",
+                  Quantity: 54,
+                  Status: 3,
+                  Oil: true,
+                  HighPriority: true,
+                  Discarded: false,
+               })}>
+                  <h5>
+                     Add task
+                  </h5>
+               </button>
+
                <button onClick={() => setShowAddMore(!showAddMore) }>
                   <h5>
                      { showAddMore ? "Hide Add More" : "Add More" }

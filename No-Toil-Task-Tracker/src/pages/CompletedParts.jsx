@@ -16,9 +16,7 @@ export function CompletedParts() {
       <Sidebar />
       <div style={{ width: "100%" }}>
          <Header>
-            <h2>
-               Completed Parts
-            </h2>
+            Completed Parts
          </Header>
          <div className="Content">
             <TaskTable />

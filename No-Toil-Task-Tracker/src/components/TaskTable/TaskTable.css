@@ -10,19 +10,20 @@ table#TaskTable {
    line-height: 2em;
 }
 
-table#TaskTable > thead > tr > td,
-table#TaskTable > tbody > tr:not(:last-child) > td {
-   border-bottom: 1px solid gray;
-}
-
-#TaskTable thead tr {
+table#TaskTable > thead > tr {
    background: #FCFCFC;
 }
 
 table#TaskTable > thead > tr > td {
    padding: 0 10px 0 10px;
+   height: 2em;
    min-height: 30px;
    transition: .3s;
+}
+
+table#TaskTable > thead > tr > td,
+table#TaskTable > tbody > tr:not(:last-child) > td {
+   border-bottom: 1px solid gray;
 }
 
 table#TaskTable > thead > tr > td:hover {
@@ -50,6 +51,11 @@ table#TaskTable > thead > tr > td.sortedBy {
    width: 100%;
    padding-left: .5em;
    text-align: left;
+}
+
+#TaskTable > tbody > tr.NoTasks > td {
+   height: 50px;
+   background: whitesmoke;
 }
 
 #TaskTable > tbody > tr > td.Update {
@@ -87,6 +93,10 @@ table#TaskTable > thead > tr > td.sortedBy {
       background: rgb(58, 69, 80);
    }
 
+   #TaskTable > tbody > tr.NoTasks > td {
+      background: rgb(45, 51, 59);
+   }
+
    table#TaskTable > thead > tr > td:hover {
       background: rgb(40, 48, 57);
    }
@@ -97,12 +107,8 @@ table#TaskTable > thead > tr > td.sortedBy {
    }
 
    .AccordionRow > td {
-      background: #213547;
+      background: rgb(34, 39, 47);
       border-left: 1px solid rgb(81, 98, 113);
       border-right: 1px solid rgb(81, 98, 113);
-   }
-   
-   .AccordionRow > td > div {
-      background: rgb(58, 69, 80);
    }
 }

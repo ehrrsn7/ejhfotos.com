@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import * as ReactUse from "react-use"
 import { LayoutGroup, motion } from "framer-motion"
 import { Context } from "../../contexts/context"
+import { onFirestoreSnapshot } from "../../firebase"
 import { ErrorBoundary } from "../ErrorBoundary"
 import { AccordionRow, motionVariants } from "./AccordionRow"
 import "./TaskTable.css"
@@ -18,8 +19,18 @@ export function TaskTable({ setsOrQuantity, showStatus, showLastModified, showHi
    React.useEffect(() => {
       if (!initialized.current) {
          initialized.current = true
-         console.log({ dummyRows })
-         setTasks(dummyRows)
+
+         // get tasks from firestore
+         onFirestoreSnapshot(querySnapshot => {
+            querySnapshot.forEach(row => {
+               setTasks(arr => [...arr, {
+                  ...row.data(),
+                  id: row.id,
+                  LastModified: 
+                     row.data().LastModified?.toDate(),
+               }])
+            })
+         }, "tasks")
       }
    })
 
@@ -55,8 +66,9 @@ export function TaskTable({ setsOrQuantity, showStatus, showLastModified, showHi
          </tr>
       </thead>
       <tbody>
-         { tasks.filter(filterFunction).length <= 0 && <motion.tr>
-            <td colSpan="100%" style={{ height: 50, background: "whitesmoke" }}>
+         { tasks.filter(filterFunction).length <= 0 && <motion.tr
+         className="NoTasks">
+            <td colSpan="100%">
                <span>
                   <p>
                      <em>No Tasks</em>
@@ -85,7 +97,7 @@ export function TaskTable({ setsOrQuantity, showStatus, showLastModified, showHi
 
             <columns.LastModified.Body
             showLastModified={showLastModified} >
-               {row.LastModified.toDateString()}
+               {row.LastModified?.toDateString && row.LastModified?.toDateString()}
             </columns.LastModified.Body>
 
             <columns.Status.Body
@@ -107,7 +119,7 @@ export function TaskTable({ setsOrQuantity, showStatus, showLastModified, showHi
                {row.HighPriority ? "!" : ''}
             </columns.HighPriority.Body>
 
-            <columns.Update.Body row={row} />
+            <columns.Update.Body row={row} showUpdate={showUpdate} />
          </motion.tr>
          { row.id == updateExpanded && <AccordionRow row={row} />}
          </LayoutGroup>
@@ -117,9 +129,6 @@ export function TaskTable({ setsOrQuantity, showStatus, showLastModified, showHi
    </ErrorBoundary>
 }
 
-/**************************************************
- * COLUMNS
- **************************************************/
 const columns = {
    TableHead: ({ children, style, id }) => {
       const { sortedBy, setSortedBy } = React.useContext(Context)
@@ -214,11 +223,11 @@ const columns = {
    },
 
    Update: {
-      Head: () => <td id="Update">
+      Head: ({ showUpdate }) => showUpdate && <td id="Update">
          <h4>Update</h4>
       </td>,
    
-      Body: ({ row }) => {
+      Body: ({ row, showUpdate }) => {
          const { updateExpanded, setUpdateExpanded } = React.useContext(Context)
 
          const update = () => {
@@ -229,7 +238,7 @@ const columns = {
             setUpdateExpanded(row.id == updateExpanded ? '' : row.id)
          }
    
-         return <td className="Update">
+         return showUpdate && <td className="Update">
             <button onClick={update}>
                {"✓"}
             </button>
@@ -300,9 +309,23 @@ const dummyRows = [
 ]
 
 /**************************************************
- * COLUMNS
+ * Helper Functions
  **************************************************/
-function statusMapNumberToName(number) {
+export function statusMapNameToNumber(name) {
+   switch (name.toLowerCase()) {
+      case "stamp": return 0
+      case "spray": return 1
+      case "check": return 2
+      case "oil": return 3
+      case "bag": return 4
+      case "completedparts": return 5
+      case "discardedparts": return 6
+      default: throw new Error(
+         `In statusMapNameToNumber(name): unknown case '${name}'`
+      )
+   }
+}
+export function statusMapNumberToName(number) {
    switch (number) {
       case 0: return "Stamp"
       case 1: return "Spray"
@@ -311,12 +334,19 @@ function statusMapNumberToName(number) {
       case 4: return "Bag"
       case 5: return "CompletedParts"
       case 6: return "DiscardedParts"
-      default: throw new Error(`In statusMapNumberToName(number): unknown case '${number}'`)
+      default: throw new Error(
+         `In statusMapNumberToName(number): unknown case '${number}'`
+      )
    }
 }
 
 const setSortedByCallback = ({ sortedBy, setSortedBy }, by="") => {
-   setSortedBy(sortedBy == `${by}-Ascending` ? `${by}-Descending` : sortedBy == `${by}-Descending` ? '' : `${by}-Ascending`)
+   if (sortedBy == '')
+      setSortedBy(`${by}-Descending`)
+   else if (sortedBy == `${by}-Descending`)
+      setSortedBy(`${by}-Ascending`)
+   else
+      setSortedBy('')
 }
 
 const sortFunctions = {
@@ -406,7 +436,12 @@ const sortTasksBy = ({ tasks, setTasks }, by) => {
          sortFunctions.LastModified.descending,
    }[by]
 
-   console.log({"sorting": tasks, by, sortFunction, newTasks: tasks.sort(sortFunction)})
+   console.log({
+      "sorting": tasks, 
+      by, 
+      sortFunction, 
+      newTasks: tasks.sort(sortFunction)
+   })
    
    setTasks(tasks.sort(sortFunction))
 }

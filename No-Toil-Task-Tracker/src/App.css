@@ -1,7 +1,3 @@
-#App {
-   background: white;
-}
-
 #App .Page {
    display: flex;
    flex-direction: row;
@@ -10,10 +6,4 @@
 
 .Content {
    padding: 16px;
-}
-
-@media (prefers-color-scheme: dark) {
-   #App {
-      background: black;
-   }  
 }

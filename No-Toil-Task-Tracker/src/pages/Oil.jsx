@@ -16,12 +16,14 @@ export function Oil() {
       <Sidebar />
       <div style={{ width: "100%" }}>
          <Header>
-            <h2>
-               Oil
-            </h2>
+            Oil
          </Header>
          <div className="Content">
-            <TaskTable />
+            <TaskTable
+            showHighPriority
+            showLastModified
+            showUpdate 
+            />
          </div>
       </div>
    </div>
