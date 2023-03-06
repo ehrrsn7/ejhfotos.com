@@ -2,7 +2,14 @@
 import { initializeApp } from "firebase/app"
 import { getAnalytics } from "firebase/analytics"
 import { getAuth } from "firebase/auth"
-import { getFirestore, onSnapshot, addDoc, collection, query } from "firebase/firestore"
+import {
+   getFirestore,
+   onSnapshot,
+   addDoc,
+   collection,
+   query,
+   Timestamp
+} from "firebase/firestore"
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -17,7 +24,10 @@ export const db = getFirestore(app)
 // helper functions
 export async function post(collectionName, obj={}) {
    try {
-      await addDoc(collection(db, collectionName), obj)
+      await addDoc(collection(db, collectionName), {
+         ...obj,
+         LastModified: Timestamp.fromDate(new Date()),
+      })
       .then(() => {
          console.log("doc uploaded")
       })

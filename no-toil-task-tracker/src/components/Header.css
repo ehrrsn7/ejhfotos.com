@@ -1,12 +1,16 @@
 header {
    display: flex;
    place-content: space-between;
-   padding: 1em;
-   margin-bottom: 30px;
-   height: 60px;
    place-items: center;
    text-align: center;
    vertical-align: center;
+   padding: 0;
+   padding-top: 1em;
+   padding-bottom: 1em;
+   margin-bottom: 30px;
+   width: 100vw;
+   height: fit-content;
+   min-height: 60px;
    border-bottom: 1px solid whitesmoke;
    box-shadow: 0 4px 12px -2px whitesmoke;
 }
@@ -34,19 +38,41 @@ header button {
    background: whitesmoke;
    transition: all .3s;
 }
+
 header button:hover {
    background: var(--no-toil-orange-dark);
    border-color: var(--no-toil-orange-dark);
 }
+
 header button > a {
    color: black;
    transition: color .05s;
 }
+
 header > button:hover > a {
    color: white;
 }
 
+header .Title {
+   margin-left: 1em;
+}
+
+header #ToggleSidebarButton {
+   margin-right: 1em;
+}
+
+@media (max-width: 450px) {
+   header .Title {
+      margin-left: 0;
+   }
+}
+
 @media (prefers-color-scheme: dark) {
+   header {
+      box-shadow: 0 4px 12px -2px black;
+      border-color: black;
+   }
+      
    header > img {
       filter: brightness(0);
       filter: invert(1);

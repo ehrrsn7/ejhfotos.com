@@ -123,9 +123,9 @@ button a:hover {
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
+	:root, html, body {
 		color: #ffffff;
-		background-color: #213547;
+		background-color: rgb(34, 39, 47);
 	}
 	a:hover {
 		color: var(--no-toil-orange);

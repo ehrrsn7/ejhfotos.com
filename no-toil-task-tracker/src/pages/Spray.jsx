@@ -16,12 +16,14 @@ export function Spray() {
       <Sidebar />
       <div style={{ width: "100%" }}>
          <Header>
-            <h2>
-               Spray
-            </h2>
+            Spray
          </Header>
          <div className="Content">
-            <TaskTable />
+            <TaskTable
+            showHighPriority
+            showLastModified
+            showUpdate 
+            />
          </div>
       </div>
    </div>

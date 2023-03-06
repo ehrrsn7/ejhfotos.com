@@ -16,12 +16,14 @@ export function Stamp() {
       <Sidebar />
       <div style={{ width: "100%" }}>
          <Header>
-            <h2>
-               Stamp
-            </h2>
+            Stamp
          </Header>
          <div className="Content">
-            <TaskTable />
+            <TaskTable
+            showHighPriority
+            showLastModified
+            showUpdate 
+            />
          </div>
       </div>
    </div>

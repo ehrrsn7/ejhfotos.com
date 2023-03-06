@@ -2,6 +2,8 @@ import React from "react"
 import * as ReactUse from "react-use"
 import { motion } from "framer-motion"
 import "./AccordionRow.css"
+import { statusMapNumberToName } from "./TaskTable"
+import { Link } from "react-router-dom"
 
 export const motionVariants = {
    // this solved my issue with jitter-y accordion div animations
@@ -24,6 +26,16 @@ export function AccordionRow({ row }) {
             alignItems: mobile ? "top" : "center",
             placeContent: "space-around",
          }}>
+            <AccordionWidget style={{placeItems: "center"}}>
+               <Link to={`/${statusMapNumberToName(row.Status)}`}>
+                  <button>
+                     <h5>
+                        Go to '{statusMapNumberToName(row.Status)}'
+                     </h5>
+                  </button>
+               </Link>
+            </AccordionWidget>
+
             <UpdateAccordionWidget row={row} />
 
             <AccordionWidget style={{
@@ -79,7 +91,7 @@ export function AccordionRow({ row }) {
                            wordWrap: "break-word",
                            maxWidth: "150px",
                            textAlign: "right"
-                        }}>{row.LastModified.toString()}</p>
+                        }}>{row.LastModified?.toString()}</p>
                      </span>
                   </li>
                </ul>
@@ -87,9 +99,11 @@ export function AccordionRow({ row }) {
 
             <DiscardCertainAmountAccordionWidget row={row} />
 
-            <AccordionWidget>
+            <AccordionWidget style={{placeItems: "center"}}>
                <button>
-                  Discard Task
+                  <h5>
+                     Discard Task
+                  </h5>
                </button>
             </AccordionWidget>
          </div>
@@ -98,7 +112,7 @@ export function AccordionRow({ row }) {
 }
 
 export function AccordionWidget({ children, style, className }) {
-   return <div 
+   return <div style={style}
    className={`AccordionWidget${className ? ' ' + className : ''}`}>
       {children}
    </div>
@@ -227,9 +241,9 @@ export function DiscardCertainAmountAccordionWidget({ row }) {
          padding: ".2em",
          transition: ".3s",
       }}>
-         <p>
-            Discard
-         </p>
+         <h5>
+            Discard Task
+         </h5>
       </button>
    </AccordionWidget>
 }

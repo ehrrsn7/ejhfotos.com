@@ -16,9 +16,7 @@ export function DiscardedParts() {
       <Sidebar />
       <div style={{ width: "100%" }}>
          <Header>
-            <h2>
-               Discarded Parts
-            </h2>
+            Discarded Parts
          </Header>
          <div className="Content">
             <TaskTable />
