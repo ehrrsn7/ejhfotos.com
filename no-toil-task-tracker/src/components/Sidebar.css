@@ -1,0 +1,112 @@
+#Sidebar {
+   --width: 225px;
+   display: flex;
+   flex-direction: column;
+   place-items: top;
+   padding: 1em;
+   padding-top: 1.5em;
+   padding-bottom: .5em;
+   margin: 0;
+   margin-left: calc(-var(--width) - 32px);
+   min-width: var(--width);
+   max-width: 70%;
+   min-height: calc(100vh - 2em);
+   background: whitesmoke;
+   overflow-y: scroll;
+   transition: .3s;
+}
+
+#Sidebar h1,
+#Sidebar h2,
+#Sidebar h3,
+#Sidebar h4,
+#Sidebar h5,
+#Sidebar h6,
+#Sidebar button {
+   margin: 0;
+   padding: 0;
+}
+
+#Sidebar h1,
+#Sidebar h2,
+#Sidebar h3,
+#Sidebar h4,
+#Sidebar h5,
+#Sidebar h6 {
+   text-align: left;
+}
+
+#Sidebar button {
+   padding: .5em;
+   border: none;
+}
+
+#Sidebar button,
+#Sidebar button > * {
+   transition: background .3s;
+}
+
+#Sidebar button:hover {
+   color: white;
+   background: var(--no-toil-orange-dark);
+}
+
+#Sidebar > a > button {
+   width: 230px;
+   margin-top: 1em;
+   margin-bottom: 1em;
+}
+
+#Sidebar > a > button > h4 {
+   font-size: large;
+}
+
+#Sidebar > span {
+   display: flex;
+   margin-bottom: 1em;
+   flex-direction: row;
+   place-content: space-between;
+   place-items: start;
+   height: 5em;
+}
+
+#Sidebar > span h3 {
+   margin: 0px;
+   border-radius: 10px;
+   font-size: 26px;
+   letter-spacing: -1;
+   transform: unset;
+   transition: all .3s;
+}
+
+#Sidebar > span > button {
+   height: 30px;
+   width: 30px;
+   border-radius: 10px;
+   background: white;
+   transition: all .3s;
+}
+#Sidebar > span > button:hover {
+   background: var(--no-toil-orange-dark);
+   border-color: var(--no-toil-orange-dark);
+}
+#Sidebar > span > button > a {
+   color: black;
+   transition: color .05s;
+}
+#Sidebar > span > button:hover > a {
+   color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+   #Sidebar {
+      background: #333333;
+   }   
+}
+
+@media (max-width: 450px) {
+   #Sidebar {
+      position: fixed;
+      z-index: 1;
+   }
+}
