@@ -1,7 +1,6 @@
 import React from "react"
 import { Context } from "../contexts/context"
-import { Header, TaskTable } from "../components"
-import { Sidebar } from "../components/Sidebar"
+import { Sidebar, Header, TaskTable } from "../components"
 import { filterFunctions } from "../components/TaskTable/TaskTable"
 import "./DiscardedParts.css"
 
@@ -12,15 +11,12 @@ export function DiscardedParts() {
       setFilterFunction(() => filterFunctions.discardedPartsStatus)
    }, [])
 
-   return <div id="DiscardedParts" className="Page">
-      <Sidebar />
-      <div style={{ width: "100%" }}>
-         <Header>
-            Discarded Parts
-         </Header>
-         <div className="Content">
-            <TaskTable />
-         </div>
+   return <div id="DiscardedParts Page">
+      <Header>
+         Discarded Parts
+      </Header>
+      <div id="Content">
+         <TaskTable />
       </div>
    </div>
 }

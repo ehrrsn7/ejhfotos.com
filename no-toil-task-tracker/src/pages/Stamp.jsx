@@ -1,7 +1,6 @@
 import React from "react"
 import { Context } from "../contexts/context"
-import { Header, TaskTable } from "../components"
-import { Sidebar } from "../components/Sidebar"
+import { Sidebar, Header, TaskTable } from "../components"
 import { filterFunctions } from "../components/TaskTable/TaskTable"
 import "./Stamp.css"
 
@@ -12,19 +11,24 @@ export function Stamp() {
       setFilterFunction(() => filterFunctions.stampStatus)
    }, [])
 
-   return <div id="Stamp" className="Page">
-      <Sidebar />
-      <div style={{ width: "100%" }}>
-         <Header>
-            Stamp
-         </Header>
-         <div className="Content">
-            <TaskTable
-            showHighPriority
-            showLastModified
-            showUpdate 
-            />
-         </div>
+   return <div id="Stamp Page">
+      <Header>
+         Stamp
+      </Header>
+      <div id="Content">
+         <TaskTable
+         showHighPriority
+         showLastModified
+         showUpdate 
+         />
       </div>
+      <span style={{
+         padding: 16, maxWidth: 1000
+      }}>
+         <button><h5>hello</h5></button>
+         <button><h5>hello</h5></button>
+         <button><h5>hello</h5></button>
+         <button><h5>hello</h5></button>
+      </span>
    </div>
 }

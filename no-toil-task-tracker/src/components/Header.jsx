@@ -1,85 +1,67 @@
 import React from "react"
 import * as ReactUse from "react-use"
 import { Link } from "react-router-dom"
-import { motion } from "framer-motion"
-import { Context } from "../contexts/context"
+import { SidebarContext, ToggleSidebarButton } from "ehrrsn7-components"
 import notoillogo from "../assets/notoil_logo.png"
 import "./Header.css"
 
-export function ToggleSidebarButton() {
-   const { openSidebar, setOpenSidebar } = React.useContext(Context)
-
-   return <button id="ToggleSidebarButton"
-   style={{
-      opacity: openSidebar ? 0 : 1,
-      cursor: openSidebar ? "default" : "pointer",
-   }}
-   onClick={() => setOpenSidebar(!openSidebar)}>
-      <a>
-         {"☰"}
-      </a>
-   </button>
-}
-
-export function NoToilLogo() {
+export function NoToilLogo({ style }) {
    const dark = ReactUse.useMedia("(prefers-color-scheme: dark)")
-   return <Link to="https://notoil.com/" target="_blank" rel="noreferrer">
-      <button style={{all: "unset"}}>
-         <img src={notoillogo} width="95" alt="no toil logo"
+   return <Link to="https://notoil.com/" style={style}
+   target="_blank" rel="noreferrer">
+      <img src={notoillogo} height={60} alt="no toil logo"
          style={{ filter: dark && "brightness(0) invert(1)" }} />
-      </button>
    </Link>
 }
 
 export default function Header({children, style}) {
-   const { openSidebar } = React.useContext(Context)
+   const { showSidebar } = React.useContext(SidebarContext)
    const mobile = ReactUse.useMedia("(max-width: 450px)")
-   return <header style={style}>
+
+   const ref = React.useRef()
+
+   return <header style={style} ref={ref}>
       {mobile ? <>
-         <div style={{textAlign: "center"}}>
-            <span style={{
-               placeContent: "space-between",
-               width: "100vw",
-            }}>
-               <ToggleSidebarButton />
+         {/* Mobile */}
+         <div style={{
+            textAlign: "center", 
+            flexWrap: "wrap-reverse", 
+            placeContent: "space-between", 
+            width: "100vw",
+         }}>
+            <span>
+               <ToggleSidebarButton style={{
+                  opacity: showSidebar ? 0 : 1,
+                  transition: "opacity 0.3s",
+                  margin: "1em"
+               }} />
                <NoToilLogo />
             </span>
             <span style={{
                placeContent: "center",
                textAlign: "center"
             }}>
-               <h2 className="Title">
+               <h2 className="Title" style={{
+                  margin: "0 0 1em 0"
+               }}>
                   {children}
                </h2>
             </span>
          </div>
       </> : <>
-         <motion.span
-         variants={{
-            hidden: { opacity: 0 },
-            show: {
-              opacity: 1,
-              transition: {
-                delayChildren: 0.5
-              }
-            }
-          }}>
-            { !openSidebar && <motion.div
-            variants={{
-               hidden: { opacity: 0 },
-               show: { opacity: 1 }
-             }}>
-               <ToggleSidebarButton /> 
-            </motion.div> }
-            <motion.div
-            style={{all: "unset"}}
-            >
-               <h2 className="Title">
-                  {children}
-               </h2>
-            </motion.div>
-         </motion.span>
-         <NoToilLogo />
+         {/* Not Mobile */}
+         <ToggleSidebarButton style={{ 
+            opacity: showSidebar ? 0 : 1,
+            position: "absolute",
+            top: "1.2em",
+            left: "1em"
+         }} /> 
+         <h2 className="Title" style={{
+            margin: showSidebar ? "0 0 0 1em" : "0 0 0 2em"
+         }}>
+            {children}
+         </h2>
+         <NoToilLogo style={{paddingTop: "6px"}} />
       </>}
    </header>
 }

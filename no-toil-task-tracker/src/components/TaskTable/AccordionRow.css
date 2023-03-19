@@ -1,40 +1,23 @@
-/************************************************************
- * All Widgets
- ************************************************************/
-.AccordionWidget {
+/*
+ * Masonry Elements style overrides
+ */
+.MasonryLayout {
+   /* padding-top: 2em;
+   place-content: start;
    width: 100%;
-   min-width: 300px;
-   max-width: fit-content;
-   height: fit-content;
-   padding: 1em;
-   margin: .5em;
-   border-radius: 1em;
-   box-shadow: 0px 0px 5px #CCCCCC;
+   column-gap: 1em; */
+}
+
+.MasonryLayout .MasonryCard {
    background: white;
 }
 
-@media (max-width: 450px) {
-   .AccordionWidget {
-      min-width: 200px;
-   }
-}
-
 @media (prefers-color-scheme: dark) {
-   .AccordionWidget {
-      box-shadow: 0px 0px 5px black;
-      background: rgb(69, 69, 70);
+   .MasonryLayout {
+      background: transparent;
    }
-
-   .AccordionWidget button {
-      background: rgb(113, 113, 113);
+   
+   .MasonryLayout .MasonryCard {
+      background: transparent;
    }
-}
-
-/************************************************************
- * Update Widget
- ************************************************************/
-.AccordionWidget.Update > h3 {
-   padding: 0;
-   margin: 0;
-   text-align: center;
 }

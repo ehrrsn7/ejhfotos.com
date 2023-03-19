@@ -1,8 +1,9 @@
 import React from "react"
-import * as ReactUse from "react-use"
 import { motion } from "framer-motion"
-import "./AccordionRow.css"
+import * as ReactUse from "react-use"
 import { statusMapNumberToName } from "./TaskTable"
+import { MasonryLayout, MasonryCard } from "ehrrsn7-components"
+import "./AccordionRow.css"
 import { Link } from "react-router-dom"
 
 export const motionVariants = {
@@ -15,235 +16,258 @@ export const motionVariants = {
 }
 
 export function AccordionRow({ row }) {
-   const mobile = ReactUse.useMedia("max-width: 450px")
-
-   return <motion.tr 
+   if (!row) return <div>'row' is undefined.</div>
+   return <motion.tr
    variants={motionVariants.item} className="AccordionRow">
-      <td colSpan="100%">
-         <div className="AccordionDiv" style={{
-            flexFlow: "row wrap",
-            minHeight: "350px",
-            alignItems: mobile ? "top" : "center",
-            placeContent: "space-around",
+      <td colSpan="100%" style={{padding: 0}}>
+         <MasonryLayout style={{
+            width: "100%",
+            padding: "1em",
          }}>
-            <AccordionWidget style={{placeItems: "center"}}>
-               <Link to={`/${statusMapNumberToName(row.Status)}`}>
-                  <button>
-                     <h5>
-                        Go to '{statusMapNumberToName(row.Status)}'
-                     </h5>
-                  </button>
-               </Link>
-            </AccordionWidget>
-
-            <UpdateAccordionWidget row={row} />
-
-            <AccordionWidget style={{
-               paddingLeft: "1em", 
-               paddingRight: "1em",
-            }}>
-               <h3 style={{textAlign: "center"}}>
-                  More Info
-               </h3>
-
-               <ul style={{
-                  listStyleType: "none",
-                  padding: 0
-               }}>
-                  <li>
-                     <span style={{display: "flex", placeContent: "space-between"}}>
-                        <h3>id:</h3> &emsp; <p>{row.id}</p>
-                     </span>
-                  </li>
-                  <li>
-                     <span style={{display: "flex", placeContent: "space-between"}}>
-                        <h3>Title:</h3> &emsp; <p>{row.Title}</p>
-                     </span>
-                  </li>
-                  <li>
-                     <span style={{display: "flex", placeContent: "space-between"}}>
-                        <h3>Quantity:</h3> &emsp; <p>{row.Quantity}</p>
-                     </span>
-                  </li>
-                  <li>
-                     <span style={{display: "flex", placeContent: "space-between"}}>
-                        <h3>Oil:</h3> &emsp; <p>{row.Oil ? "True" : "False"}</p>
-                     </span>
-                  </li>
-                  <li>
-                     <span style={{display: "flex", placeContent: "space-between"}}>
-                        <h3>High Priority:</h3> &emsp; <p>{row.HighPriority ? "True" : "False"}</p>
-                     </span>
-                  </li>
-                  <li>
-                     <span style={{display: "flex", placeContent: "space-between"}}>
-                        <h3>Discarded:</h3> &emsp; <p>{row.Discarded ? "True" : "False"}</p>
-                     </span>
-                  </li>
-                  <li>
-                     <span style={{
-                        display: "flex",
-                        flexFlow: "row wrap",
-                        placeContent: "space-between",
-                     }}>
-                        <h3>Last Modified:</h3> &emsp; <p style={{
-                           wordBreak: "break-word",
-                           wordWrap: "break-word",
-                           maxWidth: "150px",
-                           textAlign: "right"
-                        }}>{row.LastModified?.toString()}</p>
-                     </span>
-                  </li>
-               </ul>
-            </AccordionWidget>
-
-            <DiscardCertainAmountAccordionWidget row={row} />
-
-            <AccordionWidget style={{placeItems: "center"}}>
-               <button>
-                  <h5>
-                     Discard Task
-                  </h5>
-               </button>
-            </AccordionWidget>
-         </div>
+            <cards.GoToStatusButton row={row} />
+            <cards.MoreInfo row={row} />
+            <cards.Update row={row} />
+            <cards.Discard row={row} />
+            <cards.DiscardButton />
+         </MasonryLayout>
       </td>
    </motion.tr>
 }
 
-export function AccordionWidget({ children, style, className }) {
-   return <div style={style}
-   className={`AccordionWidget${className ? ' ' + className : ''}`}>
-      {children}
-   </div>
-}
+export const cards = {
+   Card: ({style, children}) => {
+      const dark = ReactUse.useMedia("(prefers-color-scheme: dark)")
 
-export function UpdateAccordionWidget({ row }) {
-   const [ quantity, setQuantity ] = React.useState(row.Quantity)
-
-   return <AccordionWidget className="Update">
-      <h3>
-         Update '{row.Title}'
-      </h3>
-      <span style={{
-         placeContent: "space-between"
+      return <MasonryCard style={{
+         background: dark ? "transparent" : "white",
+         border: "1px solid #88888850",
+         boxShadow: "0 0 3px 3px #05050505",
+         margin: 0, padding: 0,
+         ...style
       }}>
-         <button style={{
-            margin: ".5em",
-            padding: ".5em",
-            width: "2.5em",
-            height: "2.5em",
-            transition: ".3s",
-         }} onClick={() => setQuantity(quantity - 1)}>
-            -
-         </button>
+         {children}
+      </MasonryCard>
+   },
+   GoToStatusButton: ({ row }) => {
+      if (!row.Status)
+         throw "In cards.GoToStatusButton(row): row.Status is undefined."
 
-         <div style={{
-            padding: "1em",
-            placeContent: "center",
-            placeItems: "space-between",
-            textAlign: "center",
+      const ref = React.useRef()
+      // const hover = ReactUse.useHoverDirty(ref)
+      const dark = ReactUse.useMedia("(prefers-color-scheme: dark)")
+
+      return <cards.Card>
+         {/* <Link to={statusMapNumberToName(row?.Status)}> */}
+         <Link>
+            <button ref={ref} style={{
+               background: "transparent",
+               border: "none"
+            }}>
+               <h3>
+                  Go to '{statusMapNumberToName(row?.Status)}'
+               </h3>
+            </button>
+         </Link>
+      </cards.Card>
+   },
+
+   DiscardButton: ({}) => {
+      const ref = React.useRef()
+      const dark = ReactUse.useMedia("(prefers-color-scheme: dark)")
+
+      return <cards.Card>
+         <button ref={ref} style={{
+            background: dark ? "transparent" : "white",
+            border: "1px solid #00000011",
+            boxShadow: "0 0 3px 3px #00000005",
+            filter: "brightness(1)",
+            transition: "filter 0.3s",
          }}>
-            <h2 style={{
-               textAlign: "center",
-               padding: 0,
-               margin: 0,
+            <h3>
+               Discard Task
+            </h3>
+         </button>
+      </cards.Card>
+   },
+
+   MoreInfo: ({ row }) => {
+      if (!row)
+         throw "In cards.MoreInfo(row): row is undefined."
+
+      const dark = ReactUse.useMedia("(prefers-color-scheme: dark)")
+
+      const ListItem = ({prop, val}) => <li>
+         <span>
+            <h3>{prop}</h3> &emsp; <p>{val ? val : row[prop]}</p>
+         </span>
+      </li>
+
+      return <cards.Card>
+         <div>
+            <h3 style={{textAlign: "center"}}>
+               More Info
+            </h3>
+
+            <ul style={{
+               listStyleType: "none",
+               padding: 0
             }}>
-               {quantity}
-            </h2>
-            <h4 style={{
-               padding: 0,
-               margin: 0,
-            }}>
-               Sets
-            </h4>
+               <ListItem prop="id" />
+               <ListItem prop="Title" />
+               <ListItem prop="Quantity" />
+               <li>
+                  <span>
+                     <h3>Last Modified:</h3>
+                     <div style={{textAlign: "right"}}>
+                        <p>{row.LastModified?.toDateString("en-us")}</p>
+                        <p>{row.LastModified?.toLocaleTimeString("en-us")}</p>
+                     </div>
+                  </span>
+               </li>
+               <ListItem prop="Oil" val={row.HighPriority ? "True" : "False"} />
+               <ListItem prop="High Priority" val={row.HighPriority ? "True" : "False"} />
+               <ListItem prop="Discarded" val={row.Discarded ? "True" : "False"} />
+            </ul>
          </div>
+      </cards.Card>
+   },
 
-         <button style={{
-            margin: ".5em",
-            padding: ".5em",
-            width: "2.5em",
-            height: "2.5em",
-            transition: ".3s",
-         }} onClick={() => setQuantity(
-            quantity <= row.Quantity ? quantity + 1 : quantity
-         )}>
-            +
-         </button>
-      </span>
-      <button style={{
-         padding: ".2em",
-         transition: ".3s",
-      }}>
-         <p>
-            Update Parts
-         </p>
-      </button>
-   </AccordionWidget>
-}
+   Discard: ({ row }) => {
+      const [ quantity, setQuantity ] = React.useState(0)
 
-export function DiscardCertainAmountAccordionWidget({ row }) {
-   const [ quantity, setQuantity ] = React.useState(0)
+      const dark = ReactUse.useMedia("(prefers-color-scheme: dark)")
 
-   return <AccordionWidget>
-      <h3 style={{
-         padding: 0,
-         margin: 0,
-         textAlign: "center"
-      }}>
-         Discard Parts
-      </h3>
-      <span style={{
-         placeContent: "space-between"
-      }}>
-         <button style={{
-            margin: ".5em",
-            padding: ".5em",
-            width: "2.5em",
-            height: "2.5em",
-            transition: ".3s",
-         }} onClick={() => setQuantity(quantity - 1)}>
-            -
-         </button>
+      if (!row)
+         throw "In cards.Update(row): row is undefined."
 
-         <div style={{
-            padding: "1em",
-            placeContent: "center",
-            placeItems: "space-between",
-            textAlign: "center",
+      return <cards.Card>
+         <h3 style={{padding: "0.5em"}}>
+            Discard Parts
+         </h3>
+         <span style={{
+            placeContent: "space-between"
          }}>
-            <h2 style={{
-               textAlign: "center",
-               padding: 0,
-               margin: 0,
-            }}>
-               {quantity}
-            </h2>
-            <h4 style={{
-               padding: 0,
-               margin: 0,
-            }}>
-               Sets
-            </h4>
-         </div>
+            <button style={{
+               margin: ".5em",
+               padding: ".5em",
+               width: "2.5em",
+               height: "2.5em",
+               transition: ".3s",
+            }} onClick={() => setQuantity(quantity - 1)}>
+               -
+            </button>
 
-         <button style={{
-            margin: ".5em",
-            padding: ".5em",
-            width: "2.5em",
-            height: "2.5em",
-            transition: ".3s",
-         }} onClick={() => setQuantity(quantity <= row.Quantity ? quantity + 1 : quantity)}>
-            +
+            <div style={{
+               padding: "1em",
+               placeContent: "center",
+               placeItems: "space-between",
+               textAlign: "center",
+            }}>
+               <h2 style={{
+                  textAlign: "center",
+                  padding: 0,
+                  margin: 0,
+               }}>
+                  {quantity}
+               </h2>
+               <h4 style={{
+                  padding: 0,
+                  margin: 0,
+               }}>
+                  Sets
+               </h4>
+            </div>
+
+            <button style={{
+               margin: ".5em",
+               padding: ".5em",
+               width: "2.5em",
+               height: "2.5em",
+               transition: ".3s",
+               borderRadius: "18px",
+            }}
+            onClick={() => setQuantity(
+               quantity <= row.Quantity ? quantity + 1 : quantity
+            )}>
+               +
+            </button>
+         </span>
+         <button>
+            <h5>
+               Discard Parts
+            </h5>
          </button>
-      </span>
-      <button style={{
-         padding: ".2em",
-         transition: ".3s",
-      }}>
-         <h5>
-            Discard Task
-         </h5>
-      </button>
-   </AccordionWidget>
+      </cards.Card>
+   },
+
+   Update: ({ row }) => {
+      const [ quantity, setQuantity ] = React.useState(0)
+
+      const dark = ReactUse.useMedia("(prefers-color-scheme: dark)")
+
+      if (!row)
+         throw "In cards.Update(row): row is undefined."
+
+      return <cards.Card>
+         <h3 style={{padding: "0.5em"}}>
+            Update '{row.Title}'
+         </h3>
+         <span style={{
+            placeContent: "space-between"
+         }}>
+            <button style={{
+               margin: ".5em",
+               padding: ".5em",
+               width: "2.5em",
+               height: "2.5em",
+               transition: ".3s",
+            }} onClick={() => setQuantity(quantity - 1)}>
+               -
+            </button>
+
+            <div style={{
+               padding: "1em",
+               placeContent: "center",
+               placeItems: "space-between",
+               textAlign: "center",
+            }}>
+               <h2 style={{
+                  textAlign: "center",
+                  padding: 0,
+                  margin: 0,
+               }}>
+                  {quantity}
+               </h2>
+               <h4 style={{
+                  padding: 0,
+                  margin: 0,
+               }}>
+                  Sets
+               </h4>
+            </div>
+
+            <button style={{
+               margin: ".5em",
+               padding: ".5em",
+               width: "2.5em",
+               height: "2.5em",
+               transition: ".3s",
+            }} onClick={() => setQuantity(
+               quantity <= row.Quantity ? quantity + 1 : quantity
+            )}>
+               +
+            </button>
+         </span>
+         <button style={{
+            transition: ".3s",
+            border: "1px solid rgb(0,0,0,0.05)",
+            padding: "0.5em",
+            borderRadius: "15px",
+         }}>
+            <h5>
+               Update Parts
+            </h5>
+         </button>
+      </cards.Card>
+   },
 }

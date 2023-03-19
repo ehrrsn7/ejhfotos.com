@@ -1,7 +1,6 @@
 import React from "react"
 import { Context } from "../contexts/context"
-import { Header, TaskTable } from "../components"
-import { Sidebar } from "../components/Sidebar"
+import { Sidebar, Header, TaskTable } from "../components"
 import { filterFunctions } from "../components/TaskTable/TaskTable"
 import "./CompletedParts.css"
 
@@ -12,15 +11,18 @@ export function CompletedParts() {
       setFilterFunction(() => filterFunctions.completedPartsStatus)
    }, [])
 
-   return <div id="CompletedParts" className="Page">
-      <Sidebar />
-      <div style={{ width: "100%" }}>
-         <Header>
-            Completed Parts
-         </Header>
-         <div className="Content">
-            <TaskTable />
-         </div>
+   return <div id="CompletedParts Page">
+      <Header>
+         Completed Parts
+      </Header>
+      <div id="Content">
+         <TaskTable />
+         <span>
+            <button>Hello</button>
+            <button>Hello</button>
+            <button>Hello</button>
+            <button>Hello</button>
+         </span>
       </div>
    </div>
 }

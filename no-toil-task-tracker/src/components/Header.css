@@ -29,36 +29,8 @@ header > h6 {
    letter-spacing: -1px;
 }
 
-header button {
-   height: 40px;
-   width: 40px;
-   padding: 0px;
-   margin-left: 1em;
-   border-radius: 20px;
-   background: whitesmoke;
-   transition: all .3s;
-}
-
-header button:hover {
-   background: var(--no-toil-orange-dark);
-   border-color: var(--no-toil-orange-dark);
-}
-
-header button > a {
-   color: black;
-   transition: color .05s;
-}
-
-header > button:hover > a {
-   color: white;
-}
-
 header .Title {
    margin-left: 1em;
-}
-
-header #ToggleSidebarButton {
-   margin-right: 1em;
 }
 
 @media (max-width: 450px) {

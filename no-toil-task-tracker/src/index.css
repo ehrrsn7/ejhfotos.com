@@ -37,8 +37,10 @@
 	-webkit-tap-highlight-color: transparent;
 }
 
-html, body, #root, #App, #App > div {
+html, body, #root, #App, #Page {
+	width: 100vw;
 	overflow-x: hidden;
+	min-height: 100vh;
 }
 
 #root {
@@ -47,13 +49,21 @@ html, body, #root, #App, #App > div {
 
 div {
 	display: flex;
-	flex-direction: column;
+	flex-flow: column;
+	place-content: top;
+	place-items: space-between;
 }
 
 span {
 	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+	flex-flow: row wrap;
+	place-content: space-between;
+	place-items: top;
+}
+
+ol, ul, li {
+	list-style: none;
+	padding-left: 0;
 }
 
 a {
@@ -108,27 +118,15 @@ button {
 	transition: border-color 0.3s;
 	transition: background 0.3s;
 }
-button:hover {
-	color: white;
-	background: var(--no-toil-orange-dark);
-	border-color: var(--no-toil-orange-dark);
-}
 button:focus,
 button:focus-visible {
   	outline: 4px auto -webkit-focus-ring-color;
-}
-
-button a:hover {
-	color: white;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root, html, body {
 		color: #ffffff;
 		background-color: rgb(34, 39, 47);
-	}
-	a:hover {
-		color: var(--no-toil-orange);
 	}
 	button {
 		background-color: #213547;

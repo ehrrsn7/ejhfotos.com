@@ -2,8 +2,8 @@ import React from "react"
 import { Link } from "react-router-dom"
 import * as ReactUse from "react-use"
 import { LayoutGroup, motion } from "framer-motion"
-import { Context } from "../../contexts/context"
-import { onFirestoreSnapshot } from "../../firebase"
+import { Context } from "@contexts/context"
+import { onFirestoreSnapshot } from "@src/firebase"
 import { ErrorBoundary } from "../ErrorBoundary"
 import { AccordionRow, motionVariants } from "./AccordionRow"
 import "./TaskTable.css"
@@ -26,8 +26,7 @@ export function TaskTable({ setsOrQuantity, showStatus, showLastModified, showHi
                setTasks(arr => [...arr, {
                   ...row.data(),
                   id: row.id,
-                  LastModified: 
-                     row.data().LastModified?.toDate(),
+                  LastModified: row.data().LastModified?.toDate(),
                }])
             })
          }, "tasks")
@@ -37,10 +36,6 @@ export function TaskTable({ setsOrQuantity, showStatus, showLastModified, showHi
    React.useEffect(() => {
       sortTasksBy({ tasks, setTasks }, sortedBy)
    }, [ sortedBy ])
-
-   React.useEffect(() => {
-      console.log({ tasks })
-   }, [ tasks ])
 
    return <ErrorBoundary fallback={<div>
       Error loading TaskTable component.
@@ -66,6 +61,7 @@ export function TaskTable({ setsOrQuantity, showStatus, showLastModified, showHi
          </tr>
       </thead>
       <tbody>
+         {/* No Tasks */}
          { tasks.filter(filterFunction).length <= 0 && <motion.tr
          className="NoTasks">
             <td colSpan="100%">
@@ -76,15 +72,14 @@ export function TaskTable({ setsOrQuantity, showStatus, showLastModified, showHi
                </span>
             </td>
          </motion.tr>}
+
+         {/* Tasks */}
          { tasks.filter(filterFunction).map(row => <React.Fragment key={row.id}>
          <LayoutGroup initial={false}>
          <motion.tr
          initial="hidden"
          animate="show"
          variants={motionVariants.container}
-         onClick={() => {
-            setUpdateExpanded(row.id == updateExpanded ? '' : row.id)
-         }}
          >
             <columns.Title.Body>
                {row.Title}
@@ -104,9 +99,14 @@ export function TaskTable({ setsOrQuantity, showStatus, showLastModified, showHi
             showStatus={showStatus}>
                <Link to={`/${statusMapNumberToName(row.Status)}`}>
                   <button style={{
-                     height: "2.2em",
-                     border: "1px solid gray"
-                  }}>
+                     padding: 0,
+                     paddingLeft: "1em",
+                     paddingRight: "1em",
+                     paddingTop: "4px",
+                     paddingBottom: "4px",
+                     zIndex: 1
+                  }}
+                  onClick={e => e.preventDefault()}>
                      <h5>
                         {statusMapNumberToName(row.Status)}
                      </h5>
@@ -121,6 +121,8 @@ export function TaskTable({ setsOrQuantity, showStatus, showLastModified, showHi
 
             <columns.Update.Body row={row} showUpdate={showUpdate} />
          </motion.tr>
+
+         {/* Accordion Row (in line with selected) */}
          { row.id == updateExpanded && <AccordionRow row={row} />}
          </LayoutGroup>
          </React.Fragment>) }
@@ -134,14 +136,34 @@ const columns = {
       const { sortedBy, setSortedBy } = React.useContext(Context)
       const onClick = () => setSortedByCallback({ sortedBy, setSortedBy }, id)
    
-      return <td id={id} style={style} onClick={onClick}
+      return <td id={id} onClick={onClick}
       className={sortedBy.includes(id) ? "sortedBy" : ""}>
-         <h4>{children}</h4>
+         <span style={{
+            textAlign: "center",
+            placeContent: "center",
+            ...style
+         }}>
+            <h4>{children}</h4>
+            &ensp;
+            { sortedBy.includes(id) && <p style={{
+               transform: sortedBy.includes("Ascending") ? 
+                  "rotate(-90deg)" : 
+                  "rotate(90deg)",
+               width: 30,
+               height: 30,
+               textAlign: "center",
+               verticalAlign: "center",
+               borderRadius: 30,
+            }}>›</p> }
+         </span>
       </td>
    },
 
    Title: {
-      Head: () => <columns.TableHead id="Title">
+      Head: () => <columns.TableHead id="Title" style={{
+         textAlign: "left",
+         placeContent: "left"
+      }}>
          Title
       </columns.TableHead>,
    
@@ -151,7 +173,9 @@ const columns = {
    },
 
    Quantity: {
-      Head: ({ setsOrQuantity }) => <columns.TableHead id="Quantity">
+      Head: ({ setsOrQuantity }) => <columns.TableHead id="Quantity" style={{
+         minWidth: 120
+      }}>
          Quantity
          {setsOrQuantity}
       </columns.TableHead>,
@@ -169,7 +193,7 @@ const columns = {
          const mobile = ReactUse.useMedia("(max-width: 650px)")
 
          return !mobile && showLastModified && <columns.TableHead id="LastModified" style={{
-            minWidth: 100
+            minWidth: 140
          }}>
             Last Modified
          </columns.TableHead>
@@ -190,7 +214,9 @@ const columns = {
       Head: ({ showStatus }) => {
          const mobile = ReactUse.useMedia("(max-width: 650px)")
 
-         return !mobile && showStatus && <columns.TableHead id="Status">
+         return !mobile && showStatus && <columns.TableHead id="Status" style={{
+            minWidth: 90
+         }}>
             Status
          </columns.TableHead>
       },
@@ -208,7 +234,9 @@ const columns = {
       Head: ({ showHighPriority }) => {
          const mobile = ReactUse.useMedia("(max-width: 650px)")
 
-         return !mobile && showHighPriority && <columns.TableHead id="HighPriority">
+         return !mobile && showHighPriority && <columns.TableHead id="HighPriority" style={{
+            minWidth: 45
+         }}>
             !
          </columns.TableHead>
       },
@@ -223,9 +251,13 @@ const columns = {
    },
 
    Update: {
-      Head: ({ showUpdate }) => showUpdate && <td id="Update">
-         <h4>Update</h4>
-      </td>,
+      Head: ({ showUpdate }) => {
+         const { setUpdateExpanded } = React.useContext(Context)
+         const onClick = () => setUpdateExpanded('')
+         return showUpdate && <td id="Update" onClick={onClick}>
+            <h4>Update</h4>
+         </td>
+      },
    
       Body: ({ row, showUpdate }) => {
          const { updateExpanded, setUpdateExpanded } = React.useContext(Context)
@@ -255,12 +287,11 @@ const columns = {
 /**************************************************
  * ROWS
  **************************************************/
-const dummyRows = [
+export const dummyRows = [
    {
       id: "a120",
       Title: "3117",
       Quantity: 54,
-      LastModified: new Date(),
       Status: 3,
       Oil: true,
       HighPriority: true,
@@ -270,7 +301,6 @@ const dummyRows = [
       id: "a121",
       Title: "5555",
       Quantity: 36,
-      LastModified: new Date("2022-03-25"),
       Status: 2,
       Oil: true,
       HighPriority: false,
@@ -280,7 +310,6 @@ const dummyRows = [
       id: "a122",
       Title: "4444",
       Quantity: 18,
-      LastModified: new Date("2022-03-25"),
       Status: 5,
       Oil: true,
       HighPriority: false,
@@ -290,7 +319,6 @@ const dummyRows = [
       id: "a123",
       Title: "3333",
       Quantity: 36,
-      LastModified: new Date("October 13, 2014 11:13:00"),
       Status: 3,
       Oil: true,
       HighPriority: true,
@@ -300,7 +328,6 @@ const dummyRows = [
       id: "a124",
       Title: "2222",
       Quantity: 36,
-      LastModified: new Date(2018, 11, 24, 10, 33, 30, 0),
       Status: 3,
       Oil: true,
       HighPriority: false,
@@ -436,12 +463,5 @@ const sortTasksBy = ({ tasks, setTasks }, by) => {
          sortFunctions.LastModified.descending,
    }[by]
 
-   console.log({
-      "sorting": tasks, 
-      by, 
-      sortFunction, 
-      newTasks: tasks.sort(sortFunction)
-   })
-   
    setTasks(tasks.sort(sortFunction))
 }

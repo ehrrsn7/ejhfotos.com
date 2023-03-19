@@ -14,7 +14,7 @@ import { Pivot as Hamburger } from "hamburger-react"
 import Sidebar from "./Sidebar"
 
 // hooks
-import useMediaQuery from "../hooks/useMediaQuery"
+import * as ReactUse from "react-use"
 
 // assets
 import "./Header.css"
@@ -33,7 +33,7 @@ function ActionBar({className, children}) {
 }
 
 export default function Header({image, children}) {
-   const isMobile = useMediaQuery("(max-width: 767px)")
+   const mobile = ReactUse.useMedia("(max-width: 767px)")
 
    const [ activeSidebar, setActiveSidebar ] = React.useState(false)
 
@@ -46,11 +46,11 @@ export default function Header({image, children}) {
          <Sidebar activeSidebar={activeSidebar} setActiveSidebar={setActiveSidebar} />
          <ActionBar className="no-wrap">
             <span>
-               {isMobile && <p></p>}
-               {isMobile || <p><Link to="/">Home</Link></p>}
-               {isMobile || <p><Link to="/Portfolio">Portfolio</Link></p>}
-               {isMobile || <p><Link to="/About">About</Link></p>}
-               {isMobile || <p><Link to="/"></Link></p>}
+               {mobile && <p></p>}
+               {mobile || <p><Link to="/">Home</Link></p>}
+               {mobile || <p><Link to="/Portfolio">Portfolio</Link></p>}
+               {mobile || <p><Link to="/About">About</Link></p>}
+               {mobile || <p><Link to="/"></Link></p>}
             </span>
             <Link to="/">
                <div className="Logo">
@@ -63,10 +63,10 @@ export default function Header({image, children}) {
                </div>
             </Link>
             <span>
-               {isMobile || <p><Link to=""></Link></p>}
-               {isMobile || <p><Link to="/Engagements">Engagements</Link></p>}
-               {isMobile || <p><Link to="/Weddings">Weddings</Link></p>}
-               {isMobile || 
+               {mobile || <p><Link to=""></Link></p>}
+               {mobile || <p><Link to="/Engagements">Engagements</Link></p>}
+               {mobile || <p><Link to="/Weddings">Weddings</Link></p>}
+               {mobile || 
                   <div className="HoverDropdownContainer">
                      <p className="HoverDropdownTrigger">
                         More
@@ -80,7 +80,7 @@ export default function Header({image, children}) {
                      </div>
                   </div>
                }
-               {isMobile && 
+               {mobile && 
                   <div className={`hamburger-react-wrapper${activeSidebar ? " activeSidebar" : ""}`}>
                      <Hamburger 
                         toggle={setActiveSidebar} 

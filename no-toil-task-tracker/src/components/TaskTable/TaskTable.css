@@ -3,6 +3,7 @@ table#TaskTable {
    width: 100%;
    max-width: 1000px;
    border-spacing: 0;
+   margin-bottom: 1em;
 }
 
 #TaskTable p {
@@ -79,12 +80,6 @@ table#TaskTable > thead > tr > td.sortedBy {
    background: transparent;
    border: 1px solid gray;
    border-top: none;
-}
-
-.AccordionRow > td > div,
-.AccordionRow > td > span {
-   margin: 1em;
-   background: transparent;
 }
 
 @media (prefers-color-scheme: dark) {

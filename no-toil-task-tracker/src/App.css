@@ -1,9 +1,8 @@
-#App .Page {
-   display: flex;
-   flex-direction: row;
-   flex-wrap: nowrap;
+#App {
+   width: 100vw;
 }
 
-.Content {
-   padding: 16px;
+#Content {
+   width: calc(100% - 2em);
+   padding: 1em;
 }
