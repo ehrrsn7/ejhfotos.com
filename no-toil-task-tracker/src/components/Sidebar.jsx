@@ -39,10 +39,11 @@ export default function Sidebar() {
    </GlobalSidebar>
 }
 
-const SidebarLink = ({ to, children }) => <div style={{marginBottom: "1em"}}>
-   <a href={to}>
+const SidebarLink = ({ to, children }) => to ? <div style={{marginBottom: "1em"}}>
+   <Link to={to}>
       <button>
          <h4> {children} </h4>
       </button>
-   </a>
-</div>
+   </Link>
+</div> :
+<div>Invalid Link 'to' ({to})</div>

@@ -1,3 +1,4 @@
+import React from "react"
 import "./Slideshow.css"
 
 export function Slideshow() {

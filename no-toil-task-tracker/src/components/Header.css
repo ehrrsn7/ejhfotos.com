@@ -5,14 +5,19 @@ header {
    text-align: center;
    vertical-align: center;
    padding: 0;
-   padding-top: 1em;
-   padding-bottom: 1em;
    margin-bottom: 30px;
    width: 100vw;
    height: fit-content;
    min-height: 60px;
    border-bottom: 1px solid whitesmoke;
    box-shadow: 0 4px 12px -2px whitesmoke;
+}
+
+@media (max-width: 250px) {
+   header {
+      width: 100%;
+      overflow-x: scroll;
+   }
 }
 
 header > h1,

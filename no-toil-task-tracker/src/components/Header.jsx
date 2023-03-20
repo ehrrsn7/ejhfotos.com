@@ -16,8 +16,10 @@ export function NoToilLogo({ style }) {
 
 export default function Header({children, style}) {
    const { showSidebar } = React.useContext(SidebarContext)
+   
    const mobile = ReactUse.useMedia("(max-width: 450px)")
-
+   const tiny = ReactUse.useMedia("(max-width: 315px)")
+   
    const ref = React.useRef()
 
    return <header style={style} ref={ref}>
@@ -27,7 +29,7 @@ export default function Header({children, style}) {
             textAlign: "center", 
             flexWrap: "wrap-reverse", 
             placeContent: "space-between", 
-            width: "100vw",
+            width: tiny ? "100%" : "100vw",
          }}>
             <span>
                <ToggleSidebarButton style={{

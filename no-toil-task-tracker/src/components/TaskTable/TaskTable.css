@@ -84,26 +84,20 @@ table#TaskTable > thead > tr > td.sortedBy {
 
 @media (prefers-color-scheme: dark) {
    table#TaskTable > thead > tr,
-   table#TaskTable > tbody > tr:nth-child(even) {
-      background: rgb(58, 69, 80);
-   }
-
-   #TaskTable > tbody > tr.NoTasks > td {
-      background: rgb(45, 51, 59);
-   }
-
+   table#TaskTable > tbody > tr:nth-child(even),
+   #TaskTable > tbody > tr.NoTasks > td,
    table#TaskTable > thead > tr > td:hover {
-      background: rgb(40, 48, 57);
+      background: #50505050;
    }
 
    table#TaskTable > thead > tr > td,
    table#TaskTable > tbody > tr:not(:last-child) > td {
-      border-bottom: 1px solid  rgb(81, 98, 113);
+      border-bottom: 1px solid  #80808050;
    }
 
    .AccordionRow > td {
-      background: rgb(34, 39, 47);
-      border-left: 1px solid rgb(81, 98, 113);
-      border-right: 1px solid rgb(81, 98, 113);
+      background: #202020;
+      border-left: 1px solid #80808050;
+      border-right: 1px solid #80808050;
    }
 }

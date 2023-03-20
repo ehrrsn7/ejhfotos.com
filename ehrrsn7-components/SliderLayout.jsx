@@ -1,3 +1,4 @@
+import React from "react"
 import "./SliderLayout.css"
 
 export function SliderLayout({style, children}) {
