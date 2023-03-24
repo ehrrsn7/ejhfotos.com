@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import * as ReactUse from "react-use"
 import { LayoutGroup, motion } from "framer-motion"
 import { Context } from "@contexts/context"
-import { onFirestoreSnapshot } from "@src/firebase"
 import { ErrorBoundary } from "../ErrorBoundary"
 import { AccordionRow, motionVariants } from "./AccordionRow"
 import "./TaskTable.css"
@@ -13,25 +12,6 @@ export function TaskTable({ setsOrQuantity, showStatus, showLastModified, showHi
    const { filterFunction } = React.useContext(Context)
    const { sortedBy } = React.useContext(Context)
    const { updateExpanded, setUpdateExpanded } = React.useContext(Context)
-
-   // * run once *
-   const initialized = React.useRef(false)
-   React.useEffect(() => {
-      if (!initialized.current) {
-         initialized.current = true
-
-         // get tasks from firestore
-         onFirestoreSnapshot(querySnapshot => {
-            querySnapshot.forEach(row => {
-               setTasks(arr => [...arr, {
-                  ...row.data(),
-                  id: row.id,
-                  LastModified: row.data().LastModified?.toDate(),
-               }])
-            })
-         }, "tasks")
-      }
-   })
 
    React.useEffect(() => {
       sortTasksBy({ tasks, setTasks }, sortedBy)
@@ -62,7 +42,7 @@ export function TaskTable({ setsOrQuantity, showStatus, showLastModified, showHi
       </thead>
       <tbody>
          {/* No Tasks */}
-         { tasks.filter(filterFunction).length <= 0 && <motion.tr
+         { objToArray(tasks).filter(filterFunction).length <= 0 && <motion.tr
          className="NoTasks">
             <td colSpan="100%">
                <span>
@@ -74,7 +54,7 @@ export function TaskTable({ setsOrQuantity, showStatus, showLastModified, showHi
          </motion.tr>}
 
          {/* Tasks */}
-         { tasks.filter(filterFunction).map(row => <React.Fragment key={row.id}>
+         { objToArray(tasks).filter(filterFunction).map(row => <React.Fragment key={row.id}>
          <LayoutGroup initial={false}>
          <motion.tr
          initial="hidden"
@@ -423,7 +403,7 @@ export const filterFunctions = {
 
 const sortTasksBy = ({ tasks, setTasks }, by) => {
    // skip if nothing to sort (fixes some bugs)
-   if (!tasks.length) return
+   if (!objToArray(tasks).length) return
    
    // default: "id-Ascending"
    by = by == '' ? "id-Ascending" : by
@@ -463,5 +443,20 @@ const sortTasksBy = ({ tasks, setTasks }, by) => {
          sortFunctions.LastModified.descending,
    }[by]
 
-   setTasks(tasks.sort(sortFunction))
+   setTasks(objToArray(tasks).sort(sortFunction))
+}
+
+function objToArray(obj={}) {
+   try {
+      const arr = Object.keys(obj).map(key => {
+         return {
+            ...obj[key],
+            id: key,
+         }
+      })
+      return arr
+   }
+   catch (err) {
+      console.warn(err)
+   }
 }

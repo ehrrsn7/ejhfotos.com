@@ -19,7 +19,7 @@ export default function TestUI({style}) {
       }}>
          <DirtyDemo />
          <Slideshow />
-         <MasonryLayout style={{padding: "1em"}}>
+         <MasonryLayout cardWidth={300} style={{padding: "1em"}}>
             <MasonryCard>
                <h2>1</h2>
                <h3>Ticket Name</h3>

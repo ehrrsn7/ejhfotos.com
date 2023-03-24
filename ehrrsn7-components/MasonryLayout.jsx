@@ -1,30 +1,85 @@
 import React from "react"
+import { ErrorBoundary } from "."
 import "./MasonryLayout.css"
 
-export function MasonryLayout({style, children, columnwidth}) {
-   return <span className="MasonryLayout" style={style} columnwidth={columnwidth}>
-      {children}
-   </span>
+export const MasonryLayout = (props) => 
+<ErrorBoundary fallback={<>Error rendering MasonryLayout</>}>
+   <Provider {...props} />
+</ErrorBoundary>
+
+const Provider = (props) => 
+<MasonryLayoutContextProvider>
+   <Consumer {...props} />
+</MasonryLayoutContextProvider>
+
+const Consumer = ({ style, children, cardWidth }) => {
+   const { setCardWidth } = React.useContext(MasonryLayoutContext)
+   const ref = React.useRef()
+   React.useEffect(() => { setCardWidth(cardWidth) }, [])
+   const getGridTemplateColumnsValue = (cardWidth) => 
+      !(cardWidth && cardWidth > 0) ? 
+         undefined : // off by default ('0')
+         `repeat(auto-fill, ${cardWidth}px)`
+   
+   return <ErrorBoundary fallback={<>
+      Error rendering subcomponents.MasonryLayout
+   </>}>
+      <span className="MasonryLayout" style={{
+         gridTemplateColumns: getGridTemplateColumnsValue(cardWidth),
+         ...style
+      }} ref={ref}>
+         {children}
+      </span>
+   </ErrorBoundary>
 }
 
-export function MasonryCard({style, children, columnwidth}) {
-   // 10 makes things a little less jarring on load
-   const [ gridRowEnd, setGridRowEnd ] = React.useState(10)
+export function MasonryCard({style, children}) {
+   const { cardWidth } = React.useContext(MasonryLayoutContext)
+   
    const ref = React.createRef()
+   
+   // '10' makes things a little less jarring on load
+   const [ gridRowEnd, setGridRowEnd ] = React.useState(10)
 
-   React.useEffect(() => {
-      setGridRowEnd(getGridRowEnd(ref.current))
-      if (columnwidth) console.log({columnwidth})
-   })
+   React.useEffect(() => { setGridRowEnd(getGridRowEnd(ref.current)) })
 
-   return <div className="MasonryCard" ref={ref} 
-   style={{gridRowEnd: `span ${gridRowEnd}`, ...style}}>
-      {/* max-width: 100% - `padding-left + padding-right` */}
-      {children}
+   return <div className="MasonryCard" ref={ref} style={{
+      gridRowEnd: `span ${gridRowEnd}`,
+      width: cardWidth != 0 && cardWidth,
+      ...style, margin: 0, padding: 0
+   }}>
+      <div style={{padding: style?.padding, margin: style?.margin}}>
+         {children}
+      </div>
    </div>
 }
 
-// helper functions
+/************************************************************
+ * MasonryLayout Context
+ ************************************************************/
+export const MasonryLayoutContext = React.createContext({})
+let initialized = false
+
+export function MasonryLayoutContextProvider({ children }) {
+   const [ cardWidth, setCardWidth ] = React.useState(
+      0 // '0' or off by default
+   ) 
+
+   const value = {
+      cardWidth, setCardWidth
+   }
+
+   if (initialized)
+      throw "MasonryLayout context is already defined. \n\n Don't nest MasonryLayoutContextProviders recursively. \n\n Several contexts will be created, causing bugs."
+
+   return <MasonryLayoutContext.Provider value={value}>
+      { children }
+   </MasonryLayoutContext.Provider>
+}
+
+/************************************************************
+ * Helper Functions
+ ************************************************************/
 function getGridRowEnd(card) {
    try {
       const container = document.querySelector(".MasonryLayout")

@@ -18,6 +18,7 @@ export default function Header({children, style}) {
    const { showSidebar } = React.useContext(SidebarContext)
    
    const mobile = ReactUse.useMedia("(max-width: 450px)")
+   const dark = ReactUse.useMedia("(prefers-color-scheme: dark)")
    const tiny = ReactUse.useMedia("(max-width: 315px)")
    
    const ref = React.useRef()
@@ -59,11 +60,37 @@ export default function Header({children, style}) {
             left: "1em"
          }} /> 
          <h2 className="Title" style={{
-            margin: showSidebar ? "0 0 0 1em" : "0 0 0 2em"
+            margin: showSidebar ? "0 0 0 1em" : "0 0 0 2.5em"
          }}>
             {children}
          </h2>
-         <NoToilLogo style={{paddingTop: "6px"}} />
+         <span style={{
+            placeContent: "end",
+            placeItems: "center",
+            color: dark ? "white" : "#505050"
+         }}>
+            <div>
+               <Time />
+               <h5 style={{letterSpacing: "1px", color: "green"}}>
+                  Connected
+               </h5>
+            </div>
+            <NoToilLogo style={{paddingTop: "6px"}} />
+         </span>
       </>}
    </header>
+}
+
+function Time(props) {
+   const [ time, setTime ] = React.useState(new Date())
+   React.useEffect(() => {
+      const interval = setInterval(() => {
+         setTime(new Date())
+      }, 1000)
+      return () => clearInterval(interval)
+   })
+   return <>
+      {time.toDateString()}<br />
+      {time.toLocaleTimeString()}
+   </>
 }

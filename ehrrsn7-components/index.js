@@ -12,7 +12,8 @@ export {
 } from "./Sidebar"
 
 export {
-   MasonryLayout, MasonryCard
+   MasonryLayout, MasonryCard, 
+   MasonryLayoutContext, MasonryLayoutContextProvider
 } from "./MasonryLayout"
 
 export {

@@ -17,7 +17,9 @@
 
 .MasonryLayout .MasonryCard {
    /* masonry style (default, to be overriden by javascript) */
-   grid-row-end: calc(var(--card-width) / var(--row-increment)); /* square by default */
+   grid-row-end: calc(
+      var(--card-width) / var(--row-increment)
+   ); /* square by default */
    
    width: var(--card-width);
    height: fit-content;

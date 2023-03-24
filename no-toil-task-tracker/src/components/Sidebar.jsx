@@ -1,10 +1,17 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { Sidebar as GlobalSidebar } from "ehrrsn7-components"
+import { useMedia } from "react-use"
+import { Sidebar as GlobalSidebar, SidebarContext } from "ehrrsn7-components"
 import "./Sidebar.css"
 
 export default function Sidebar() {
-   return <GlobalSidebar closeButton style={{padding: "1em"}}>
+   const dark = useMedia("(prefers-color-scheme: dark)")
+   const { showSidebar } = React.useContext(SidebarContext)
+   return <GlobalSidebar closeButton style={{
+      background: dark && "#20202090",
+      boxShadow: !showSidebar && "none",
+      padding: "1em", width: 200,
+   }}>
       <Link to="/">
          <h2>No Toil<br />Task Tracker</h2><br />
       </Link>
@@ -39,7 +46,8 @@ export default function Sidebar() {
    </GlobalSidebar>
 }
 
-const SidebarLink = ({ to, children }) => to ? <div style={{marginBottom: "1em"}}>
+const SidebarLink = ({ to, children }) => to ? <div 
+style={{ marginBottom: "1em" }}>
    <Link to={to}>
       <button>
          <h4> {children} </h4>

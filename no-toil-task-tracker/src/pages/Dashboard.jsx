@@ -46,7 +46,14 @@ export function Dashboard() {
                   { showAddMore ? "Hide Add More" : "Add More" }
                </h5>
             </button>
+         </span>
 
+         <span style={{
+            placeContent: "space-between",
+            marginTop: "1em",
+            gap: "1em",
+            maxWidth: 1000,
+         }}>
             <Link to="/CompletedParts">
                <button>
                   <h5>

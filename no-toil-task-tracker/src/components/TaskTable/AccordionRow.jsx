@@ -2,7 +2,9 @@ import React from "react"
 import { motion } from "framer-motion"
 import * as ReactUse from "react-use"
 import { statusMapNumberToName } from "./TaskTable"
-import { MasonryLayout, MasonryCard } from "ehrrsn7-components"
+import {
+   MasonryLayout, MasonryCard, MasonryLayoutContext, ErrorBoundary
+} from "ehrrsn7-components"
 import "./AccordionRow.css"
 import { Link } from "react-router-dom"
 
@@ -17,18 +19,18 @@ export const motionVariants = {
 
 export function AccordionRow({ row }) {
    if (!row) return <div>'row' is undefined.</div>
+
    return <motion.tr
    variants={motionVariants.item} className="AccordionRow">
       <td colSpan="100%" style={{padding: 0}}>
-         <MasonryLayout style={{
-            width: "100%",
-            padding: "1em",
+         <MasonryLayout cardWidth={300} style={{
+            width: "calc(100% - 2em)", padding: "1em",
          }}>
             <cards.GoToStatusButton row={row} />
             <cards.MoreInfo row={row} />
             <cards.Update row={row} />
             <cards.Discard row={row} />
-            <cards.DiscardButton />
+            <cards.DiscardButton row={row} />
          </MasonryLayout>
       </td>
    </motion.tr>
@@ -36,25 +38,33 @@ export function AccordionRow({ row }) {
 
 export const cards = {
    Card: ({style, children}) => {
-      const dark = ReactUse.useMedia("(prefers-color-scheme: dark)")
+      const { setCardWidth } = React.useContext(MasonryLayoutContext)
 
-      return <MasonryCard style={{
-         background: dark ? "transparent" : "white",
+      const dark = ReactUse.useMedia("(prefers-color-scheme: dark)")
+      const mobile = ReactUse.useMedia("(max-width: 320px)")
+
+      React.useEffect(() => {
+         setCardWidth && setCardWidth(mobile ? 200 : 300)
+      }, [mobile])
+
+      return <ErrorBoundary fallback={<>Error rendering cards.Card</>}>
+      <MasonryCard style={{
+         background: dark ? "#303030" : "white",
          border: "1px solid #88888850",
          boxShadow: "0 0 3px 3px #05050505",
-         margin: 0, padding: 0,
+         margin: 0, padding: "1em",
          ...style
       }}>
          {children}
       </MasonryCard>
+      </ErrorBoundary>
    },
+
    GoToStatusButton: ({ row }) => {
       if (!row.Status)
          throw "In cards.GoToStatusButton(row): row.Status is undefined."
 
       const ref = React.useRef()
-      // const hover = ReactUse.useHoverDirty(ref)
-      const dark = ReactUse.useMedia("(prefers-color-scheme: dark)")
 
       return <cards.Card>
          {/* <Link to={statusMapNumberToName(row?.Status)}> */}
@@ -71,7 +81,7 @@ export const cards = {
       </cards.Card>
    },
 
-   DiscardButton: ({}) => {
+   DiscardButton: () => {
       const ref = React.useRef()
       const dark = ReactUse.useMedia("(prefers-color-scheme: dark)")
 

@@ -4,26 +4,22 @@ import { SidebarContext } from "ehrrsn7-components"
 import { Sidebar } from "./components"
 import Pages from "./pages"
 import "./App.css"
+import { useInitializer } from "./contexts/context"
 
 export default function App() {
 	const { showSidebar, setShowSidebar } = React.useContext(SidebarContext)
 	const { sidebarMarginLeft } = React.useContext(SidebarContext)
 
-	const initialized = React.useRef(false)
-	React.useEffect(() => {
-		if (!initialized.current) {
-			initialized.current = true
-
-			const escHandler = event => {
-				if (event.key != "Escape") return
-				if (!showSidebar) setShowSidebar(false)
-			}
-			
-			document.addEventListener("keydown", escHandler)
-			return removeEventListener("keydown", escHandler)
+	useInitializer(() => {
+		const escHandler = event => {
+			if (event.key != "Escape") return
+			if (!showSidebar) setShowSidebar(false)
 		}
+		
+		document.addEventListener("keydown", escHandler)
+		return removeEventListener("keydown", escHandler)
 	})
-
+	
 	return <div id="App" style={{
 		marginLeft: sidebarMarginLeft, transition: "margin-left 0.3s"
 	}}>

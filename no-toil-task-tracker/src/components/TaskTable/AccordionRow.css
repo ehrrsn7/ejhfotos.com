@@ -1,23 +1,5 @@
-/*
- * Masonry Elements style overrides
- */
-.MasonryLayout {
-   /* padding-top: 2em;
-   place-content: start;
-   width: 100%;
-   column-gap: 1em; */
-}
-
-.MasonryLayout .MasonryCard {
-   background: white;
-}
-
 @media (prefers-color-scheme: dark) {
-   .MasonryLayout {
-      background: transparent;
-   }
-   
-   .MasonryLayout .MasonryCard {
-      background: transparent;
+   .MasonryCard {
+      background: black;
    }
 }

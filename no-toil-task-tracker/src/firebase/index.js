@@ -11,6 +11,8 @@ import {
    Timestamp
 } from "firebase/firestore"
 
+import { useCollection } from "react-firebase-hooks/firestore"
+
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 import firebaseConfig from "../private/firebaseConfig.json"
@@ -22,7 +24,7 @@ export const analytics = getAnalytics(app)
 export const db = getFirestore(app)
 
 // helper functions
-export async function post(collectionName, obj={}) {
+export async function post(collectionName="tasks", obj={}) {
    try {
       await addDoc(collection(db, collectionName), {
          ...obj,

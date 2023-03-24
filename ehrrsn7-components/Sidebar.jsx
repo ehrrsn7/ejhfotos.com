@@ -1,35 +1,45 @@
 import React from "react"
 import "./Sidebar.css"
+import { ErrorBoundary } from "./ErrorBoundary"
 
 /************************************************************
  * React Components
  ************************************************************/
-export function Sidebar({ children, style, closeButton }) {
+export function Sidebar({ style, children, closeButton }) {
+   const context = React.useContext(SidebarContext)
    const { showSidebar } = React.useContext(SidebarContext)
+   const { sidebarAbsoluteLeft } = React.useContext(SidebarContext)
    const { setSidebarMarginLeft } = React.useContext(SidebarContext)
-   const { sidebarAbsoluteLeft, setSidebarAbsoluteLeft } = React.useContext(SidebarContext)
+   const { setSidebarAbsoluteLeft } = React.useContext(SidebarContext)
 
    React.useEffect(() => {
-      setSidebarMarginLeft(!showSidebar ? 0 : getTotalSidebarWidth())
-      setSidebarAbsoluteLeft(!showSidebar ? -getTotalSidebarWidth() : 0)
+      try {
+         if (!Object.keys(context).length) 
+            throw "Context is undefined.\n\nDid you remember to wrap it in a SidebarContextProvider element?\n"
+
+         setSidebarMarginLeft(showSidebar ? getTotalSidebarWidth() : 0)
+         setSidebarAbsoluteLeft(showSidebar ? 0 : -getTotalSidebarWidth())
+      }
+      catch (err) { console.warn(err) }
    }, [showSidebar])
-
-   return <div id="Sidebar" style={{
-      left: sidebarAbsoluteLeft,
-      boxShadow: !showSidebar && "0 0 1em transparent",
-      ...style,
-   }}>
-      {children}
-
-      {closeButton && <ToggleSidebarButton style={{ 
-         position: "absolute", top: "1em", right: "1em" 
-      }} />}
+   
+   return <ErrorBoundary
+   fallback={<>fallback</>}>
+   <div id="Sidebar" style={{ left: sidebarAbsoluteLeft, ...style }}>
+      { children }
+      { closeButton && <CloseSidebarButton style={{
+         position: "absolute", top: "1em", right: "1em"
+      }} /> }
    </div>
+   </ErrorBoundary>
 }
 
+/**********************************************************************
+ * Sidebar Change State Buttons
+ **********************************************************************/
 function MutateSidebarButton({ id, children, style, onClick }) {
-   return <button className="MutateSidebarButton" id={id} 
-   style={style} onClick={onClick}>
+   return <button style={style} id={id} onClick={onClick}
+   className="MutateSidebarButton">
       <p> {children} </p>
    </button>
 }
@@ -52,7 +62,7 @@ export function CloseSidebarButton({ children, style }) {
    </MutateSidebarButton>
 }
 
-export function ToggleSidebarButton({ children, style, hi }) {
+export function ToggleSidebarButton({ children, style }) {
    const { showSidebar, setShowSidebar } = React.useContext(SidebarContext)
 
    return <MutateSidebarButton id="ToggleSidebarButton" style={style}
@@ -65,8 +75,19 @@ export function ToggleSidebarButton({ children, style, hi }) {
  * Sidebar Context
  ************************************************************/
 export const SidebarContext = React.createContext({})
+let sidebarContextDefined = false // singleton implementation
 
-export function SidebarContextProvider({ children }) {
+const ContextProvider = {provider: undefined}
+
+function CreateNewProvider({value, children}) {
+   return <SidebarContext.Provider value={value}>
+      { children }
+   </SidebarContext.Provider>
+}
+
+export function SidebarContextProvider(props) {
+   const { children } = props
+
    const [ showSidebar, setShowSidebar ] = React.useState(false)
    
    const [ sidebarMarginLeft, setSidebarMarginLeft ] = React.useState(
@@ -74,8 +95,8 @@ export function SidebarContextProvider({ children }) {
    )
 
    const [ sidebarAbsoluteLeft, setSidebarAbsoluteLeft ] = React.useState(
-      /* bug fix: instead of calculating the width, just have the value for the
-       * sidebar left position be way off the side of the screen */
+      /* bug fix: instead of calculating the width, just have the value 
+       * for the sidebar left position be way off the side of the screen */
       !showSidebar ? -500 : 0 
    )
 
@@ -85,6 +106,16 @@ export function SidebarContextProvider({ children }) {
       sidebarAbsoluteLeft, setSidebarAbsoluteLeft,
    }
 
+   // singleton implementation
+   // if (!sidebarContextDefined)
+   //    [ sidebarContextDefined, ContextProvider.provider ] = [
+   //       true,
+   //       <CreateNewProvider value={value}>{ children }</CreateNewProvider>
+   //    ]
+
+   if (sidebarContextDefined)
+      throw "Sidebar context is already defined. \n\n Don't nest SidebarContextProviders recursively. \n\n Several contexts will be created, causing bugs."
+   
    return <SidebarContext.Provider value={value}>
       { children }
    </SidebarContext.Provider>
@@ -120,5 +151,8 @@ export const getTotalSidebarWidth = () => {
    }
 
    // calculate and return sum
-   return Object.values(vals).reduce((a, b) => a + b, 0)
+   return (
+      Object.values(vals).reduce((a, b) => a + b, 0) 
+      + 1 // sometimes the browser rounds up or down incorrectly
+   )
 }

@@ -19,25 +19,25 @@ import "./Home.css"
 export function HomeImages() {
    const [ images, setImages ] = React.useState(0)
 
-   const initialized = React.useRef(false)
    React.useEffect(() => {
-      // initializer
-      if (!initialized.current) {
-         initialized.current = true
+      let initialized = false
 
-         // callback for firestore snapshot (webhook for db)
-         onFirestoreSnapshot("home-images", 
-            querySnapshot => {
-               const newImages = []
-               querySnapshot.forEach((doc) => {
-                  newImages.push({
-                     id: doc.id,
-                     ...doc.data()
-                  })
+      // callback for firestore snapshot (webhook for db)
+      console.log("setting home-images")
+      onFirestoreSnapshot("home-images", 
+         querySnapshot => {
+            const newImages = []
+            querySnapshot.forEach((doc) => {
+               newImages.push({
+                  id: doc.id,
+                  ...doc.data()
                })
-               setImages(newImages)
-            }
-         )
+            })
+            setImages(newImages)
+         }
+      )
+      return () => {
+         initialized = true
       }
    })
 
