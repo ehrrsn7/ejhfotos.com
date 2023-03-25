@@ -11,8 +11,6 @@ import {
    Timestamp
 } from "firebase/firestore"
 
-import { useCollection } from "react-firebase-hooks/firestore"
-
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 import firebaseConfig from "../private/firebaseConfig.json"
@@ -38,13 +36,51 @@ export async function post(collectionName="tasks", obj={}) {
    }
 }
 
-export async function onFirestoreSnapshot(callback, collectionName="tasks") {
+export async function onFirestoreSnapshot(callback=()=>{}) {
    try {
-      const ref = collection(db, collectionName)
+      const ref = collection(db, "tasks")
       const q = query(ref)
-      onSnapshot(q, callback)
-      // hasPendingWrites can probably be a solution for the "connection established" state message
-   } catch (err) {
-      console.error(err)
+      onSnapshot(q, callback, error => {throw error})
+   }
+   catch (err) {
+      console.warn(err)
+   }
+}
+
+export async function fetchTasks({tasks, setTasks}) {
+   onFirestoreSnapshot(snapshot => {
+      const newTasks = {...tasks}
+      snapshot.forEach(doc => {
+         newTasks[doc.id] = new Task({
+            ...doc.data(),
+            LastModified: doc.data().LastModified.toDate()
+         })
+      })
+      // snapshot.docChanges().forEach(change => { console.log(change.type) })
+      setTasks(newTasks)
+   })
+}
+
+export class Task {
+   constructor({
+      id,
+      Title,
+      Quantity,
+      Status,
+      Description,
+      LastModified,
+      Oil,
+      HighPriority,
+      Discarded,
+   }) {
+      this.id = id
+      this.Title = Title
+      this.Quantity = Quantity
+      this.Status = Status
+      this.Description = Description
+      this.LastModified = LastModified
+      this.Oil = Oil
+      this.HighPriority = HighPriority
+      this.Discarded = Discarded
    }
 }

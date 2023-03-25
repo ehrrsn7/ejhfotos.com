@@ -1,6 +1,5 @@
 import React from "react"
-import { db } from "../firebase"
-import { collection, query, onSnapshot } from "firebase/firestore"
+import { fetchTasks } from "../firebase"
 
 export const Context = React.createContext()
 
@@ -10,30 +9,7 @@ export function ContextProvider({ children }) {
    const [ filterFunction, setFilterFunction ] = React.useState(() => () => {})
    const [ updateExpanded, setUpdateExpanded ] = React.useState('')
 
-   useInitializer(() => {
-      try {
-         const ref = collection(db, "tasks")
-         const q = query(ref)
-   
-         const callback = snapshot => {
-            const newTasks = {...tasks}
-            snapshot.forEach(doc => {
-               newTasks[doc.id] = {
-                  ...doc.data(),
-                  LastModified: doc.data().LastModified.toDate()
-               }
-            })
-            snapshot.docChanges().forEach(change => {
-               // console.log(change.type)
-            })
-            setTasks(newTasks)
-         }
-   
-         onSnapshot(q, callback, error => {throw error})
-      } catch (err) {
-         console.error(err)
-      }
-   })
+   useInitializer(() => { fetchTasks({tasks, setTasks}) })
 
    const value = {
       tasks, setTasks,
@@ -52,7 +28,6 @@ export function useInitializer(callback) {
 
    React.useEffect(() => {
       try {
-         // get tasks from firestore
          if (!mounted.current) {
             mounted.current = true
             return callback()

@@ -1,20 +1,17 @@
 {
-  "name": "ehrrsn7-components",
-  "version": "0.0.1-patch-11",
-  "description": "An npm package containing all of my custom react components.",
-  "type": "module",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "config": {
-    "port": "0.0.0.0"
-  },
-  "author": "Elijah Harrison",
-  "license": "ISC",
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-router-dom": "^6.9.0",
-    "react-use": "^17.4.0"
-  }
+	"name": "ehrrsn7-components",
+	"version": "0.0.1-patch-14",
+	"description": 
+		"An npm package containing all of my custom react components.",
+	"type": "module",
+	"main": "index.js",
+	"scripts": { "test": "echo \"Error: no test specified\" && exit 1" },
+	"config": { "port": "0.0.0.0" },
+	"author": "Elijah Harrison",
+	"license": "ISC",
+	"dependencies": {
+		"react": "^18.2.0",
+		"react-router-dom": "^6.9.0",
+		"react-use": "^17.4.0"
+	}
 }

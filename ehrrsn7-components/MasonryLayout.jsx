@@ -12,20 +12,23 @@ const Provider = (props) =>
    <Consumer {...props} />
 </MasonryLayoutContextProvider>
 
-const Consumer = ({ style, children, cardWidth }) => {
+function Consumer({ style, children, cardWidth }) {
    const { setCardWidth } = React.useContext(MasonryLayoutContext)
    const ref = React.useRef()
-   React.useEffect(() => { setCardWidth(cardWidth) }, [])
-   const getGridTemplateColumnsValue = (cardWidth) => 
-      !(cardWidth && cardWidth > 0) ? 
-         undefined : // off by default ('0')
-         `repeat(auto-fill, ${cardWidth}px)`
    
+   React.useEffect(() => {
+      // this will only run once if cardWidth is not a state variable
+      setCardWidth(cardWidth)
+   }, [ cardWidth ])
+
    return <ErrorBoundary fallback={<>
       Error rendering subcomponents.MasonryLayout
    </>}>
       <span className="MasonryLayout" style={{
-         gridTemplateColumns: getGridTemplateColumnsValue(cardWidth),
+         gridTemplateColumns: 
+            !(cardWidth && cardWidth > 0) ? 
+               undefined : // off by default ('0')
+               `repeat(auto-fill, ${cardWidth}px)`,
          ...style
       }} ref={ref}>
          {children}
@@ -41,12 +44,15 @@ export function MasonryCard({style, children}) {
    // '10' makes things a little less jarring on load
    const [ gridRowEnd, setGridRowEnd ] = React.useState(10)
 
-   React.useEffect(() => { setGridRowEnd(getGridRowEnd(ref.current)) })
+   React.useEffect(() => {
+      setGridRowEnd(getGridRowEnd(ref.current))
+   }, [ cardWidth ])
 
    return <div className="MasonryCard" ref={ref} style={{
       gridRowEnd: `span ${gridRowEnd}`,
       width: cardWidth != 0 && cardWidth,
-      ...style, margin: 0, padding: 0
+      ...style, margin: 0, padding: 0,
+      border: "1px solid lightgray"
    }}>
       <div style={{padding: style?.padding, margin: style?.margin}}>
          {children}
@@ -58,19 +64,15 @@ export function MasonryCard({style, children}) {
  * MasonryLayout Context
  ************************************************************/
 export const MasonryLayoutContext = React.createContext({})
-let initialized = false
 
-export function MasonryLayoutContextProvider({ children }) {
+function MasonryLayoutContextProvider({ children }) {
    const [ cardWidth, setCardWidth ] = React.useState(
       0 // '0' or off by default
-   ) 
+   )
 
    const value = {
       cardWidth, setCardWidth
    }
-
-   if (initialized)
-      throw "MasonryLayout context is already defined. \n\n Don't nest MasonryLayoutContextProviders recursively. \n\n Several contexts will be created, causing bugs."
 
    return <MasonryLayoutContext.Provider value={value}>
       { children }

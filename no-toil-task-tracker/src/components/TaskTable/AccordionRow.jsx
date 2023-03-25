@@ -19,12 +19,14 @@ export const motionVariants = {
 
 export function AccordionRow({ row }) {
    if (!row) return <div>'row' is undefined.</div>
+   const mobile = ReactUse.useMedia("(max-width: 368px)")
 
    return <motion.tr
    variants={motionVariants.item} className="AccordionRow">
       <td colSpan="100%" style={{padding: 0}}>
-         <MasonryLayout cardWidth={300} style={{
+         <MasonryLayout cardWidth={mobile ? 200 : 300} style={{
             width: "calc(100% - 2em)", padding: "1em",
+            placeContent: mobile && "center"
          }}>
             <cards.GoToStatusButton row={row} />
             <cards.MoreInfo row={row} />

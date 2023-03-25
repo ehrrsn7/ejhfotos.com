@@ -5,8 +5,9 @@ import { Sidebar as GlobalSidebar, SidebarContext } from "ehrrsn7-components"
 import "./Sidebar.css"
 
 export default function Sidebar() {
-   const dark = useMedia("(prefers-color-scheme: dark)")
    const { showSidebar } = React.useContext(SidebarContext)
+   const dark = useMedia("(prefers-color-scheme: dark)")
+
    return <GlobalSidebar closeButton style={{
       background: dark && "#20202090",
       boxShadow: !showSidebar && "none",

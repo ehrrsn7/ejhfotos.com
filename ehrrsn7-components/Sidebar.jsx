@@ -1,21 +1,25 @@
 import React from "react"
 import "./Sidebar.css"
 import { ErrorBoundary } from "./ErrorBoundary"
+import { useInitializer } from "./hooks/useInitializer"
 
 /************************************************************
  * React Components
  ************************************************************/
 export function Sidebar({ style, children, closeButton }) {
+   const ref = React.useRef()
+   const { showSidebar, setShowSidebar } = React.useContext(SidebarContext)
+   
+   // translate sidebar to hide
    const context = React.useContext(SidebarContext)
-   const { showSidebar } = React.useContext(SidebarContext)
    const { sidebarAbsoluteLeft } = React.useContext(SidebarContext)
    const { setSidebarMarginLeft } = React.useContext(SidebarContext)
    const { setSidebarAbsoluteLeft } = React.useContext(SidebarContext)
-
    React.useEffect(() => {
       try {
          if (!Object.keys(context).length) 
-            throw "Context is undefined.\n\nDid you remember to wrap it in a SidebarContextProvider element?\n"
+            throw "Context is undefined.\n\nDid you remember to wrap this " +
+            "in a SidebarContextProvider element?\n"
 
          setSidebarMarginLeft(showSidebar ? getTotalSidebarWidth() : 0)
          setSidebarAbsoluteLeft(showSidebar ? 0 : -getTotalSidebarWidth())
@@ -23,9 +27,29 @@ export function Sidebar({ style, children, closeButton }) {
       catch (err) { console.warn(err) }
    }, [showSidebar])
    
+   // swipe to close sidebar
+   const [ touchStart, setTouchStart ] = React.useState(0)
+   const [ touchEnd, setTouchEnd ] = React.useState(0)
+
+   useInitializer(() => {
+      const touchStartListener = e =>
+         setTouchStart(e.targetTouches[0].clientX)
+      ref.current?.addEventListener("touchstart", touchStartListener)
+
+      const touchMoveListener = e =>
+         setTouchEnd(e.targetTouches[0].clientX)
+      ref.current?.addEventListener("touchmove", touchMoveListener)
+   })
+
+   React.useEffect(() => {
+      console.log({touchStart, touchEnd, diff: touchEnd - touchStart, close: touchEnd - touchStart < -100})
+      if (touchEnd - touchStart < -110) setShowSidebar(false)
+   }, [ touchStart, touchEnd ])
+
    return <ErrorBoundary
    fallback={<>fallback</>}>
-   <div id="Sidebar" style={{ left: sidebarAbsoluteLeft, ...style }}>
+   <div id="Sidebar" ref={ref}
+   style={{ left: sidebarAbsoluteLeft, ...style }} >
       { children }
       { closeButton && <CloseSidebarButton style={{
          position: "absolute", top: "1em", right: "1em"
@@ -114,7 +138,9 @@ export function SidebarContextProvider(props) {
    //    ]
 
    if (sidebarContextDefined)
-      throw "Sidebar context is already defined. \n\n Don't nest SidebarContextProviders recursively. \n\n Several contexts will be created, causing bugs."
+      throw "Sidebar context is already defined. \n\n" +
+      "Don't nest SidebarContextProviders recursively." +
+      "\n\n Several contexts will be created, causing bugs."
    
    return <SidebarContext.Provider value={value}>
       { children }
