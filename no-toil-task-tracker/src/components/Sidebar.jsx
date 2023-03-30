@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { useMedia } from "react-use"
-import { Sidebar as GlobalSidebar, SidebarContext } from "ehrrsn7-components"
+import { Sidebar as GlobalSidebar, SidebarContext, separateCamelCase } from "ehrrsn7-components"
 import "./Sidebar.css"
 
 export default function Sidebar() {
@@ -21,29 +21,12 @@ export default function Sidebar() {
          TestUI
       </SidebarLink>
 
-      <SidebarLink to="/Spray">
-         Spray
-      </SidebarLink>
+      {[ "Spray", "Check", "Oil", "Bag",
+         "CompletedParts", "DiscardedParts",
+      ].map(name => <SidebarLink to={name} key={name}>
+         {separateCamelCase(name)}
+      </SidebarLink>)}
 
-      <SidebarLink to="/Check">
-         Check
-      </SidebarLink>
-
-      <SidebarLink to="/Oil">
-         Oil
-      </SidebarLink>
-
-      <SidebarLink to="/Bag">
-         Bag
-      </SidebarLink>
-
-      <SidebarLink to="/CompletedParts">
-         Completed Parts
-      </SidebarLink>
-
-      <SidebarLink to="/DiscardedParts">
-         Discarded Parts
-      </SidebarLink>
    </GlobalSidebar>
 }
 

@@ -1,15 +1,19 @@
 import React from "react"
 import * as ReactUse from "react-use"
-import { MasonryCard, MasonryLayout } from "../../ehrrsn7-components"
-import { Sidebar, SidebarContext, ToggleSidebarButton } from "../../ehrrsn7-components"
+import {
+   MasonryCard, MasonryLayout, separateCamelCase,
+   Sidebar, SidebarContext, ToggleSidebarButton
+} from "../../ehrrsn7-components"
 import "./App.css"
 
 export default function App() {
 	const { showSidebar } = React.useContext(SidebarContext)
 	const mobile = ReactUse.useMedia("(max-width: 380px)")
-	React.useContext(() => {console.log({showSidebar}), [ showSidebar ]})
+	React.useContext(() => {console.log({showSidebar})}, [ showSidebar ])
+
    return <div id="App">
-		<ToggleSidebarButton onClick={() => console.log("ToogleSidebar")} />
+		<ToggleSidebarButton onClick={() => console.log("ToggleSidebar")} />
+      "{separateCamelCase("thisIsMyApp")}"<br />
 		<Sidebar style={{
 			background: "white",
 			border: "1px solid whitesmoke"

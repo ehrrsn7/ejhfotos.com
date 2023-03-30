@@ -1,7 +1,8 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import { Context } from "../contexts/context"
-import { Sidebar, Header, TaskTable } from "../components"
-import { filterFunctions } from "../components/TaskTable/TaskTable"
+import { Header, TaskTable } from "../components"
+import { filterFunctions } from "../components/TaskTable"
 import "./Stamp.css"
 
 export function Stamp() {
@@ -25,10 +26,9 @@ export function Stamp() {
       <span style={{
          padding: 16, maxWidth: 1000
       }}>
-         <button><h5>hello</h5></button>
-         <button><h5>hello</h5></button>
-         <button><h5>hello</h5></button>
-         <button><h5>hello</h5></button>
+         <div />
+         <Link to="/"><button><h5>Back to Dashboard</h5></button></Link>
+         <Link to="/Spray"><button><h5>Spray →</h5></button></Link>
       </span>
    </div>
 }

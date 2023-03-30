@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "ehrrsn7-components": "^0.0.1-patch-14",
     "firebase": "^9.16.0",
     "hamburger-react": "^2.5.0",
     "react": "^18.2.0",

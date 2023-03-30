@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import * as ReactUse from "react-use"
 import { LayoutGroup, motion } from "framer-motion"
+import { Task } from "../../firebase"
 import { Context } from "@contexts/context"
 import { ErrorBoundary } from "../ErrorBoundary"
 import { AccordionRow, motionVariants } from "./AccordionRow"
@@ -54,13 +55,11 @@ export function TaskTable({ setsOrQuantity, showStatus, showLastModified, showHi
          </motion.tr>}
 
          {/* Tasks */}
-         { objToArray(tasks).filter(filterFunction).map(row => <React.Fragment key={row.id}>
+         { [...objToArray(tasks)].filter(filterFunction).map(row => 
+         <React.Fragment key={row.id}>
          <LayoutGroup initial={false}>
-         <motion.tr
-         initial="hidden"
-         animate="show"
-         variants={motionVariants.container}
-         >
+         <motion.tr initial="hidden" animate="show"
+         variants={motionVariants.container}>
             <columns.Title.Body>
                {row.Title}
             </columns.Title.Body>
@@ -72,7 +71,7 @@ export function TaskTable({ setsOrQuantity, showStatus, showLastModified, showHi
 
             <columns.LastModified.Body
             showLastModified={showLastModified} >
-               {row.LastModified?.toDateString && row.LastModified?.toDateString()}
+               {row.getDateString()}
             </columns.LastModified.Body>
 
             <columns.Status.Body
@@ -115,7 +114,7 @@ const columns = {
    TableHead: ({ children, style, id }) => {
       const { sortedBy, setSortedBy } = React.useContext(Context)
       const onClick = () => setSortedByCallback({ sortedBy, setSortedBy }, id)
-   
+
       return <td id={id} onClick={onClick}
       className={sortedBy.includes(id) ? "sortedBy" : ""}>
          <span style={{
@@ -146,7 +145,7 @@ const columns = {
       }}>
          Title
       </columns.TableHead>,
-   
+
       Body: ({children}) => <td>
          <p>{children}</p>
       </td>
@@ -159,7 +158,7 @@ const columns = {
          Quantity
          {setsOrQuantity}
       </columns.TableHead>,
-   
+
       Body: ({ children, setsOrQuantity }) => {
          const quantity = children
          return <td className="Quantity">
@@ -178,7 +177,7 @@ const columns = {
             Last Modified
          </columns.TableHead>
       },
-   
+
       Body: ({ children, showLastModified }) => {
          const mobile = ReactUse.useMedia("(max-width: 650px)")
 
@@ -200,7 +199,7 @@ const columns = {
             Status
          </columns.TableHead>
       },
-   
+
       Body: ({ children, showStatus }) => {
          const mobile = ReactUse.useMedia("(max-width: 650px)")
 
@@ -220,7 +219,7 @@ const columns = {
             !
          </columns.TableHead>
       },
-   
+
       Body: ({ children, showHighPriority }) => {
          const mobile = ReactUse.useMedia("(max-width: 650px)")
 
@@ -238,18 +237,18 @@ const columns = {
             <h4>Update</h4>
          </td>
       },
-   
+
       Body: ({ row, showUpdate }) => {
          const { updateExpanded, setUpdateExpanded } = React.useContext(Context)
 
          const update = () => {
             console.log("update", row.id)
          }
-   
+
          const rotate = () => {
             setUpdateExpanded(row.id == updateExpanded ? '' : row.id)
          }
-   
+
          return showUpdate && <td className="Update">
             <button onClick={update}>
                {"✓"}
@@ -319,17 +318,15 @@ export const dummyRows = [
  * Helper Functions
  **************************************************/
 export function statusMapNameToNumber(name) {
-   switch (name.toLowerCase()) {
-      case "stamp": return 0
-      case "spray": return 1
-      case "check": return 2
-      case "oil": return 3
-      case "bag": return 4
-      case "completedparts": return 5
-      case "discardedparts": return 6
-      default: throw new Error(
-         `In statusMapNameToNumber(name): unknown case '${name}'`
-      )
+   switch (name) {
+      case "Stamp": return 0
+      case "Spray": return 1
+      case "Check": return 2
+      case "Oil": return 3
+      case "Bag": return 4
+      case "CompletedParts": return 5
+      case "DiscardedParts": return 6
+      default: throw `In statusMapNameToNumber(name): unknown case '${name}'`
    }
 }
 export function statusMapNumberToName(number) {
@@ -404,10 +401,10 @@ export const filterFunctions = {
 const sortTasksBy = ({ tasks, setTasks }, by) => {
    // skip if nothing to sort (fixes some bugs)
    if (!objToArray(tasks).length) return
-   
+
    // default: "id-Ascending"
    by = by == '' ? "id-Ascending" : by
-   
+
    const sortFunction = {
       "id-Ascending":
          sortFunctions.id.ascending,
@@ -448,15 +445,9 @@ const sortTasksBy = ({ tasks, setTasks }, by) => {
 
 function objToArray(obj={}) {
    try {
-      const arr = Object.keys(obj).map(key => {
-         return {
-            ...obj[key],
-            id: key,
-         }
+      return Object.keys(obj).map(key => {
+         return new Task({...obj[key]})
       })
-      return arr
    }
-   catch (err) {
-      console.warn(err)
-   }
+   catch (err) { console.warn(err) }
 }

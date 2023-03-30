@@ -1,7 +1,9 @@
 import React from "react"
 import * as ReactUse from "react-use"
 import { Link } from "react-router-dom"
-import { SidebarContext, ToggleSidebarButton } from "ehrrsn7-components"
+import {
+   SidebarContext, ToggleSidebarButton, Header as GlobalHeader
+} from "ehrrsn7-components"
 import notoillogo from "../assets/notoil_logo.png"
 import "./Header.css"
 
@@ -23,15 +25,16 @@ export default function Header({children, style}) {
    
    const ref = React.useRef()
 
-   return <header style={style} ref={ref}>
+   return <GlobalHeader ref={ref} style={{
+      textAlign: "center", 
+      flexWrap: "wrap-reverse", 
+      placeContent: "space-between", 
+      width: tiny ? "100%" : "100vw",
+      ...style
+   }}>
       {mobile ? <>
          {/* Mobile */}
-         <div style={{
-            textAlign: "center", 
-            flexWrap: "wrap-reverse", 
-            placeContent: "space-between", 
-            width: tiny ? "100%" : "100vw",
-         }}>
+         <div>
             <span>
                <ToggleSidebarButton style={{
                   opacity: showSidebar ? 0 : 1,
@@ -52,6 +55,7 @@ export default function Header({children, style}) {
             </span>
          </div>
       </> : <>
+      <span style={{flexWrap: "nowrap", width: "100vw"}}>
          {/* Not Mobile */}
          <ToggleSidebarButton style={{ 
             opacity: showSidebar ? 0 : 1,
@@ -60,7 +64,10 @@ export default function Header({children, style}) {
             left: "1em"
          }} /> 
          <h2 className="Title" style={{
-            margin: showSidebar ? "0 0 0 1em" : "0 0 0 2.5em"
+            margin: showSidebar ? "auto 1em" : "auto 2.5em",
+            transition: "margin 0.3s",
+            width: "100%",
+            textAlign: "left"
          }}>
             {children}
          </h2>
@@ -69,7 +76,7 @@ export default function Header({children, style}) {
             placeItems: "center",
             color: dark ? "white" : "#505050"
          }}>
-            <div>
+            <div style={{padding: "1em"}}>
                <Time />
                <h5 style={{letterSpacing: "1px", color: "green"}}>
                   Connected
@@ -77,11 +84,12 @@ export default function Header({children, style}) {
             </div>
             <NoToilLogo style={{paddingTop: "6px"}} />
          </span>
+      </span>
       </>}
-   </header>
+   </GlobalHeader>
 }
 
-function Time(props) {
+function Time() {
    const [ time, setTime ] = React.useState(new Date())
    React.useEffect(() => {
       const interval = setInterval(() => {

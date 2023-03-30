@@ -1,5 +1,6 @@
 // import
 import React from "react"
+import { useInitializer } from "ehrrsn7-components"
 import { Link } from "react-router-dom"
 
 // hooks/functions
@@ -19,9 +20,7 @@ import "./Home.css"
 export function HomeImages() {
    const [ images, setImages ] = React.useState(0)
 
-   React.useEffect(() => {
-      let initialized = false
-
+   useInitializer(() => {
       // callback for firestore snapshot (webhook for db)
       console.log("setting home-images")
       onFirestoreSnapshot("home-images", 
@@ -36,9 +35,6 @@ export function HomeImages() {
             setImages(newImages)
          }
       )
-      return () => {
-         initialized = true
-      }
    })
 
    React.useEffect(() => {
@@ -69,16 +65,10 @@ export function HomeImages() {
 }
 
 export default function Home() {
-   const initialized = React.useRef(false)
-   React.useEffect(() => {
-      // initializer
-      if (!initialized.current) {
-         initialized.current = true
-
-         changeDOMTitle("Home | ejhfotos")
-      }
+   useInitializer(() => {
+      changeDOMTitle(document, "Home")
    })
-
+   
    return <div id="Home" className="content">
       <Header />
 

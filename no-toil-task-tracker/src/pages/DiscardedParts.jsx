@@ -1,6 +1,7 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import { Context } from "../contexts/context"
-import { Sidebar, Header, TaskTable } from "../components"
+import { Header, TaskTable } from "../components"
 import { filterFunctions } from "../components/TaskTable/TaskTable"
 import "./DiscardedParts.css"
 
@@ -18,5 +19,12 @@ export function DiscardedParts() {
       <div id="Content">
          <TaskTable />
       </div>
+      <span style={{
+         padding: 16, maxWidth: 1000
+      }}>
+         <div />
+         <Link to="/"><button><h5>Back to Dashboard</h5></button></Link>
+         <div />
+      </span>
    </div>
 }

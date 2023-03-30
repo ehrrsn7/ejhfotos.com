@@ -15,13 +15,16 @@ import {
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 import firebaseConfig from "../private/firebaseConfig.json"
 
+/**********************************************************************
+ * Firestore
+ **********************************************************************/
 // Initialize Firebase (pass to FirebaseContext.Provider value)
 export const app = initializeApp(firebaseConfig)
 export const auth = getAuth()
 export const analytics = getAnalytics(app)
 export const db = getFirestore(app)
 
-// helper functions
+// set ('post')
 export async function post(collectionName="tasks", obj={}) {
    try {
       await addDoc(collection(db, collectionName), {
@@ -36,9 +39,10 @@ export async function post(collectionName="tasks", obj={}) {
    }
 }
 
-export async function onFirestoreSnapshot(callback=()=>{}) {
+// get ('sync')
+export async function onFirestoreSnapshot(collectionName, callback=()=>{}) {
    try {
-      const ref = collection(db, "tasks")
+      const ref = collection(db, collectionName)
       const q = query(ref)
       onSnapshot(q, callback, error => {throw error})
    }
@@ -47,40 +51,43 @@ export async function onFirestoreSnapshot(callback=()=>{}) {
    }
 }
 
+/**********************************************************************
+ * Tasks
+ **********************************************************************/
+export class Task {
+   constructor(props={}) {
+      // validate incoming objects with new Task({...}) constructor call
+      this.id = props.id || "unknown id"
+      this.Title = props.Title || "unknown Title"
+      this.Quantity = props.Description || "unknown Description"
+      this.Status = props.Status || -1
+      this.Description = props.Quantity || -1
+      this.LastModified = props.LastModified
+      this.Oil = props.Oil || false
+      this.HighPriority = props.Discarded || false
+      this.Discarded = props.HighPriority || false
+   }
+
+   getDateString() {
+      return this.LastModified ? this.LastModified.toDateString() : "Invalid Date Object"
+   }
+
+   getTimeString() {
+      return this.LastModified ? this.LastModified.toLocaleTimeString() : "Invalid Time Object"
+   }
+}
+
 export async function fetchTasks({tasks, setTasks}) {
-   onFirestoreSnapshot(snapshot => {
+   onFirestoreSnapshot("tasks", snapshot => {
       const newTasks = {...tasks}
       snapshot.forEach(doc => {
          newTasks[doc.id] = new Task({
             ...doc.data(),
-            LastModified: doc.data().LastModified.toDate()
+            id: doc.id,
+            LastModified: doc.data().LastModified.toDate(),
          })
       })
       // snapshot.docChanges().forEach(change => { console.log(change.type) })
       setTasks(newTasks)
    })
-}
-
-export class Task {
-   constructor({
-      id,
-      Title,
-      Quantity,
-      Status,
-      Description,
-      LastModified,
-      Oil,
-      HighPriority,
-      Discarded,
-   }) {
-      this.id = id
-      this.Title = Title
-      this.Quantity = Quantity
-      this.Status = Status
-      this.Description = Description
-      this.LastModified = LastModified
-      this.Oil = Oil
-      this.HighPriority = HighPriority
-      this.Discarded = Discarded
-   }
 }

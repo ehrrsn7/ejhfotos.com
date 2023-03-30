@@ -7,17 +7,15 @@ import { useInitializer } from "./hooks/useInitializer"
  * React Components
  ************************************************************/
 export function Sidebar({ style, children, closeButton }) {
-   const ref = React.useRef()
-   const { showSidebar, setShowSidebar } = React.useContext(SidebarContext)
-   
    // translate sidebar to hide
    const context = React.useContext(SidebarContext)
    const { sidebarAbsoluteLeft } = React.useContext(SidebarContext)
    const { setSidebarMarginLeft } = React.useContext(SidebarContext)
    const { setSidebarAbsoluteLeft } = React.useContext(SidebarContext)
+   const { showSidebar, setShowSidebar } = React.useContext(SidebarContext)
    React.useEffect(() => {
       try {
-         if (!Object.keys(context).length) 
+         if (!Object.keys(context).length) // if context {} is empty
             throw "Context is undefined.\n\nDid you remember to wrap this " +
             "in a SidebarContextProvider element?\n"
 
@@ -28,6 +26,7 @@ export function Sidebar({ style, children, closeButton }) {
    }, [showSidebar])
    
    // swipe to close sidebar
+   const ref = React.useRef()
    const [ touchStart, setTouchStart ] = React.useState(0)
    const [ touchEnd, setTouchEnd ] = React.useState(0)
 
@@ -42,7 +41,6 @@ export function Sidebar({ style, children, closeButton }) {
    })
 
    React.useEffect(() => {
-      console.log({touchStart, touchEnd, diff: touchEnd - touchStart, close: touchEnd - touchStart < -100})
       if (touchEnd - touchStart < -110) setShowSidebar(false)
    }, [ touchStart, touchEnd ])
 
@@ -91,7 +89,7 @@ export function ToggleSidebarButton({ children, style }) {
 
    return <MutateSidebarButton id="ToggleSidebarButton" style={style}
    onClick={() => setShowSidebar(!showSidebar)}>
-      {children ? children : showSidebar ? "×" : "=" }
+      {(children) ? children : ((showSidebar) ? "×" : "=") }
    </MutateSidebarButton>
 }
 
@@ -99,15 +97,6 @@ export function ToggleSidebarButton({ children, style }) {
  * Sidebar Context
  ************************************************************/
 export const SidebarContext = React.createContext({})
-let sidebarContextDefined = false // singleton implementation
-
-const ContextProvider = {provider: undefined}
-
-function CreateNewProvider({value, children}) {
-   return <SidebarContext.Provider value={value}>
-      { children }
-   </SidebarContext.Provider>
-}
 
 export function SidebarContextProvider(props) {
    const { children } = props
@@ -130,18 +119,6 @@ export function SidebarContextProvider(props) {
       sidebarAbsoluteLeft, setSidebarAbsoluteLeft,
    }
 
-   // singleton implementation
-   // if (!sidebarContextDefined)
-   //    [ sidebarContextDefined, ContextProvider.provider ] = [
-   //       true,
-   //       <CreateNewProvider value={value}>{ children }</CreateNewProvider>
-   //    ]
-
-   if (sidebarContextDefined)
-      throw "Sidebar context is already defined. \n\n" +
-      "Don't nest SidebarContextProviders recursively." +
-      "\n\n Several contexts will be created, causing bugs."
-   
    return <SidebarContext.Provider value={value}>
       { children }
    </SidebarContext.Provider>

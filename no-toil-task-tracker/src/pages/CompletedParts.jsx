@@ -1,6 +1,7 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import { Context } from "../contexts/context"
-import { Sidebar, Header, TaskTable } from "../components"
+import { Header, TaskTable } from "../components"
 import { filterFunctions } from "../components/TaskTable/TaskTable"
 import "./CompletedParts.css"
 
@@ -16,12 +17,29 @@ export function CompletedParts() {
          Completed Parts
       </Header>
       <div id="Content">
-         <TaskTable />
          <span>
-            <button>Hello</button>
-            <button>Hello</button>
-            <button>Hello</button>
-            <button>Hello</button>
+            <div />
+            <div style={{alignItems: "end", gap: "0.5em", marginBottom: "1em"}}>
+               <button onClick={() => window.print()} style={{
+                  width: "100px",
+                  alignSelf: "right",
+               }}>
+                  Print
+               </button>
+               <button disabled style={{
+                  width: "250px",
+               }}>
+                  Delete Completed Tasks
+               </button>
+            </div>
+         </span>
+         <TaskTable />
+         <span style={{
+            padding: 16, maxWidth: 1000
+         }}>
+            <Link to="/Bag"><button><h5>← Bag</h5></button></Link>
+            <Link to="/"><button><h5>Back to Dashboard</h5></button></Link>
+            <div />
          </span>
       </div>
    </div>

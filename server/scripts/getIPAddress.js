@@ -1,5 +1,4 @@
 import { networkInterfaces } from "os"
-import { exit } from "process"
 
 const isIPv4 = net => net.family === "IPv4"
 const not255_0_0_0 = net => net.netmask !== "255.0.0.0"
@@ -26,3 +25,5 @@ export function getIPAddress() {
       return undefined
    }
 }
+
+console.log("hello")

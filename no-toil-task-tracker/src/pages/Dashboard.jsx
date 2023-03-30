@@ -1,16 +1,15 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { Context } from "../contexts/context"
-import { post } from "../firebase"
 import { Header, TaskTable } from "../components"
-import { dummyRows } from "../components/TaskTable/TaskTable"
 import "./Dashboard.css"
+import { separateCamelCase } from "ehrrsn7-components"
 
 export function Dashboard() {
    const { setFilterFunction } = React.useContext(Context)
    const { setSortedBy } = React.useContext(Context)
 
-   const [ showAddMore, setShowAddMore ] = React.useState(false)
+   const [ showAddTask, setShowAddTask ] = React.useState(false)
 
    React.useEffect(() => {
       setFilterFunction(() => row => row)
@@ -35,112 +34,87 @@ export function Dashboard() {
             gap: "1em",
             maxWidth: 1000,
          }}>
-            <button onClick={() => post("tasks", dummyRows[Math.floor(Math.random() * 5)])}>
+            <button onClick={() => setShowAddTask(!showAddTask)}>
                <h5>
-                  Add task
+                  {showAddTask ? "Hide Add Task" : "Add Task"}
                </h5>
             </button>
-
-            <button onClick={() => setShowAddMore(!showAddMore) }>
-               <h5>
-                  { showAddMore ? "Hide Add More" : "Add More" }
-               </h5>
-            </button>
-         </span>
-
-         <span style={{
-            placeContent: "space-between",
-            marginTop: "1em",
-            gap: "1em",
-            maxWidth: 1000,
-         }}>
+            
             <Link to="/CompletedParts">
-               <button>
-                  <h5>
-                     Completed Parts
-                  </h5>
-               </button>
+               <button><h5>{separateCamelCase("CompletedParts")}</h5></button>
             </Link>
 
             <Link to="/DiscardedParts">
-               <button>
-                  <h5>
-                     Discarded Parts
-                  </h5>
-               </button>
+               <button><h5>{separateCamelCase("DiscardedParts")}</h5></button>
             </Link>
 
             <Link to="/Stamp">
-               <button>
-                  <h5>
-                     Stamp →
-                  </h5>
-               </button>
+               <button><h5> Stamp → </h5></button>
             </Link>
          </span>
 
-
-         { showAddMore && <>
-            <div id="AddMore" style={{
-               display: "flex",
-               flexFlow: "column",
-               padding: "1em",
-               width: "calc(100% - 2em)",
-               marginTop: "1em",
-               borderRadius: "1em",
-               boxShadow: "0 0 5px lightgray"
-            }}>
-               <table style={{
-                  borderSpacing: "none"
-               }}>
-                  <thead>
-                     <tr>
-                        <td>
-                           <h3>
-                              Add More
-                           </h3>
-                        </td>
-                        <td>
-                           <h3>
-                              Add More
-                           </h3>
-                        </td>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <tr>
-                        <td>
-                           <p>
-                              <input style={{
-                                 all: "unset",
-                                 border: "1px solid lightgray",
-                                 borderRadius: "7px",
-                              }} />
-                           </p>
-                        </td>
-                        <td>
-                           <p>
-                              <input style={{
-                                 all: "unset",
-                                 border: "1px solid lightgray",
-                                 borderRadius: "7px",
-                              }} />
-                           </p>
-                        </td>
-                        <td>
-                           <p>
-                              <input style={{
-                                 all: "unset",
-                                 border: "1px solid lightgray",
-                                 borderRadius: "7px",
-                              }} />
-                           </p>
-                        </td>
-                     </tr>
-                  </tbody>
-               </table>
-            </div>
-         </> }
+         { showAddTask && <AddMore /> }
       </div>
    </span>
+}
+
+function AddMore() {
+   const containerRef = React.useRef()
+
+   const onSubmit = event => {
+      event.preventDefault()
+      const obj = {}
+      containerRef.current.querySelectorAll("span").forEach(element => {
+         const key = element.querySelector(".key").innerHTML
+         let val = element.querySelector(".val").value
+         const type = element.querySelector(".val").type
+
+         switch (type) {
+            case "datetime-local":
+               val = new Date(val)
+               break
+            case "number":
+               val = parseInt(val)
+               break
+            case "checkbox":
+               val = element.querySelector(".val").checked
+               break
+         }
+
+         obj[key] = val
+      })
+      console.log(obj)
+   }
+
+   return <form id="AddMore">
+      <div ref={containerRef}>
+         <span>
+            <h3 className="key">Title</h3>
+            <input className="val" />
+         </span>
+         <span>
+            <h3 className="key">Quantity</h3>
+            <input className="val" type="number" />
+         </span>
+         <span>
+            <h3 className="key">Last Modified</h3>
+            <input className="val" type="datetime-local" />
+         </span>
+         <span>
+            <h3 className="key">Oil</h3>
+            <input className="val" type="checkbox" />
+         </span>
+         <span>
+            <h3 className="key">High Priority</h3>
+            <input className="val" type="checkbox" />
+         </span>
+         <span>
+            <h3 className="key">Discarded</h3>
+            <input className="val" type="checkbox" />
+         </span>
+         <button type="submit" onClick={onSubmit} onSubmit={onSubmit}>
+            Post
+         </button>
+      </div>
+   </form>
 }

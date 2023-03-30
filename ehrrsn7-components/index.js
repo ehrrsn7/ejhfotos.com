@@ -32,3 +32,7 @@ export {
    useInitializer,
    useMedia
 } from "./hooks"
+
+export {
+   separateCamelCase
+} from "./helpers"

@@ -5,11 +5,12 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
+		"install": "npm i ehrrsn7-components@latest",
 		"build": "vite build",
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"ehrrsn7-components": "^0.0.1-patch-10",
+		"ehrrsn7-components": "^0.0.1-patch-17",
 		"firebase": "^9.17.2",
 		"framer-motion": "^10.3.1",
 		"react": "^18.2.0",

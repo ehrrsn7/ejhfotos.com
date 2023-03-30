@@ -1,15 +1,13 @@
 export function changeDOMTitle(document, text) {
    try {
       if (!document) return
-      const newtitle = text + " | ejhfotos.com"
-      document.title = newtitle
+      const newTitle = text + " | ejhfotos.com"
+      document.title = newTitle
       const titleElement = document.querySelector("#title")
-      if (!titleElement)
-         throw new Error("No element called '#title'")
-      titleElement.textContent = newtitle
+      if (titleElement) titleElement.textContent = newTitle
    }
    catch (err) {
-      console.error(err)
+      console.warn(err)
    }
 }
 
