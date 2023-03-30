@@ -1,0 +1,3 @@
+export {
+   separateCamelCase
+} from "./separateCamelCase"
