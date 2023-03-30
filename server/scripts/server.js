@@ -1,4 +1,5 @@
-import express from "express"
+import express from "express" 
+import { listen } from "./listen.js"
 
 export function use(app, dist, index="index.html") {
    app.use(express.static(dist))
@@ -7,8 +8,8 @@ export function use(app, dist, index="index.html") {
    })
 }
 
-export function runServer(port, subdomain, dist) {
-   const app  = listen(port, subdomain)
+export function runServer(port, subdomain, dist, ejhfotos=false) {
+   const app = listen(port, subdomain, ejhfotos)
    use(app, dist)
    return app
 }

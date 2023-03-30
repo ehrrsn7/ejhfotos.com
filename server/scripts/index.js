@@ -1,17 +1,3 @@
-import { use } from "./use.js"
-import { listen } from "./listen.js"
-import { getIPAddress } from "./getIPAddress.js"
-
-export {
-   use,
-   listen,
-   getIPAddress
-}
-
-const scripts = {
-   use,
-   listen,
-   getIPAddress
-}
-
-export default scripts
+export { use, runServer } from "./server.js"
+export { getIPAddress, getNets } from "./getIPAddress.js"
+export { announce, listen } from "./listen.js"
