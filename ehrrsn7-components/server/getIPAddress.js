@@ -1,6 +1,6 @@
 import path from "path"
 import process from "process"
-import { fileURLToPath } from "url"
+// import { fileURLToPath } from "url"
 import { networkInterfaces } from "os"
 
 export function getIPAddress() {
@@ -44,9 +44,9 @@ export function getNets() {
    return nets
 }
 
-if (
-   path.resolve(process.argv[1]) ==
-   path.resolve(fileURLToPath(import.meta.url))
-) {
-   console.log({ipAddress: getIPAddress(), nets: getNets().map(net => net.address)})
-}
+// if (
+//    path.resolve(process.argv[1]) ==
+//    path.resolve(fileURLToPath(import.meta.url))
+// ) {
+//    console.log({ipAddress: getIPAddress(), nets: getNets().map(net => net.address)})
+// }
