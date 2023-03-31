@@ -11,10 +11,10 @@ import { handleInput } from "./scripts/handleInput.js"
  * Start Servers
  **********************************************************************/
 const servers = {
-   app: runServer(81, "www", "../app/dist", true),
-   about: runServer(82, "about", "../about/dist", true),
-   linkTree: runServer(83, "linktree", "../linkTree/dist", true),
-   noToilTaskTracker: runServer(84, "no-toil-task-tracker", "../no-toil-task-tracker/dist", true),
+   app: runServer(81, "www", "./app/dist", true),
+   about: runServer(82, "about", "./about/dist", true),
+   linkTree: runServer(83, "linktree", "./linkTree/dist", true),
+   noToilTaskTracker: runServer(84, "no-toil-task-tracker", "./no-toil-task-tracker/dist", true),
 }
 
 // User Interaction
@@ -45,7 +45,6 @@ handleInput(key => {
          console.log()
          break
       case 'u':
-         // process.stdout.write(colors.clearTerminal)
          Object.keys(servers).forEach(key => console.log(
             colors.green, ` → '${servers[key].info?.subdomain}':`.padEnd(26),
             colors.reset, colors.cyan, colors.bold,

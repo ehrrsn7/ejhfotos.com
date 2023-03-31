@@ -38,7 +38,7 @@ export function announce(port, subdomain, ejhfotos=false) {
       process.stdout.write("\u001b[30;1m") // turn color bold black
       process.stdout.write(`Domain:`.padEnd(18) + ' ')
       process.stdout.write("\u001b[36m") // turn color cyan
-      process.stdout.write(`http://${subdomain}.ejhfotos.com:${port}\n`)
+      process.stdout.write(`http://${subdomain}.ejhfotos.com\n`)
       process.stdout.write("\u001b[0m") // reset color
    }
 

@@ -1,15 +1,10 @@
 {
 	"name": "ehrrsn7-components",
 	"version": "0.0.1-patch-23",
-	"description": "An npm package containing all of my custom react components.",
+	"description": "An npm package containing all my custom react components",
 	"type": "module",
 	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"config": {
-		"port": "0.0.0.0"
-	},
+	"scripts": { "test": "echo \"Error: no test specified\" && exit 1" },
 	"author": "Elijah Harrison",
 	"license": "ISC",
 	"dependencies": {
