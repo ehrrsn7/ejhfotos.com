@@ -13,7 +13,7 @@ import { handleInput } from "./scripts/handleInput.js"
 const servers = {
    app: runServer(81, "www", "./app/dist", true),
    about: runServer(82, "about", "./about/dist", true),
-   linkTree: runServer(83, "linktree", "./linkTree/dist", true),
+   linkTree: runServer(83, "linktree", "./linktree/dist", true),
    noToilTaskTracker: runServer(84, "no-toil-task-tracker", "./no-toil-task-tracker/dist", true),
 }
 
