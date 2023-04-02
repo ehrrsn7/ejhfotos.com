@@ -1,8 +1,0 @@
-#Sidebar {
-   /* override vars */
-   --width: 225px;
-   /* color */
-   background: #FFFFFF;
-   border-right: 1px solid #00000020;
-   box-shadow: 0 0 1em #00000020;
-}

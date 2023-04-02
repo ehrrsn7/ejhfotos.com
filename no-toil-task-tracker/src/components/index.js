@@ -1,23 +1,19 @@
-import Header from "./Header"
-import Footer from "./Footer"
-import Sidebar from "./Sidebar"
+export { Header } from "./Header"
+export { Footer } from "./Footer"
+export { Sidebar } from "./Sidebar"
+export { ErrorBoundary } from "./ErrorBoundary"
+export { TaskTable } from "./TaskTable"
+
+import { Header } from "./Header"
+import { Footer } from "./Footer"
+import { Sidebar } from "./Sidebar"
 import { ErrorBoundary } from "./ErrorBoundary"
 import { TaskTable } from "./TaskTable/TaskTable"
 
-export {
+export default {
    ErrorBoundary,
    Header,
    Footer,
    Sidebar,
    TaskTable
 }
-
-const components = {
-   ErrorBoundary,
-   Header,
-   Footer,
-   Sidebar,
-   TaskTable
-}
-
-export default components

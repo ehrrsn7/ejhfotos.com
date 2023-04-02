@@ -1,15 +1,20 @@
 {
 	"name": "ehrrsn7-components",
-	"version": "0.0.1-patch-23",
+	"version": "0.0.1-patch-24",
 	"description": "An npm package containing all my custom react components",
 	"type": "module",
 	"main": "index.js",
-	"scripts": { "test": "echo \"Error: no test specified\" && exit 1" },
+	"scripts": { "test": "vitest" },
 	"author": "Elijah Harrison",
 	"license": "ISC",
 	"dependencies": {
 		"react": "^18.2.0",
 		"react-router-dom": "^6.9.0",
 		"react-use": "^17.4.0"
+	},
+	"devDependencies": {
+		"@testing-library/react": "^14.0.0",
+		"jsdom": "^21.1.1",
+		"vitest": "^0.29.8"
 	}
 }

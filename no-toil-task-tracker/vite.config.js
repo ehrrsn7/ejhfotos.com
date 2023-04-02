@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from "vite"
 import path from "path"
-import react from '@vitejs/plugin-react-swc'
+import react from "@vitejs/plugin-react-swc"
 
 const srcAliases = [
 	"components",
@@ -21,13 +21,9 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: [
-			{
-			 find: '@ejhfotos',
-			 replacement: path.resolve(__dirname, '..')
-		 	},
 		  	{
-				find: '@src',
-				replacement: path.resolve(__dirname, 'src')
+				find: "@src",
+				replacement: path.resolve(__dirname, "src")
 			},
 			...srcAliases.map(alias => {
 				return {
@@ -37,6 +33,8 @@ export default defineConfig({
 			})
 		],
 	},
+   test: {
+      globals: true,
+      environment: "jsdom",
+   },
 })
-
-console.log(__dirname)
