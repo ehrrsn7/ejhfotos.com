@@ -1,6 +1,6 @@
 {
 	"name": "ehrrsn7-components",
-	"version": "0.0.1-patch-24",
+	"version": "0.0.1-patch-25",
 	"description": "An npm package containing all my custom react components",
 	"type": "module",
 	"main": "index.js",

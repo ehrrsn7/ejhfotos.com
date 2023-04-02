@@ -1,1 +1,3 @@
-export { Footer } from "./Footer"
+export {
+   Footer, BackToTopButton
+} from "./Footer"

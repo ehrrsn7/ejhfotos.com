@@ -1,1 +1,3 @@
-export { Slideshow } from "./Slideshow"
+export {
+   Slideshow
+} from "./Slideshow"

@@ -1,1 +1,3 @@
-export { SliderLayout } from "./SliderLayout"
+export {
+   SliderLayout, SliderCard
+} from "./SliderLayout"

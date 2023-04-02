@@ -12,7 +12,7 @@
 		"test": "vitest"
 	},
 	"dependencies": {
-		"ehrrsn7-components": "^0.0.1-patch-23",
+		"ehrrsn7-components": "^0.0.1-patch-24",
 		"express": "^4.18.2",
 		"firebase": "^9.17.2",
 		"framer-motion": "^10.3.1",
