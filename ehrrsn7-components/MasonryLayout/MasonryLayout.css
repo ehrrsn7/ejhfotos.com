@@ -1,0 +1,39 @@
+.MasonryLayout {
+   /* variables */
+   --card-width: 200px;
+   --row-increment: 5px;
+
+   /* masonry style */
+   display: grid;
+   grid-gap: 1em;
+   grid-template-columns: repeat(auto-fill, var(--card-width));
+   grid-auto-rows: 1em;
+   place-content: start;
+
+   /* non-masonry-related styles */
+   width: calc(100% - 3em);
+   height: fit-content;
+}
+
+.MasonryLayout .MasonryCard {
+   /* masonry style (default, to be overriden by javascript) */
+   grid-row-end: calc(
+      var(--card-width) / var(--row-increment)
+   ); /* square by default */
+   
+   width: var(--card-width);
+   height: fit-content;
+   padding: 0;
+   margin: 0;
+   border-radius: 1em;
+}
+
+.MasonryLayout .MasonryCard > div {
+   padding: 1em;
+}
+
+.MasonryLayout .MasonryCard p {
+   margin: 0;
+   margin-bottom: 1em;
+   padding: 0;
+}

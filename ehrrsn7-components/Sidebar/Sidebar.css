@@ -1,0 +1,68 @@
+#Sidebar {
+   /* variables */
+   --width: 300px;
+
+   /* display */
+   display: flex;
+   flex-flow: column;
+   place-items: start;
+   place-content: start;
+
+   /* position */
+   position: fixed;
+   top: 0;
+
+   /*
+    * bug fix: this value will be handled by react but 
+    * browser will render css first, so we will set it
+    * to a little extra by default.
+    */
+   left: -500px;
+
+   /* dimensions */
+   margin: 0;
+   padding: 0;
+   min-width: var(--width);
+   overflow-x: hidden;
+   height: 100%;
+   max-height: 100vh;
+   overflow-y: scroll;
+
+   /* other */
+   z-index: 1;
+   transition: all 0.3s;
+
+   /* hide scrollbar */
+   -ms-overflow-style: none;  /* IE and Edge */
+   scrollbar-width: none;  /* Firefox */
+}
+
+/* hide scrollbar */
+#Sidebar::-webkit-scrollbar {
+   display: none;
+}
+
+#Sidebar h1,
+#Sidebar h2,
+#Sidebar h3,
+#Sidebar h4,
+#Sidebar h5,
+#Sidebar h6 {
+   padding: 0;
+   margin: 0;
+}
+
+.MutateSidebarButton {
+   width: fit-content;
+   height: fit-content;
+   padding: 0;
+   margin: 0;
+}
+
+.MutateSidebarButton > * {
+   margin: 0px;
+   padding: 8px;
+   font-size: 12px;
+   width: 12px;
+   height: 12px;
+}

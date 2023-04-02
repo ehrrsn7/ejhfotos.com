@@ -1,0 +1,13 @@
+header {
+   display: flex;
+   flex-flow: row nowrap;
+   place-content: space-between; /* justify horizontally */
+   place-items: center; /* center vertically */
+   text-align: center; /* center text horizontally */
+   vertical-align: center; /* center text vertically */
+   width: 100vw;
+   min-height: 60px;
+   padding: 0;
+   margin: 0;
+   margin-bottom: 30px;
+}

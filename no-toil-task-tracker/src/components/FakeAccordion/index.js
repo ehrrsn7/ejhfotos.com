@@ -1,0 +1,1 @@
+export { FakeAccordion } from "./FakeAccordion"
