@@ -6,16 +6,27 @@ export const Context = React.createContext()
 export function ContextProvider({ children }) {
    const [ tasks, setTasks ] = React.useState({})
    const [ sortedBy, setSortedBy ] = React.useState('')
-   const [ filterFunction, setFilterFunction ] = React.useState(() => () => {})
+   const [ connected, setConnected ] = React.useState(false)
    const [ updateExpanded, setUpdateExpanded ] = React.useState('')
+   const [ filterFunction, setFilterFunction ] = React.useState(() => () => {})
 
-   useInitializer(() => { fetchTasks({tasks, setTasks}) })
+   useInitializer(() => {
+      try {
+         fetchTasks({tasks, setTasks})
+         setConnected(true)
+      }
+      catch (err) {
+         setConnected(false)
+         console.warn(err)
+      }
+   })
 
    const value = {
       tasks, setTasks,
+      sortedBy, setSortedBy,
+      connected, setConnected,
       updateExpanded, setUpdateExpanded,
       filterFunction, setFilterFunction,
-      sortedBy, setSortedBy,
    }
  
    return <Context.Provider value={value}>

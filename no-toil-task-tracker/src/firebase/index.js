@@ -41,43 +41,15 @@ export async function post(collectionName="tasks", obj={}) {
 
 // get ('sync')
 export async function onFirestoreSnapshot(collectionName, callback=()=>{}) {
-   try {
-      const ref = collection(db, collectionName)
-      const q = query(ref)
-      onSnapshot(q, callback, error => {throw error})
-   }
-   catch (err) {
-      console.warn(err)
-   }
+   const ref = collection(db, collectionName)
+   const q = query(ref)
+   onSnapshot(q, callback, error => {throw error})
 }
 
 /**********************************************************************
  * Tasks
  **********************************************************************/
-export class Task {
-   constructor(props={}) {
-      // validate incoming objects with new Task({...}) constructor call
-      this.id = props.id || "unknown id"
-      this.Title = props.Title || "unknown Title"
-      this.Quantity = props.Description || "unknown Description"
-      this.Status = props.Status || -1
-      this.Description = props.Quantity || -1
-      this.LastModified = props.LastModified
-      this.Oil = props.Oil || false
-      this.HighPriority = props.Discarded || false
-      this.Discarded = props.HighPriority || false
-   }
-
-   getDateString() {
-      return this.LastModified ? this.LastModified.toDateString() : "Invalid Date Object"
-   }
-
-   getTimeString() {
-      return this.LastModified ? this.LastModified.toLocaleTimeString() : "Invalid Time Object"
-   }
-}
-
-export async function fetchTasks({tasks, setTasks}) {
+export async function fetchTasks({ tasks, setTasks }) {
    onFirestoreSnapshot("tasks", snapshot => {
       const newTasks = {...tasks}
       snapshot.forEach(doc => {
@@ -90,4 +62,27 @@ export async function fetchTasks({tasks, setTasks}) {
       // snapshot.docChanges().forEach(change => { console.log(change.type) })
       setTasks(newTasks)
    })
+}
+
+export class Task {
+   constructor(props={}) {
+      // validate incoming objects with new Task({...}) constructor call
+      this.id = props.id                  || "Unknown id"
+      this.Title = props.Title            || "Unknown Title"
+      this.Quantity = props.Description   || "Unknown Description"
+      this.Status = props.Status          || -1
+      this.Description = props.Quantity   || -1
+      this.Oil = props.Oil                || false
+      this.HighPriority = props.Discarded || false
+      this.Discarded = props.HighPriority || false
+      this.LastModified = props.LastModified
+   }
+
+   getDateString() {
+      return this.LastModified ? this.LastModified.toDateString() : "Invalid Date Object"
+   }
+
+   getTimeString() {
+      return this.LastModified ? this.LastModified.toLocaleTimeString() : "Invalid Time Object"
+   }
 }

@@ -29,7 +29,7 @@ header > h6 {
       box-shadow: 0 4px 12px -2px black;
       border-color: black;
    }
-      
+
    header > img {
       filter: brightness(0);
       filter: invert(1);

@@ -60,35 +60,43 @@ export function Sidebar({ style, children, closeButton }) {
  * Sidebar Change State Buttons
  **********************************************************************/
 function MutateSidebarButton({ id, children, style, onClick }) {
+   const context = React.useContext(SidebarContext)
+   if (!context || context == {}) throw "SidebarContext undefined"
    return <button style={style} id={id} onClick={onClick}
    className="MutateSidebarButton">
       <p> {children} </p>
    </button>
 }
 
-export function OpenSidebarButton({ children, style }) {
+export function OpenSidebarButton({ children, style, onClick }) {
+   const context = React.useContext(SidebarContext)
+   if (!context || context == {}) throw "SidebarContext undefined"
    const { setShowSidebar } = React.useContext(SidebarContext)
 
    return <MutateSidebarButton id="OpenSidebarButton" style={style} 
-   onClick={() => setShowSidebar(true)}>
+   onClick={() => {onClick(); setShowSidebar(true)}}>
       {children ? children : "=" }
    </MutateSidebarButton>
 }
 
-export function CloseSidebarButton({ children, style }) {
+export function CloseSidebarButton({ children, style, onClick }) {
+   const context = React.useContext(SidebarContext)
+   if (!context || context == {}) throw "SidebarContext undefined"
    const { setShowSidebar } = React.useContext(SidebarContext)
 
    return <MutateSidebarButton id="CloseSidebarButton" style={style} 
-   onClick={() => setShowSidebar(false)}>
+   onClick={() => {onClick(); setShowSidebar(false)}}>
       {children ? children : "×" }
    </MutateSidebarButton>
 }
 
-export function ToggleSidebarButton({ children, style }) {
+export function ToggleSidebarButton({ children, style, onClick }) {
+   const context = React.useContext(SidebarContext)
+   if (!context || context == {}) throw "SidebarContext undefined"
    const { showSidebar, setShowSidebar } = React.useContext(SidebarContext)
 
    return <MutateSidebarButton id="ToggleSidebarButton" style={style}
-   onClick={() => setShowSidebar(!showSidebar)}>
+   onClick={() => {onClick(); setShowSidebar(!showSidebar)}}>
       {(children) ? children : ((showSidebar) ? "×" : "=") }
    </MutateSidebarButton>
 }

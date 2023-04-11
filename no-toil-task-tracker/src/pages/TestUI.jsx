@@ -17,38 +17,38 @@ export default function TestUI({style}) {
          <DirtyDemo />
          <Slideshow />
          <MasonryLayout cardWidth={300} style={{padding: "1em"}}>
-            <MasonryCard>
-               <h2>1</h2>
+            <MasonryCard style={{position: "relative"}}>
+               <h3 style={{position: "absolute", top: 10, right: 10}}>1</h3>
                <h3>Ticket Name</h3>
                <p>Ticket description.</p>
             </MasonryCard>
-            <MasonryCard>
-               <h2>2</h2>
+            <MasonryCard style={{position: "relative"}}>
+               <h3 style={{position: "absolute", top: 10, right: 10}}>2</h3>
                <h3>Ticket Name</h3>
                <p>Ticket description.</p>
             </MasonryCard>
-            <MasonryCard>
-               <h2>3</h2>
-               <h3>Ticket Name</h3>
-               <p>
-                  Ticket description. Some extra content too.
-                  Just filling in the lines.
-               </p>
-               <p>Ticket description.</p>
-               <p>
-                  Ticket description. Some extra content too.
-                  Just filling in the lines.
-               </p>
-               <p>Ticket description.</p>
-            </MasonryCard>
-            <MasonryCard>
-               <h2>4</h2>
+            <MasonryCard style={{position: "relative"}}>
+               <h3 style={{position: "absolute", top: 10, right: 10}}>3</h3>
                <h3>Ticket Name</h3>
                <p>
                   Ticket description. Some extra content too.
                   Just filling in the lines.
                </p>
                <p>Ticket description.</p>
+               <p>
+                  Ticket description. Some extra content too.
+                  Just filling in the lines.
+               </p>
+               <p>Ticket description.</p>
+            </MasonryCard>
+            <MasonryCard style={{position: "relative"}}>
+               <h3 style={{position: "absolute", top: 10, right: 10}}>4</h3>
+               <h3>Ticket Name</h3>
+               <p>
+                  Ticket description. Some extra content too.
+                  Just filling in the lines.
+               </p>
+               <p>Ticket description.</p>
                <p>Ticket description.</p>
                <p>
                   Ticket description. Some extra content too.
@@ -60,45 +60,26 @@ export default function TestUI({style}) {
                   Just filling in the lines.
                </p>
             </MasonryCard>
-            <MasonryCard>
-               <h2>5</h2>
+            <MasonryCard style={{position: "relative"}}>
+               <h3 style={{position: "absolute", top: 10, right: 10}}>5</h3>
                <h3>Ticket Name</h3>
                <p>Ticket description.</p>
             </MasonryCard>
          </MasonryLayout>
 
          <SliderLayout>
-            <SliderCard>
-               <h2>1</h2>
+            <SliderCard style={{position: "relative"}}>
+               <h3 style={{position: "absolute", top: 10, right: 10}}>1</h3>
                <h3>Ticket Name</h3>
                <p>Ticket description.</p>
             </SliderCard>
-            <SliderCard>
-               <h2>2</h2>
+            <SliderCard style={{position: "relative"}}>
+               <h3 style={{position: "absolute", top: 10, right: 10}}>2</h3>
                <h3>Ticket Name</h3>
                <p>Ticket description.</p>
             </SliderCard>
-            <SliderCard>
-               <h2>3</h2>
-               <h3>Ticket Name</h3>
-               <p>
-                  Ticket description. Some extra content too.
-                  Just filling in the lines.
-               </p>
-               <p>Ticket description.</p>
-               <p>Ticket description.</p>
-               <p>
-                  Ticket description. Some extra content too.
-                  Just filling in the lines.
-               </p>
-               <p>Ticket description.</p>
-               <p>
-                  Ticket description. Some extra content too.
-                  Just filling in the lines.
-               </p>
-            </SliderCard>
-            <SliderCard>
-               <h2>4</h2>
+            <SliderCard style={{position: "relative"}}>
+               <h3 style={{position: "absolute", top: 10, right: 10}}>3</h3>
                <h3>Ticket Name</h3>
                <p>
                   Ticket description. Some extra content too.
@@ -116,8 +97,27 @@ export default function TestUI({style}) {
                   Just filling in the lines.
                </p>
             </SliderCard>
-            <SliderCard>
-               <h2>5</h2>
+            <SliderCard style={{position: "relative"}}>
+               <h3 style={{position: "absolute", top: 10, right: 10}}>4</h3>
+               <h3>Ticket Name</h3>
+               <p>
+                  Ticket description. Some extra content too.
+                  Just filling in the lines.
+               </p>
+               <p>Ticket description.</p>
+               <p>Ticket description.</p>
+               <p>
+                  Ticket description. Some extra content too.
+                  Just filling in the lines.
+               </p>
+               <p>Ticket description.</p>
+               <p>
+                  Ticket description. Some extra content too.
+                  Just filling in the lines.
+               </p>
+            </SliderCard>
+            <SliderCard style={{position: "relative"}}>
+               <h3 style={{position: "absolute", top: 10, right: 10}}>5</h3>
                <h3>Ticket Name</h3>
                <p>Ticket description.</p>
             </SliderCard>
@@ -174,6 +174,8 @@ export default function TestUI({style}) {
             <li>Implement toast. (put under "absolute content in app.jsx")</li>
             <br />
             <li>Implement Slideshow. Shouldn't be too crazy.</li>
+            <br />
+            <li>Implement Flipbox. (Shouldn't be too crazy.)</li>
             <br />
             <li>For hero images on my main site...use the onload callback prop on image tags to introduce delayed fade-in effect for high-res images to that it's not super taxing on peoples' computers (also, find a solution for hosting low-res images and putting them in a collection -- google drive, firebase, an album on google photos? bonus if you can let the main site be automatically populated by the contents of this collection.)</li>
             <br />
