@@ -1,0 +1,110 @@
+/************************************************************
+ * IMPORT
+ ************************************************************/
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Damion&family=Lovers+Quarrel&family=Pacifico&family=Passions+Conflict&display=swap');
+
+/************************************************************
+ * DEFINE
+ ************************************************************/
+:root {
+   --logo-background-color: #FFFFFF50;
+   --header-height: 30em;
+}
+
+/************************************************************
+ * BUILT-IN COMPONENTS
+ ************************************************************/
+header {
+   width: 100%;
+   padding: 0;
+   margin: 0;
+   background-color: transparent;
+   background-attachment: fixed;
+   background-position: top;
+   background-size: contain;
+   background-repeat: no-repeat;
+   overflow-y: hidden;
+   transition: background-image 3s;
+}
+
+header span {
+   width: 100%;
+}
+
+header span span p {
+   font-size: 11px;
+   text-align: center;
+   align-items: center;
+}
+
+@media (prefers-color-scheme: dark) {
+   header {
+      background: black;
+      color: white;
+   }
+}
+
+/************************************************************
+ * CUSTOM COMPONENTS
+ ************************************************************/
+.CursiveLogo {
+   font-family: 'Damion', cursive;
+   padding: 0 .5em 0 .5em;
+   margin: .25em;
+   font-size: 2em;
+   background-clip: text;
+   -webkit-background-clip: text;
+   color: var(--logo-header-color);
+   background-size: 250%;
+   filter: contrast(.5);
+   filter: brightness(1.1);
+}
+
+.Logo {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   border-radius: 1em;
+   color: var(--primary-headings);
+}
+
+.Logo .translate-up {
+   position: absolute;
+   margin-bottom: -50px;
+   font-family: 'Times New Roman', Times, serif;
+   font-size: 60px;
+   opacity: .1;
+}
+
+@media (prefers-color-scheme: dark) {
+   .CursiveLogo, .Logo, .Logo .translate-up {
+      background: black;
+      color: white;
+   }
+}
+
+header .ActionBar a:hover {
+   text-decoration: none;
+}
+
+/* align hamburger menu icon to right */
+@media (max-width: 776px) {
+   header > span {
+      justify-content: space-between;
+   }
+
+   header > span > * {
+      justify-content: right;
+      align-items: center;
+   }
+
+   .hamburger-react {
+      margin: 1em;
+      backdrop-filter: blur(10px);
+      /* use margin not padding, or funky translation happens */
+   }
+}
+
+header .menu-item {
+   padding-left: .7em;
+}

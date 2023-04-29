@@ -200,5 +200,5 @@ function Tab({space}) {
 export const DirtyDemo = () => {
    const ref = React.useRef(null)
    const hovered = ReactUse.useHoverDirty(ref)
-   return <div ref={ref}> Hover me! {hovered && 'Thanks!'} </div>
+   return <div ref={ref}> Hover me! {hovered && "Thanks!"} </div>
 }
