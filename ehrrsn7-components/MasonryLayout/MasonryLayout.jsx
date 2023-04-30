@@ -12,7 +12,7 @@ const Provider = (props) =>
    <Consumer {...props} />
 </MasonryLayoutContextProvider>
 
-function Consumer({ style, children, cardWidth }) {
+function Consumer({ style, children, cardWidth, id, className }) {
    const { setCardWidth } = React.useContext(MasonryLayoutContext)
    const ref = React.useRef()
    
@@ -24,7 +24,8 @@ function Consumer({ style, children, cardWidth }) {
    return <ErrorBoundary fallback={<>
       Error rendering subcomponents.MasonryLayout
    </>}>
-      <span className="MasonryLayout" style={{
+      <span id={id} className={"MasonryLayout" + className && ` ${className}`}
+      style={{
          gridTemplateColumns: 
             !(cardWidth && cardWidth > 0) ? 
                undefined : // off by default ('0')
