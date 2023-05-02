@@ -68,7 +68,7 @@ function MutateSidebarButton({ id, children, style, onClick }) {
    </button>
 }
 
-export function OpenSidebarButton({ children, style, onClick }) {
+export function OpenSidebarButton({ children, style, onClick=()=>{} }) {
    const context = React.useContext(SidebarContext)
    if (!context || context == {}) throw "SidebarContext undefined"
    const { setShowSidebar } = React.useContext(SidebarContext)
@@ -79,7 +79,7 @@ export function OpenSidebarButton({ children, style, onClick }) {
    </MutateSidebarButton>
 }
 
-export function CloseSidebarButton({ children, style, onClick }) {
+export function CloseSidebarButton({ children, style, onClick=()=>{} }) {
    const context = React.useContext(SidebarContext)
    if (!context || context == {}) throw "SidebarContext undefined"
    const { setShowSidebar } = React.useContext(SidebarContext)
@@ -90,7 +90,7 @@ export function CloseSidebarButton({ children, style, onClick }) {
    </MutateSidebarButton>
 }
 
-export function ToggleSidebarButton({ children, style, onClick }) {
+export function ToggleSidebarButton({ children, style, onClick=()=>{} }) {
    const context = React.useContext(SidebarContext)
    if (!context || context == {}) throw "SidebarContext undefined"
    const { showSidebar, setShowSidebar } = React.useContext(SidebarContext)

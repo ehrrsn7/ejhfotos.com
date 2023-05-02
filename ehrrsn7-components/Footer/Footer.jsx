@@ -7,11 +7,12 @@ export function BackToTopButton() {
    return <button className="BackToTopButton" onClick={onClick}>{"∨"}</button>
 }
 
-export function Footer() {
+export function Footer({id, className, style, children}) {
    const fallback = () => <>Error in Footer component.</>
-   return <footer>
+   return <footer id={id} className={className} style={style}>
       <ErrorBoundary fallback={fallback}>
-         <div className="MenuLists">
+         <div>{children}</div>
+         {/* <div className="MenuLists">
             <div className="MenuList">
                <h3>legal</h3>
                <ul>
@@ -50,7 +51,7 @@ export function Footer() {
                   <li><a target="_blank" href="http://about.ejhfotos.com/">about</a></li>
                </ul>
             </div>
-         </div>
+         </div> */}
          <span className="IconRow">
             <p>Site Icon</p>
             <p>Copyrights</p>

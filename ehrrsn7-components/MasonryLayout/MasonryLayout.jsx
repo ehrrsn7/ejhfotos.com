@@ -12,7 +12,7 @@ const Provider = (props) =>
    <Consumer {...props} />
 </MasonryLayoutContextProvider>
 
-function Consumer({ style, children, cardWidth, id, className }) {
+function Consumer({ style, children, cardWidth, id }) {
    const { setCardWidth } = React.useContext(MasonryLayoutContext)
    const ref = React.useRef()
    
@@ -24,7 +24,7 @@ function Consumer({ style, children, cardWidth, id, className }) {
    return <ErrorBoundary fallback={<>
       Error rendering subcomponents.MasonryLayout
    </>}>
-      <span id={id} className={"MasonryLayout" + className && ` ${className}`}
+      <span id={id} className="MasonryLayout"
       style={{
          gridTemplateColumns: 
             !(cardWidth && cardWidth > 0) ? 
@@ -91,7 +91,7 @@ function getGridRowEnd(card) {
          throw new Error(`card (${card}) is undefined.`)
       if (!container)
          throw new Error(`container (${container}) is undefined.`)
-   
+
       // get computed styles
       const styles = {
          card: getComputedStyle(card),
@@ -99,14 +99,14 @@ function getGridRowEnd(card) {
             document.querySelector(".MasonryLayout")
          ),
       }
-   
+
       if (!styles.container)
          throw new Error(
             `container (${container}) styles (${card}) undefined.`
          )
       if (!styles.card)
          throw new Error(`card (${card}) styles (${card}) undefined.`)
-      
+
       // get props
       const vals = {
          contentHeight: card.getBoundingClientRect().height,
@@ -123,6 +123,7 @@ function getGridRowEnd(card) {
       )
 
       // set
+      if (!rowSpan) throw "in getGridRowEnd(card): rowSpan is undefined"
       return rowSpan
    }
    catch (err) {
