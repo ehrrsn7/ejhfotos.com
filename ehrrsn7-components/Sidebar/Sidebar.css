@@ -30,7 +30,7 @@
 
    /* other */
    z-index: 1;
-   transition: all 0.3s;
+   transition: all 0.3s ease-in-out;
 
    /* hide scrollbar */
    -ms-overflow-style: none;  /* IE and Edge */

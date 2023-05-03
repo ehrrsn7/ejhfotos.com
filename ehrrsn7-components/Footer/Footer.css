@@ -58,7 +58,6 @@ footer > div.MenuLists > div.MenuList > div {
    color: white;
    border: 1px solid gray;
    border-radius: 5em;
-   transform: rotate(90deg);
    transition: .5s;
 }
 
