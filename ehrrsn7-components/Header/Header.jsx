@@ -4,7 +4,11 @@ import { ErrorBoundary } from ".."
 import "./Header.css"
 
 export function Header({children, style}) {
-   return <header style={style}>
+   const tiny = useMedia("(max-width: 315px)")
+
+   return <header style={{
+      width: tiny ? "100%" : "100vw", ...style
+   }}>
       <ErrorBoundary fallback={<>Error in Header...</>}>
          {children}
       </ErrorBoundary>
