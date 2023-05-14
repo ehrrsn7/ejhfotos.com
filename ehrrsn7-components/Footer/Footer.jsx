@@ -1,5 +1,5 @@
 import React from "react"
-import { ErrorBoundary } from ".."
+import { ErrorBoundary, useMedia } from ".."
 import "./Footer.css"
 
 export function BackToTopButton() {
@@ -8,8 +8,12 @@ export function BackToTopButton() {
 }
 
 export function Footer({id, className, style, children}) {
+   const tiny = useMedia("(max-width: 315px)")
    const fallback = () => <>Error in Footer component.</>
-   return <footer id={id} className={className} style={style}>
+
+   return <footer id={id} className={className} style={{
+      width: tiny ? "100%" : "100vw", ...style
+   }}>
       <ErrorBoundary fallback={fallback}>
          {children}
       </ErrorBoundary>
