@@ -1,6 +1,6 @@
 // import
 import React from "react"
-import { ErrorBoundary } from ".."
+import { ErrorBoundary, useMedia } from ".."
 import "./Header.css"
 
 export function Header({children, style}) {
