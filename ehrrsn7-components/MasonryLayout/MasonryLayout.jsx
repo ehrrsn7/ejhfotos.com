@@ -37,7 +37,7 @@ function Consumer({ style, children, cardWidth, id }) {
    </ErrorBoundary>
 }
 
-export function MasonryCard({style, children}) {
+export function MasonryCard({id, className, style, children}) {
    const { cardWidth } = React.useContext(MasonryLayoutContext)
    
    const ref = React.createRef()
@@ -55,7 +55,8 @@ export function MasonryCard({style, children}) {
       ...style, margin: 0, padding: 0,
       border: "1px solid lightgray"
    }}>
-      <div style={{padding: style?.padding, margin: style?.margin}}>
+      <div id={id} className={className}
+      style={{padding: style?.padding, margin: style?.margin}}>
          {children}
       </div>
    </div>

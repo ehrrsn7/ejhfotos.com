@@ -1,6 +1,8 @@
 import React from "react"
+
 export function useInitializer(callback) {
    const mounted = React.useRef(false)
+
    React.useEffect(() => {
       try {
          if (!mounted.current) {
@@ -8,7 +10,10 @@ export function useInitializer(callback) {
             return callback()
          }
       }
-      catch (err) { console.warn(err) }
-   }, [])
+      catch (err) {
+         console.warn(err)
+      }
+   }, [callback])
+
    return mounted
 }
