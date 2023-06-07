@@ -7,30 +7,35 @@ import { useInitializer } from "../hooks/useInitializer"
  * React Components
  ************************************************************/
 export function Sidebar({ style, children, closeButton }) {
-   // translate sidebar to hide
-   const context = React.useContext(SidebarContext)
+   const contextLength = Object.keys(React.useContext(SidebarContext)).length
+
+   if (contextLength == 0)
+      throw "Context is undefined.\n\nDid you remember to wrap this " +
+         "in a SidebarContextProvider element?\n"
+
    const { sidebarAbsoluteLeft } = React.useContext(SidebarContext)
    const { setSidebarMarginLeft } = React.useContext(SidebarContext)
    const { setSidebarAbsoluteLeft } = React.useContext(SidebarContext)
    const { showSidebar, setShowSidebar } = React.useContext(SidebarContext)
-   React.useEffect(() => {
-      try {
-         if (!Object.keys(context).length) // if context {} is empty
-            throw "Context is undefined.\n\nDid you remember to wrap this " +
-            "in a SidebarContextProvider element?\n"
 
+   const [ touchStart, setTouchStart ] = React.useState(0)
+   const [ touchEnd, setTouchEnd ] = React.useState(0)
+
+   const ref = React.useRef()
+
+   const handleCloseSidebarOnPageClick = () => closeSidebarOnPageClick(setShowSidebar)
+
+   const handleCloseSidebarOnEscPress = () => closeSidebarOnEscPress(setShowSidebar)
+
+   const handleSidebarMarginLeft = () => {
+      try {
          setSidebarMarginLeft(showSidebar ? getTotalSidebarWidth() : 0)
          setSidebarAbsoluteLeft(showSidebar ? 0 : -getTotalSidebarWidth())
       }
       catch (err) { console.warn(err) }
-   }, [showSidebar])
-   
-   // swipe to close sidebar
-   const ref = React.useRef()
-   const [ touchStart, setTouchStart ] = React.useState(0)
-   const [ touchEnd, setTouchEnd ] = React.useState(0)
+   }
 
-   useInitializer(() => {
+   const handleTouchRanges = () => {
       const touchStartListener = e =>
          setTouchStart(e.targetTouches[0].clientX)
       ref.current?.addEventListener("touchstart", touchStartListener)
@@ -38,11 +43,17 @@ export function Sidebar({ style, children, closeButton }) {
       const touchMoveListener = e =>
          setTouchEnd(e.targetTouches[0].clientX)
       ref.current?.addEventListener("touchmove", touchMoveListener)
-   })
+   }
 
-   React.useEffect(() => {
+   const handleSwipeToCloseSidebar = () => {
       if (touchEnd - touchStart < -110) setShowSidebar(false)
-   }, [ touchStart, touchEnd ])
+   }
+
+   React.useEffect(handleSidebarMarginLeft, [showSidebar])
+   useInitializer(handleTouchRanges)
+   React.useEffect(handleSwipeToCloseSidebar, [ touchStart, touchEnd ])
+   useInitializer(handleCloseSidebarOnEscPress)
+   useInitializer(handleCloseSidebarOnPageClick)
 
    return <ErrorBoundary
    fallback={<>fallback</>}>
