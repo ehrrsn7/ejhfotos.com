@@ -1,6 +1,7 @@
 /* The whole application */
 #App {
    width: 100vw;
+   background: rgba(0, 150, 150, 0.03);
    transition: margin-left .3s ease-in-out;
 }
 
@@ -9,16 +10,18 @@
    min-height: 100vh;
    flex-direction: column;
    display: flex;
-   place-content: space-around;
+   place-content: start;
+   place-items: center;
 }
 
 /* The page, not including the header or the footer */
 main {
-   display: flex;
-   flex-direction: column;
-   place-items: center;
    width: calc(100% - 2em);
    padding: 1em;
+}
+
+header, footer {
+   background: white;
 }
 
 footer {
@@ -27,6 +30,33 @@ footer {
    margin-top: auto;
    padding: 0;
    width: calc(100% - 2em);
+}
+
+#Sidebar {
+   background: green;
+}
+
+#Sidebar > a > button {
+   margin: .5em 1em;
+   padding: .5em;
+   border-radius: .5em;
+}
+
+#Sidebar #CloseSidebarButton {
+   border-radius: .5em;
+}
+
+#Linktree, #Linktree > h2 {
+   margin-bottom: 1em;
+}
+
+#Linktree .LinktreeItem > span {
+   border: 1px solid whitesmoke;
+   background: white;
+   padding: 1em;
+   border-radius: .5em;
+   margin: 0;
+   gap: 1em;
 }
 
 @media print {

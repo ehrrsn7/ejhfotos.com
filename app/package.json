@@ -7,10 +7,11 @@
       "dev": "vite",
       "build": "vite build",
       "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+      "install": "npm i ehrrsn7-components@latest",
       "preview": "vite preview"
    },
    "dependencies": {
-      "ehrrsn7-components": "^0.0.1-patch-40",
+      "ehrrsn7-components": "^0.0.1-patch-41",
       "react": "^18.2.0",
       "react-dom": "^18.2.0",
       "react-router-dom": "^6.12.0",

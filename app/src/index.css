@@ -51,6 +51,37 @@ html, body, #root, #App, .Page {
    padding: 0;
 }
 
+span, div, main {
+   display: flex;
+   place-items: center;
+}
+
+span {
+   flex-direction: row;
+}
+
+div, main {
+   flex-direction: column;
+}
+
+button {
+   border: unset;
+}
+
+h1, h2, h3, h4, h5, h6 {
+   font-family: Ubuntu;
+   margin: unset;
+}
+
+p {
+   font-family: "Open Sans";
+   margin: unset;
+}
+
+a {
+   text-decoration: none;
+}
+
 @media (max-width: 318px) {
    html, body, #root, #App, #Page, header, footer {
       width: 100%;
