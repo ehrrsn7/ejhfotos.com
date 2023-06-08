@@ -1,14 +1,15 @@
 import React from "react"
 import { Routes, Route } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
-import { Sidebar, Header, Footer, useInitializer, ToggleSidebarButton, useMedia } from "ehrrsn7-components"
+import { Sidebar, Header, useInitializer, ToggleSidebarButton, useMedia, SidebarContext } from "ehrrsn7-components"
 import "./App.css"
 
 export function App() {
    const mobile = useMedia("(max-width: 450px)")
+   const { setNonSidebarElement } = React.useContext(SidebarContext)
 
    useInitializer(() => {
-      console.log("ya")
+      setNonSidebarElement(document.querySelector("#Content"))
    })
 
    return <div id="App">
