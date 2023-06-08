@@ -13,19 +13,42 @@ export function Sidebar({ style, children, closeButton }) {
       throw "Context is undefined.\n\nDid you remember to wrap this " +
          "in a SidebarContextProvider element?\n"
 
+   const { showSidebar, setShowSidebar } = React.useContext(SidebarContext)
+   const { nonSidebarElement } = React.useContext(SidebarContext)
    const { sidebarAbsoluteLeft } = React.useContext(SidebarContext)
    const { setSidebarMarginLeft } = React.useContext(SidebarContext)
    const { setSidebarAbsoluteLeft } = React.useContext(SidebarContext)
-   const { showSidebar, setShowSidebar } = React.useContext(SidebarContext)
 
    const [ touchStart, setTouchStart ] = React.useState(0)
    const [ touchEnd, setTouchEnd ] = React.useState(0)
 
    const ref = React.useRef()
 
-   const handleCloseSidebarOnPageClick = () => closeSidebarOnPageClick(setShowSidebar)
+   const handleCloseSidebarOnPageClick = () => {
+      try {
+         const eventHandler = () => { setShowSidebar(false) }
+         nonSidebarElement?.addEventListener('click', eventHandler)
+         return () => {
+            nonSidebarElement?.removeEventListener('click', eventHandler)
+         }
+      }
+      catch (err) {
+         console.warn(err)
+      }
+   }
 
-   const handleCloseSidebarOnEscPress = () => closeSidebarOnEscPress(setShowSidebar)
+   const handleCloseSidebarOnEscPress = () => {
+      try {
+         const eventHandler = () => { setShowSidebar(false) }
+         document.addEventListener('keydown', eventHandler)
+         return () => {
+            document.removeEventListener('keydown', eventHandler)
+         }
+      }
+      catch (err) {
+         console.warn(err)
+      }
+   }
 
    const handleSidebarMarginLeft = () => {
       try {
@@ -121,6 +144,7 @@ export function SidebarContextProvider(props) {
    const { children } = props
 
    const [ showSidebar, setShowSidebar ] = React.useState(false)
+   const [ nonSidebarElement, setNonSidebarElement ] = React.useState(null)
    
    const [ sidebarMarginLeft, setSidebarMarginLeft ] = React.useState(
       !showSidebar ? 0 : getTotalSidebarWidth()
@@ -134,6 +158,7 @@ export function SidebarContextProvider(props) {
 
    const value = {
       showSidebar, setShowSidebar,
+      nonSidebarElement, setNonSidebarElement,
       sidebarMarginLeft, setSidebarMarginLeft,
       sidebarAbsoluteLeft, setSidebarAbsoluteLeft,
    }

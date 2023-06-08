@@ -8,7 +8,7 @@ export function App() {
    const mobile = useMedia("(max-width: 450px)")
 
    useInitializer(() => {
-      
+      console.log("ya")
    })
 
    return <div id="App">
@@ -18,11 +18,16 @@ export function App() {
                placeContent: mobile ? "center" : "space-between",
                borderBottom: "1px solid whitesmoke",
             }}>
+               <span style={{
+                  placeContent: mobile ? "center" : "space-between",
+               }}>
+
+               </span>
                <h1 style={{
                   margin: "0 2em",
                   padding: 0
                }}>Elijah Harrison</h1>
-               <img src="https://lh3.googleusercontent.com/kEctuyaef0MuFv2Hn-jMRCGf7c7RCKgT6AJYeGZPaeOCdm1mStkz2kapUUJPyXzv1iQhupIMpL2wrZ6YsWtQH-ITweVkLUtgMebIiuP4ZAZcLoFhCW9e9YBVz2NlY4O3NNWLvG7y_SHKrOkTfgQO2MopAr2AbYGupu6PlSlkd3my-Q1FrZqRtRNXIYB63KI9PUVgR7Yiicoj-ORNI-pZjcofeXMCsJNK_z2DO9GidZLub_AXviXGxv4NRXtYsvH3Wbqgxdq838ZxWPviNPf20wrvDfd6R3ylfNQF5h3DQG-C-fctPLoBigXZ0bem7csxI_yABsavduNkkoukn2SvWm27KQMmMKvUQhrfK_OPfJgBaPLpUshu018LPN1V_kWDNbhKww6WRRIrGvzN1p1_P0yWPZnGiaMs_NVC88ZvmTugi0mwM4rQLmvine_nwTw0_16ZobBPQi-hVB3tGpvDMugbpgJBapXt4g3dIit-8OhKFyznqZOJILBiKJKDhiQCEmNUIPHCVHenqsk8YhbbkxhC3fUtFE0pdp2pqIfNk4oOapQ1tqmGBdAjqs1PKZvOTArC9DJHH6VFx3cXhf52Do7unCqdBXNX9WAjGsxJBBzNKZ7UCK_4LXQlubUgxWhQqxiRfBddT5QBe0lxyxO_4mh1wAH6MvoHHRVz0Mi0oXyi_K1GtTaE1h4MX1070yishtxGfxaN00rAKXTBFtJ1VjEYs6bPd3JYEuvU8s_srKzu2coOln-bcxHJ4ca8YcjGVN_gUbGevwLS0CRU3zwHvfG3X3sQCX9yYFCocv9VVSkglRQM998zTNtN4FrWxZx6n6vF1xb75QJ0PdJ0hDk-pFGSmCxj9VQklTP6-4D5yLmJvH3TC1I5f5moJKMuYS5F1MvZAD1eh2aq5lGUtXYC2paaCte_oLBuL2dV7Tt_4PoL-RNFGwV0cgB5osTwyYM6pPNI5qtXpAcmBW7f3Sg=w2472-h1648-s-no?authuser=0" width="50px" style={{paddingRight: "1em"}} />
+               <img src="https://scontent.fsac1-2.fna.fbcdn.net/v/t39.30808-6/322544984_2436021816545175_5810502409847179461_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=ZV_gxHLl5fsAX-50Y3K&_nc_ht=scontent.fsac1-2.fna&oh=00_AfBK9pE_60VLC5dcl1mRVpyKyU2QopcvWhPU_CL5lIT2gQ&oe=64867F29" width="50px" style={{marginRight: "1em", borderRadius: "1em"}} />
             </Header>
             { !mobile &&
                <ToggleSidebarButton style={{position: "absolute", top: 10, left: 10}} />
