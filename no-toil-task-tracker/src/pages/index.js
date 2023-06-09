@@ -1,4 +1,3 @@
-import TestUI from "./TestUI"
 import { Bag } from "./Bag"
 import { Check } from "./Check"
 import { CompletedParts } from "./CompletedParts"
@@ -9,7 +8,6 @@ import { Spray } from "./Spray"
 import { Stamp } from "./Stamp"
 
 const Pages = {
-   TestUI,
    Bag,
    Check,
    CompletedParts,
@@ -21,7 +19,6 @@ const Pages = {
 }
 
 export {
-   TestUI,
    Bag,
    Check,
    CompletedParts,
