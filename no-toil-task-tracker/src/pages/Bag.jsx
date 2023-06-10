@@ -1,35 +1,41 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { separateCamelCase } from "ehrrsn7-components"
-import { Header, TaskTable } from "../components"
-import { Context } from "../contexts/context"
-import { filterFunctions } from "../components/TaskTable/TaskTable"
+import { separateCamelCase, Footer, useInitializer } from "ehrrsn7-components"
+import { Context } from "@contexts"
+import { filterFunctions } from "@utils"
+import { Header, TaskTable, Paginator } from "@components"
 import "./Bag.css"
 
 export function Bag() {
    const { setFilterFunction } = React.useContext(Context)
-
-   React.useEffect(() => {
+   
+   const handleStatusFilter = () => {
       setFilterFunction(() => filterFunctions.bagStatus)
-   }, [])
-
-   return <div id="Bag Page">
+   }
+   
+   useInitializer(handleStatusFilter)
+   
+   return <div id="Bag" className="Page">
       <Header>
          Bag
       </Header>
-      <div id="Content">
+      <main id="Content">
          <TaskTable
-         showHighPriority
-         showLastModified
-         showUpdate 
+            showHighPriority
+            showLastModified
+            showUpdate
+            isPaginated
+            search
+            navigate
          />
-      </div>
-      <span style={{
-         padding: 16, maxWidth: 1000
-      }}>
-         <Link to="/Oil"><button><h5>← Oil</h5></button></Link>
-         <Link to="/"><button><h5>Back to Dashboard</h5></button></Link>
-         <Link to="/CompletedParts"><button><h5>{separateCamelCase("CompletedParts")} →</h5></button></Link>
-      </span>
+      </main>
+      <Footer>
+         <Paginator />
+         <nav id="StatusNavigation">
+            <Link to="/Oil"><button><h5>← Oil</h5></button></Link>
+            <Link to="/"><button><h5>Back to Dashboard</h5></button></Link>
+            <Link to="/CompletedParts"><button><h5>{separateCamelCase("CompletedParts")} →</h5></button></Link>
+         </nav>
+      </Footer>
    </div>
 }

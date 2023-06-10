@@ -1,120 +1,117 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { Context } from "../contexts/context"
-import { Header, TaskTable } from "../components"
+import { toast } from "react-toastify"
+import {
+   separateCamelCase, useInitializer, ErrorBoundary, useMedia
+} from "ehrrsn7-components"
+import { Context } from "@contexts"
+import {
+   Header, Footer, TaskTable, Paginator, AddMore, ToggleAddMoreButton
+} from "@components"
+import { downloadFile, objToArray, arrToCsv } from "@utils"
 import "./Dashboard.css"
-import { separateCamelCase } from "ehrrsn7-components"
 
 export function Dashboard() {
-   const { setFilterFunction } = React.useContext(Context)
+   const { tasks } = React.useContext(Context)
    const { setSortedBy } = React.useContext(Context)
+   const { setFilterFunction } = React.useContext(Context)
 
-   const [ showAddTask, setShowAddTask ] = React.useState(false)
+   const tablet = useMedia("(max-width: 700px)")
 
-   React.useEffect(() => {
-      setFilterFunction(() => row => row)
-      setSortedBy("Status")
-   }, [])
+   const [ showAddTasks, setShowAddTasks ] = React.useState(false)
+   const [ showImportCsv, setShowImportCsv ] = React.useState(false)
 
-   return <span id="Dashboard Page">
+   const handleTasksSorting = () => setSortedBy("Title-Ascending")
+   const handleStatusFilter = () => setFilterFunction(row => row)
+
+   useInitializer(handleTasksSorting)
+   useInitializer(handleStatusFilter)
+
+   useInitializer(() => {console.log("does this once once? or every page load")})
+
+   return <ErrorBoundary fallback={<>Error rendering Dashboard component.</>}>
+   <span id="Dashboard" className="Page">
       <Header>
          Dashboard
       </Header>
-      <div id="Content">
+      <main id="Content" style={{
+         placeContent: "space-between",
+         placeItems: "space-between",
+      }}>
          <TaskTable
-         showHighPriority
-         showStatus
-         showLastModified
-         showUpdate 
+            showHighPriority
+            showStatus
+            showLastModified
+            showUpdate 
+            isPaginated
+            search
+            navigate
          />
+      </main>
 
-         <span style={{
-            placeContent: "space-between",
-            marginTop: "1em",
-            gap: "1em",
-            maxWidth: 1000,
-         }}>
-            <button onClick={() => setShowAddTask(!showAddTask)}>
-               <h5>
-                  {showAddTask ? "Hide Add Task" : "Add Task"}
-               </h5>
+      <Footer>
+         <Paginator />
+
+         <nav className="AddMore">
+            <ToggleAddMoreButton 
+            showAddTasks={showAddTasks} 
+            setShowAddTasks={setShowAddTasks} />
+
+            { showAddTasks ? <button
+            style={{
+               background: showImportCsv && "rgba(204, 255, 204, 0.5)",
+               border: showImportCsv && "1px solid green",
+            }}
+            onClick={() => setShowImportCsv(!showImportCsv)}>
+               <h5>Import .csv</h5>
+            </button> : <button disabled /> }
+
+            <button onClick={event => exportToCSV(event, tasks)}
+            style={{border: "2px solid transparent"}}>
+               <h5>Export .csv</h5>
             </button>
-            
-            <Link to="/CompletedParts">
-               <button><h5>{separateCamelCase("CompletedParts")}</h5></button>
-            </Link>
+         </nav>
 
+         <AddMore showAddTasks={showAddTasks} showImportCsv={showImportCsv} />
+
+         <nav id="PageLinks"
+         style={{
+            gridTemplateColumns: tablet ? "repeat(2, 1fr)" : "repeat(4, 1fr)"
+         }}>
+            {!tablet && <button disabled />}
             <Link to="/DiscardedParts">
-               <button><h5>{separateCamelCase("DiscardedParts")}</h5></button>
+               <button>
+                  <h5>{separateCamelCase("DiscardedParts")}</h5>
+               </button>
             </Link>
 
+            <Link to="/CompletedParts">
+               <button>
+                  <h5>{separateCamelCase("CompletedParts")}</h5>
+               </button>
+            </Link>
+            {!tablet && <button disabled />}
+         </nav>
+         <nav id="StatusNavigation">
+            <Link to="/HighPriority">
+               <button><h5> High Priority </h5></button>
+            </Link>
+            {/* <button disabled style={{ cursor: "default"}} /> */}
+            <button disabled style={{ cursor: "default"}}><h5>Back to Dashboard</h5></button>
             <Link to="/Stamp">
                <button><h5> Stamp → </h5></button>
             </Link>
-         </span>
-
-         { showAddTask && <AddMore /> }
-      </div>
+         </nav>
+      </Footer>
    </span>
+   </ErrorBoundary>
 }
 
-function AddMore() {
-   const containerRef = React.useRef()
-
-   const onSubmit = event => {
-      event.preventDefault()
-      const obj = {}
-      containerRef.current.querySelectorAll("span").forEach(element => {
-         const key = element.querySelector(".key").innerHTML
-         let val = element.querySelector(".val").value
-         const type = element.querySelector(".val").type
-
-         switch (type) {
-            case "datetime-local":
-               val = new Date(val)
-               break
-            case "number":
-               val = parseInt(val)
-               break
-            case "checkbox":
-               val = element.querySelector(".val").checked
-               break
-         }
-
-         obj[key] = val
-      })
-      console.log(obj)
-   }
-
-   return <form id="AddMore">
-      <div ref={containerRef}>
-         <span>
-            <h3 className="key">Title</h3>
-            <input className="val" />
-         </span>
-         <span>
-            <h3 className="key">Quantity</h3>
-            <input className="val" type="number" />
-         </span>
-         <span>
-            <h3 className="key">Last Modified</h3>
-            <input className="val" type="datetime-local" />
-         </span>
-         <span>
-            <h3 className="key">Oil</h3>
-            <input className="val" type="checkbox" />
-         </span>
-         <span>
-            <h3 className="key">High Priority</h3>
-            <input className="val" type="checkbox" />
-         </span>
-         <span>
-            <h3 className="key">Discarded</h3>
-            <input className="val" type="checkbox" />
-         </span>
-         <button type="submit" onClick={onSubmit} onSubmit={onSubmit}>
-            Post
-         </button>
-      </div>
-   </form>
+// event handlers
+function exportToCSV(event, tasks) {
+   event.preventDefault()
+   // todo: handle toast with promise/await/etc. logic
+   toast("export to csv")
+   console.log(arrToCsv(tasks))
+   downloadFile(`tasks-${new Date().toString()}.csv`, arrToCsv(objToArray(tasks)))
 }
