@@ -2,21 +2,12 @@ import React from "react"
 import { LayoutGroup, motion } from "framer-motion"
 import { useInitializer, ErrorBoundary } from "ehrrsn7-components"
 import { Context } from "@contexts"
-<<<<<<< HEAD
-import { objToArray, filterFunctions } from "@utils"
-=======
-import { objToArray, sortTasksBy, filterFunctions } from "@utils"
->>>>>>> 36bb42f4b07a060ec10a9401e1844e6ad8dd7215
+import { objToArray, getSortFunction, filterFunctions } from "@utils"
 import { SearchAndNavigateBar, AccordionRow, TaskRow } from "."
 import "./TaskTable.css"
-import { getSortFunction } from "../../utils"
 
 export function TaskTable({
-<<<<<<< HEAD
    setsOrQuantity, showStatus, showLastModified, showHighPriority, showUpdate, isPaginated, paginationRangeOverride, search, navigate, discarded
-=======
-   setsOrQuantity, showStatus, showLastModified, showHighPriority, showUpdate, paginated, paginationRangeOverride, search, navigate, discarded
->>>>>>> 36bb42f4b07a060ec10a9401e1844e6ad8dd7215
 }) {
    const { tasks, setTasks } = React.useContext(Context)
    const { tasksLength } = React.useContext(Context)
@@ -26,10 +17,7 @@ export function TaskTable({
    const { searchState } = React.useContext(Context)
    const { filterFunction } = React.useContext(Context)
    const { filterDiscarded } = React.useContext(Context)
-<<<<<<< HEAD
    const { paginated, setPaginated } = React.useContext(Context)
-=======
->>>>>>> 36bb42f4b07a060ec10a9401e1844e6ad8dd7215
    const { paginationOffset } = React.useContext(Context)
    const { paginationRange, setPaginationRange } = React.useContext(Context)
 
@@ -45,7 +33,6 @@ export function TaskTable({
          .filter(filterFunction)
          .filter(searchStateFilter)
          .filter(discardedFilter)
-<<<<<<< HEAD
          .sort(getSortFunction(sortedBy))
       if (paginated)
          return get()
@@ -54,23 +41,6 @@ export function TaskTable({
    }
 
    // handlers
-=======
-      if (paginated)
-         return get()
-            .slice(paginationOffset, paginationOffset + paginationRange)
-      return get().filter(discardedFilter)
-   }
-
-   // handlers
-   const handleTasksSorting = () => {
-      try {
-         if (!tasks) throw "tasks undefined"
-         sortTasksBy({ tasks, setTasks }, sortedBy)
-      }
-      catch (err) { console.warn(err) }
-   }
-
->>>>>>> 36bb42f4b07a060ec10a9401e1844e6ad8dd7215
    const handleDiscarded = () => {
       const newDiscarded = discarded || false
       setFilterDiscarded(newDiscarded)
@@ -87,7 +57,6 @@ export function TaskTable({
    useInitializer(handleDiscarded)
    useInitializer(handlePaginationRangeOverride)
    useInitializer(handleDiscarded)
-   React.useEffect(handleTasksSorting, [ sortedBy, setTasks ])
 
    // component
    return <ErrorBoundary fallback={<div>
