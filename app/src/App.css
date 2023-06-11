@@ -1,7 +1,7 @@
 /* The whole application */
 #App {
    width: 100vw;
-   background: rgba(0, 150, 150, 0.03);
+   background: rgba(206, 203, 154, 0.03);
    transition: margin-left .3s ease-in-out;
 }
 
@@ -17,6 +17,7 @@
 /* The page, not including the header or the footer */
 main {
    width: calc(100% - 2em);
+   max-width: 800px;
    padding: 1em;
 }
 
@@ -46,17 +47,107 @@ footer {
    border-radius: .5em;
 }
 
-#Linktree, #Linktree > h2 {
+#About h1,
+#About h2,
+#About h3,
+#About h4,
+#About h5,
+#About h6,
+#About p {
+   margin: 0;
+   margin-top: 2px;
+   margin-bottom: 15px;
+}
+
+#GitHub > ul > li {
+   margin-bottom: 2em;
+}
+
+.InlineStyleButtonsList {
+	padding: 0;
+	padding-left: 5;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.InlineButton {
+	display: inline;
+	padding-right: 2em;
+   all: unset;
+   font-family: 'Open Sans', sans-serif;
+   font-size: 12px;
+   padding: .5em;
+   margin: .5em;
+   border: 1px solid var(--cyan);
+   color: var(--cyan);
+   border-radius: .5em;
+   transition: background .2s ease-in-out, color .2s ease-in-out;
+   font-weight: bold;
+   /* text-transform: uppercase; */
+}
+.InlineButton:hover {
+	background: var(--cyan);
+	color: white;
+}
+
+li, a {
+   list-style: none;
+	text-decoration: none;
+}
+
+#Linktree {
+   gap: 1em;
    margin-bottom: 1em;
 }
 
-#Linktree .LinktreeItem > span {
-   border: 1px solid whitesmoke;
+.LinktreeItem {
    background: white;
-   padding: 1em;
-   border-radius: .5em;
-   margin: 0;
    gap: 1em;
+   place-content: space-between;
+   place-items: center;
+   border-radius: .5em;
+   padding: 1em;
+   min-width: 275px;
+   border: 1px solid var(--cyan);
+}
+
+.ScreenshotFigure {
+   border: 1px solid var(--cyan);
+   margin: .5em;
+   padding: 0;
+   display: flex;
+   flex-direction: column;
+   place-items: start;
+   place-content: start;
+   width: 100%;
+   max-width: 350px;
+   height: fit-content;
+}
+
+.ScreenshotFigure figcaption {
+   margin: 0;
+   padding: 0 1em;
+   text-align: center;
+   font-weight: bold;
+   background: var(--cyan);
+   color: white;
+   font-style: italic;
+   width: calc(100% - 2em);
+}
+
+.ScreenshotFigure img {
+   width: 100%;
+   margin: 0;
+   padding: 0;
+}
+
+@media (max-width: 650px) {
+
+   .Linktree {
+      place-items: center;
+      place-content: center;
+   }
+
 }
 
 @media print {

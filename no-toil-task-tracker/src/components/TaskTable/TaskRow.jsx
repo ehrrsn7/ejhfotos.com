@@ -67,7 +67,7 @@ export const TaskRow = {
             <td id="Update">
                <button style={{padding: "0 15px", height: 25, marginTop: "2px"}}
                onClick={() => setUpdateExpanded('')}>
-                  <h4>—</h4>
+                  <h4> — </h4>
                </button>
             </td> :
             <td id="Update">

@@ -53,11 +53,11 @@ html, body, #root, #App, .Page {
 
 span, div, main {
    display: flex;
-   place-items: center;
 }
 
 span {
    flex-direction: row;
+   flex-wrap: wrap;
 }
 
 div, main {
@@ -80,6 +80,7 @@ p {
 
 a {
    text-decoration: none;
+   color: rgb(0, 132, 165);
 }
 
 @media (max-width: 318px) {
