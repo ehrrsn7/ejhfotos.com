@@ -244,10 +244,11 @@ function InlineStyleButtonsList({style, className, id, children}) {
 }
 
 function InlineButton({style, className, id, children, to, onClick}) {
-   const newClassName = `InlineButton ${className}`
-   return <Link to={to} target="_blank" rel="noopener noreferrer">
+   return <Link to={to}
+   target={to && "_blank"} rel={to && "noopener noreferrer"}>
       <li id={id} className="InlineItem">
-         <button style={style} className={newClassName} onClick={onClick}>
+         <button style={style} onClick={onClick}
+         className={`InlineButton ${className}`}>
             {children}
          </button>
       </li>
