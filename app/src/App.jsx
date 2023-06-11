@@ -2,6 +2,13 @@ import React from "react"
 import { Link, Routes, Route } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import { Header, useInitializer, useMedia, SidebarContext } from "ehrrsn7-components"
+import graduationHandshakeImage from "/src/assets/elijah graduation handshake.jpeg"
+import asteroidsCScreenshot from "/src/assets/Asteroids/asteroids in C++.png"
+import asteroidsJSScreenshot from "/src/assets/Asteroids/screenshot of asteroids in javascript.gif"
+import asteroidsKotlinScreenshot from "/src/assets/Asteroids/screenshot of asteroids in kotlin.gif"
+import noToilTaskTrackerScreenshot from "/src/assets/no-toil-task-tracker-full.png"
+import noToilTaskTrackerWithSidebarScreenshot from "/src/assets/no-toil-task-tracker-with-sidebar.png"
+import orbitSimulatorScreenshot from "/src/assets/orbit simulator.png"
 import "./App.css"
 
 export function App() {
@@ -84,7 +91,7 @@ function About({}) {
          </div>
          <ScreenshotFigure
          style={{width: "280px"}}
-         src="/src/assets/elijah graduation handshake.jpeg"
+         src={graduationHandshakeImage}
          caption="Walking at Graduation"
          />
       </span>
@@ -124,15 +131,15 @@ function About({}) {
                </InlineStyleButtonsList>
                <span>
                   <ScreenshotFigure
-                  src="/src/assets/Asteroids/asteroids in C++.png"
+                  src={asteroidsCScreenshot}
                   caption="Screenshot of Asteroids in C++"
                   />
                   <ScreenshotFigure
-                  src="/src/assets/Asteroids/screenshot of asteroids in javascript.gif"
+                  src={asteroidsJSScreenshot}
                   caption="Screenshot of Asteroids in JavaScript"
                   />
                   <ScreenshotFigure
-                  src="/src/assets/Asteroids/screenshot of asteroids in kotlin.gif"
+                  src={asteroidsKotlinScreenshot}
                   caption="Screenshot of Asteroids in Kotlin"
                   />
                </span>
@@ -145,11 +152,11 @@ function About({}) {
                <p>It was built using Django + React.</p>
                <span className="full-width">
                   <ScreenshotFigure
-                  src="/src/assets/no-toil-task-tracker-full.png"
+                  src={noToilTaskTrackerScreenshot}
                   caption="No Toil Task Tracker Application"
                   />
                   <ScreenshotFigure
-                  src="/src/assets/no-toil-task-tracker-with-sidebar.png"
+                  src={noToilTaskTrackerWithSidebarScreenshot}
                   caption="No Toil Task Tracker Application (with sidebar)"
                   />
                </span>
@@ -220,7 +227,7 @@ function About({}) {
                <p>We set it up so that the simulator uses real physics formulas with dilation/adjustments to run properly.</p>
 
                <ScreenshotFigure
-               src="/src/assets/orbit simulator.png"
+               src={orbitSimulatorScreenshot}
                caption="Screenshot of Orbit Simulator Program"
                />
             </li>
